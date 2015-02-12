@@ -7,7 +7,7 @@ export default Ember.Component.extend(HighchartsThemeMixin, {
     chartOptions: undefined,
     chart: null,
 
-    buildOptions: Em.computed('chartOptions', 'content.@each.isLoaded', function() {
+    buildOptions: Ember.computed('chartOptions', 'content.@each.isLoaded', function() {
         var chartContent, chartOptions, defaults;
         chartOptions = this.getWithDefault('chartOptions', {});
         chartContent = this.get('content.length') ? this.get('content') : [{
@@ -18,7 +18,7 @@ export default Ember.Component.extend(HighchartsThemeMixin, {
         defaults = {
             series: chartContent
         };
-        return Em.merge(defaults, chartOptions);
+        return Ember.merge(defaults, chartOptions);
     }),
 
     _renderChart: (function() {
@@ -26,7 +26,7 @@ export default Ember.Component.extend(HighchartsThemeMixin, {
         this.buildTheme();
     }).on('didInsertElement'),
 
-    contentDidChange: Em.observer('content.@each.isLoaded', function() {
+    contentDidChange: Ember.observer('content.@each.isLoaded', function() {
         var chart;
         if (!(this.get('content') && this.get('chart'))) {
             return;

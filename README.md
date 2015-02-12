@@ -9,8 +9,41 @@ A [Highcharts](http://www.highcharts.com/) component for [Ember CLI](http://www.
 
 ## Usage
 
+In your template:
 ```handlebars
 {{high-charts content=chartData chartOptions=chartOptions}}
+```
+Then in a controller you can set the `chartData` and `chartOptions` values:
+```
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
+  chartOptions: {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+      text: 'Fruit Consumption'
+    },
+    xAxis: {
+      categories: ['Apples', 'Bananas', 'Oranges']
+    },
+    yAxis: {
+      title: {
+          text: 'Fruit eaten'
+      }
+    }
+  },
+  chartData: [
+    {
+      name: 'Jane',
+      data: [1, 0, 4]
+    }, {
+      name: 'John',
+      data: [5, 7, 3]
+    }
+  ]
+});
 ```
 
 ## Credit

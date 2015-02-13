@@ -4,8 +4,7 @@ A [Highcharts](http://www.highcharts.com/) component for [Ember CLI](http://www.
 
 ## Installation
 
-* `npm install --save-dev ember-highcharts`
-* `ember g ember-highcharts`
+* `ember install:addon ember-highcharts`
 
 ## Usage
 

@@ -1,4 +1,4 @@
-# Ember-highcharts
+# Ember-highcharts [![Build Status](https://travis-ci.org/ahmadsoe/ember-highcharts.svg)](https://travis-ci.org/ahmadsoe/ember-highcharts) [![npm version](https://badge.fury.io/js/ember-highcharts.svg)](http://badge.fury.io/js/ember-highcharts)
 
 A [Highcharts](http://www.highcharts.com/) component for [Ember CLI](http://www.ember-cli.com/).
 

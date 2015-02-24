@@ -9,11 +9,14 @@ A [Highcharts](http://www.highcharts.com/) component for [Ember CLI](http://www.
 ## Usage
 
 In your template:
+
 ```handlebars
 {{high-charts content=chartData chartOptions=chartOptions}}
 ```
+
 Then in a controller you can set the `chartData` and `chartOptions` values:
-```
+
+```javascript
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
@@ -43,6 +46,25 @@ export default Ember.Controller.extend({
     }
   ]
 });
+```
+
+### Configuring Default Styles
+
+Ember-highcharts provides its own set of default configurations in
+`addon/utils/option-loader.js`.  At runtime you can optionally configure custom
+styles by providing a `app/highcharts-configs/application.js` file.  This
+file should provide a hook that returns the final configuration.
+
+```javascript
+ // app/highcharts-configs/application.js
+
+ export default function(defaultOptions) {
+   defaultOptions.credits.href = 'http://www.my-great-chart.com';
+   defaultOptions.credits.text = 'great charts made cheap';
+   defaultOptions.credits.enabled = true;
+
+   return defaultOptions;
+ }
 ```
 
 ## Credit

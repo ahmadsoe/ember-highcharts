@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import HighchartsThemeMixin from '../mixins/highcharts-theme';
+import { setDefaultHighChartOptions } from '../utils/option-loader';
 
-export default Ember.Component.extend(HighchartsThemeMixin, {
+export default Ember.Component.extend({
   classNames: ['highcharts-wrapper'],
   content: undefined,
   chartOptions: undefined,
@@ -23,7 +23,7 @@ export default Ember.Component.extend(HighchartsThemeMixin, {
 
   _renderChart: (function() {
     this.drawLater();
-    this.buildTheme();
+    setDefaultHighChartOptions(this.container);
   }).on('didInsertElement'),
 
   contentDidChange: Ember.observer('content.@each.isLoaded', function() {

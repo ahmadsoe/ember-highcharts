@@ -105,3 +105,8 @@ This add-on is built based on the [gist](https://gist.github.com/poteto/cd2bb47e
 
 - Added an ability to use Highstock and Highmaps.
 - The addon no longer automatically imports the Highcharts Bower package, letting user import desired package manually.
+
+### 0.0.6
+
+- Updated tests.
+- Added Highstock demo to the dummy app.

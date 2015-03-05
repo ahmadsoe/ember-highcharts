@@ -56,8 +56,7 @@ export default Ember.Component.extend({
     mode = this.get('mode');
     if ( typeof mode === 'string' && !!mode) {
       options.unshift(mode);
-    };
-    Ember.Logger.debug('mode', mode);
+    }
     $element = this.$();
     chart = $element.highcharts.apply($element, options).highcharts();
     this.set('chart', chart);

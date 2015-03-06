@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import stockData from '../data/stock';
 
 export default Ember.Controller.extend({
   chartOptions: {
@@ -23,5 +24,19 @@ export default Ember.Controller.extend({
   }, {
     name: 'John',
     data: [5, 7, 3]
+  }],
+
+  stockChartOptions: {
+    rangeSelector: {
+      selected: 1
+    },
+    title: {
+      text: 'Highstock: AAPL Stock Price'
+    }
+  },
+
+  stockChartData: [{
+    name: 'AAPL',
+    data: stockData
   }]
 });

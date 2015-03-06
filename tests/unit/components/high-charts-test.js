@@ -35,3 +35,29 @@ test('has local options', function() {
   var credit = element.find(':contains(ember-highcharts-configured-title)');
   notEqual(credit.length, 0, 'ember-highcharts-configured-title credits present');
 });
+
+
+test('Highstock has navigator', function() {
+  this.subject({
+    mode: 'StockChart',
+    chartOptions: {
+      rangeSelector: {
+        selected: 1
+      },
+      title: {
+        text: 'AAPL Stock Price'
+      }
+    },
+    content: [{
+      name: 'AAPL',
+      data: [
+        [1147651200000, 67.79],
+        [1147737600000, 64.98],
+        [1147824000000, 65.26]
+      ]
+    }]
+  });
+  var element = this.append();
+  var navigator = element.find('.highcharts-navigator');
+  notEqual(navigator.length, 0, '.highcharts-navigator present');
+});

@@ -4,6 +4,7 @@ import { setDefaultHighChartOptions } from '../utils/option-loader';
 export default Ember.Component.extend({
   classNames: ['highcharts-wrapper'],
   content: undefined,
+  mode:    undefined,
   chartOptions: undefined,
   chart: null,
 
@@ -50,9 +51,15 @@ export default Ember.Component.extend({
   },
 
   draw: function() {
-    var options;
-    options = this.get('buildOptions');
-    this.set('chart', this.$().highcharts(options).highcharts());
+    var options, mode, $element, chart;
+    options = [ this.get('buildOptions') ];
+    mode = this.get('mode');
+    if ( typeof mode === 'string' && !!mode) {
+      options.unshift(mode);
+    }
+    $element = this.$();
+    chart = $element.highcharts.apply($element, options).highcharts();
+    this.set('chart', chart);
   },
 
   _destroyChart: (function() {

@@ -7,6 +7,7 @@ module.exports = {
   included: function(app) {
     this._super.included(app);
 
-    app.import(app.bowerDirectory + '/highcharts-release/highcharts.js');
+    // We expect the user to add the package he needs
+    //app.import(app.bowerDirectory + '/highcharts-release/highcharts.js');
   }
 };

@@ -44,7 +44,7 @@ test('has local options', function(assert) {
 });
 
 
-test('Highstock has navigator', function() {
+test('Highstock has navigator', function(assert) {
   this.subject({
     mode: 'StockChart',
     chartOptions: {
@@ -66,5 +66,5 @@ test('Highstock has navigator', function() {
   });
   var element = this.append();
   var navigator = element.find('.highcharts-navigator');
-  notEqual(navigator.length, 0, '.highcharts-navigator present');
+  assert.notEqual(navigator.length, 0, '.highcharts-navigator present');
 });

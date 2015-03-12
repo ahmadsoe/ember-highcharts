@@ -1,6 +1,17 @@
 import Ember from 'ember';
 import { setDefaultHighChartOptions } from '../utils/option-loader';
 
+const {
+  computed,
+  getWithDefault,
+  get,
+  set,
+  merge,
+  on,
+  observer,
+  run
+} = Ember;
+
 export default Ember.Component.extend({
   classNames: ['highcharts-wrapper'],
   content: undefined,
@@ -9,36 +20,32 @@ export default Ember.Component.extend({
   chart: null,
   theme: undefined,
 
-  buildOptions: Ember.computed('chartOptions', 'content.@each.isLoaded', function() {
-    var chartContent, chartOptions, defaults;
-    chartOptions = Ember.$.extend(true, {}, this.get('theme'), this.get('chartOptions'));
-    chartContent = this.get('content.length') ? this.get('content') : [{
-      id: 'noData',
-      data: 0,
-      color: '#aaaaaa'
+  buildOptions: computed('chartOptions', 'content.@each.isLoaded', function() {
+    let chartOptions = Ember.$.extend(true, {}, this.get('theme'), this.get('chartOptions'));
+    let chartContent = get(this, 'content.length') ? get(this, 'content') : [{
+      id    : 'noData',
+      data  : 0,
+      color : '#aaaaaa'
     }];
-    defaults = {
-      series: chartContent
-    };
-    return Ember.merge(defaults, chartOptions);
+
+    let defaults = { series: chartContent };
+
+    return merge(defaults, chartOptions);
   }),
 
-  _renderChart: (function() {
-    this.drawLater();
-    setDefaultHighChartOptions(this.container);
-  }).on('didInsertElement'),
-
-  contentDidChange: Ember.observer('content.@each.isLoaded', function() {
-    var chart;
-    if (!(this.get('content') && this.get('chart'))) {
+  contentDidChange: observer('content.@each.isLoaded', function() {
+    if (!(get(this, 'content') && get(this, 'chart'))) {
       return;
     }
-    chart = this.get('chart');
-    return this.get('content').forEach(function(series, idx) {
-      var _ref;
-      if ((_ref = chart.get('noData')) != null) {
-        _ref.remove();
-      }
+
+    let chart  = get(this, 'chart');
+    let noData = chart.get('noData');
+
+    if (noData != null) {
+      noData.remove();
+    }
+
+    return get(this, 'content').forEach((series, idx) => {
       if (chart.series[idx]) {
         return chart.series[idx].setData(series.data);
       } else {
@@ -47,24 +54,31 @@ export default Ember.Component.extend({
     });
   }),
 
-  drawLater: function() {
-    Ember.run.scheduleOnce('afterRender', this, 'draw');
+  drawAfterRender() {
+    run.scheduleOnce('afterRender', this, 'draw');
   },
 
-  draw: function() {
-    var options, mode, $element, chart;
-    options = [ this.get('buildOptions') ];
-    mode = this.get('mode');
-    if ( typeof mode === 'string' && !!mode) {
+  draw() {
+    let options = [ get(this, 'buildOptions') ];
+    let mode  = get(this, 'mode');
+
+    if (typeof mode === 'string' && !!mode) {
       options.unshift(mode);
     }
-    $element = this.$();
-    chart = $element.highcharts.apply($element, options).highcharts();
-    this.set('chart', chart);
+
+    let $element = this.$();
+    let chart    = $element.highcharts.apply($element, options).highcharts();
+
+    set(this, 'chart', chart);
   },
 
-  _destroyChart: (function() {
+  _renderChart: on('didInsertElement', function() {
+    this.drawAfterRender();
+    setDefaultHighChartOptions(this.container);
+  }),
+
+  _destroyChart: on('willDestroyElement', function() {
     this._super();
-    this.get('chart').destroy();
-  }).on('willDestroyElement')
+    get(this, 'chart').destroy();
+  })
 });

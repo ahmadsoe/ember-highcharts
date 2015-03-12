@@ -113,3 +113,11 @@ This add-on is built based on the [gist](https://gist.github.com/poteto/cd2bb47e
 
 - Updated tests.
 - Added Highstock demo to the dummy app.
+
+### 0.0.7
+
+- Updated Ember CLI to `0.1.15`.
+
+### 0.0.8
+
+- Fixed broken npm package.

@@ -3,7 +3,6 @@ import { setDefaultHighChartOptions } from '../utils/option-loader';
 
 const {
   computed,
-  getWithDefault,
   get,
   set,
   merge,

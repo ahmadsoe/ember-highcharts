@@ -64,7 +64,7 @@ test('Highstock has navigator', function(assert) {
       ]
     }]
   });
-  var element = this.append();
+  var element = this.render();
   var navigator = element.find('.highcharts-navigator');
   assert.notEqual(navigator.length, 0, '.highcharts-navigator present');
 });

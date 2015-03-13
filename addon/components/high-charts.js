@@ -20,7 +20,7 @@ export default Ember.Component.extend({
   theme: undefined,
 
   buildOptions: computed('chartOptions', 'content.@each.isLoaded', function() {
-    let chartOptions = Ember.$.extend(true, {}, this.get('theme'), this.get('chartOptions'));
+    let chartOptions = Ember.$.extend(true, {}, get(this, 'theme'), get(this, 'chartOptions'));
     let chartContent = get(this, 'content.length') ? get(this, 'content') : [{
       id    : 'noData',
       data  : 0,

@@ -4,27 +4,23 @@ A [Highcharts](http://www.highcharts.com/) component for [Ember CLI](http://www.
 
 ## Installation
 
-1. Install the addon:
+```
+ember install:addon ember-highcharts
+```
 
-        ember install:addon ember-highcharts
-        
-2. Depending on whether you want to use Highcharts, Highstock or Highmaps, install corresponding Bower package.
+This addon will use Highcharts by default, if you want to use Highstocks and/or Highmaps, add this options to your `Brocfile.js`:
 
-  Do **one** of the following commands:
-
-        bower install --save highcharts-release
-        bower install --save highstock-release
-        bower install --save highmaps-release
-        
-3. In your `Brocfile.js`, tell Broccoli to import the package you have just installed.
-
-  Add **one** of the following lines:
-  
-        app.import('bower_components/highcharts-release/highcharts.src.js');
-        app.import('bower_components/highstock-release/highstock.src.js');
-        app.import('bower_components/highmaps-release/highmaps.src.js');
-        
-  Depending on what Highcharts features you're gonna use, you might need to import additional files. Refer to Highcharts documentation.
+```javascript
+var app = new EmberApp({
+  ---
+  emberHighCharts: {
+    includeHighCharts: false,
+    includeHighStock: true,
+    includeHighMaps: true
+  }
+  ---
+});
+```
 
 ## Usage
 

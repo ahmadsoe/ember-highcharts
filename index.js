@@ -1,6 +1,8 @@
 /* jshint node: true */
 'use strict';
 
+var path = require('path');
+
 module.exports = {
   name: 'ember-highcharts',
 
@@ -18,11 +20,26 @@ module.exports = {
     registry.add('js', plugin);
   },
 
+  treeForVendor: function() {
+    return this.treeGenerator(path.join(__dirname, 'bower_components'));
+  },
+
   included: function(app) {
     this._super.included(app);
 
-    // We expect the user to add the package he needs
-    //app.import(app.bowerDirectory + '/highcharts-release/highcharts.js');
+    var options = app.options.emberHighCharts || {includeHighCharts: true};
+
+    if (options.includeHighCharts) {
+      app.import('vendor/highcharts-release/highcharts.src.js');
+    }
+
+    if (options.includeHighStock) {
+      app.import('vendor/highstock-release/highstock.src.js');
+    }
+
+    if (options.includeHighMaps) {
+      app.import('vendor/highmaps-release/highmaps.src.js');
+    }
   }
 };
 

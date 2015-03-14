@@ -3,7 +3,6 @@ import { setDefaultHighChartOptions } from '../utils/option-loader';
 
 const {
   computed,
-  getWithDefault,
   get,
   set,
   merge,
@@ -13,14 +12,15 @@ const {
 } = Ember;
 
 export default Ember.Component.extend({
-  classNames   : [ 'highcharts-wrapper' ],
-  content      : undefined,
-  mode         : undefined,
-  chartOptions : undefined,
-  chart        : null,
+  classNames: ['highcharts-wrapper'],
+  content: undefined,
+  mode:    undefined,
+  chartOptions: undefined,
+  chart: null,
+  theme: undefined,
 
   buildOptions: computed('chartOptions', 'content.@each.isLoaded', function() {
-    let chartOptions = getWithDefault(this, 'chartOptions', {});
+    let chartOptions = Ember.$.extend(true, {}, get(this, 'theme'), get(this, 'chartOptions'));
     let chartContent = get(this, 'content.length') ? get(this, 'content') : [{
       id    : 'noData',
       data  : 0,

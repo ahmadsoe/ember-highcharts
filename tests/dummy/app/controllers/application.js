@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import stockData from '../data/stock';
+import defaultTheme from '../themes/default-theme';
 
 export default Ember.Controller.extend({
   chartOptions: {
@@ -38,5 +39,7 @@ export default Ember.Controller.extend({
   stockChartData: [{
     name: 'AAPL',
     data: stockData
-  }]
+  }],
+
+  theme: defaultTheme
 });

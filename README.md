@@ -31,13 +31,14 @@ A [Highcharts](http://www.highcharts.com/) component for [Ember CLI](http://www.
 In your template:
 
 ```handlebars
-{{high-charts mode=chartMode content=chartData chartOptions=chartOptions}}
+{{high-charts mode=chartMode content=chartData chartOptions=chartOptions theme=theme}}
 ```
 
-Then in a controller you can set the `chartMode`, `chartData` and `chartOptions` values:
+Then in a controller you can set the `chartMode`, `chartData`, `chartOptions` and `theme` values:
 
 ```javascript
 import Ember from 'ember';
+import defaultTheme from '../themes/default-theme';
 
 export default Ember.Controller.extend({
   chartMode: 'StockChart', // Available options: a falsy value, 'StockChart', 'Map'.
@@ -70,7 +71,9 @@ export default Ember.Controller.extend({
       name: 'John',
       data: [5, 7, 3]
     }
-  ]
+  ],
+
+  theme: defaultTheme
 });
 ```
 

@@ -117,3 +117,12 @@ This add-on is built based on the [gist](https://gist.github.com/poteto/cd2bb47e
 ### 0.0.8
 
 - Fixed broken npm package.
+
+### 0.1.0
+
+- Update Ember CLI to 0.2.0
+- es6ified component
+- Remove default chart styles
+- Add option to import chart theme
+- Make installation process more simple
+- Update project description

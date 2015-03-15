@@ -1,6 +1,6 @@
 {
   "name": "ember-highcharts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Highcharts, HighStock and HighMaps component for ember cli",
   "directories": {
     "doc": "doc",

@@ -126,3 +126,8 @@ This add-on is built based on the [gist](https://gist.github.com/poteto/cd2bb47e
 - Add option to import chart theme
 - Make installation process more simple
 - Update project description
+
+### 0.1.1
+
+- Fix ENOENT error on bower_components
+- Include Highcharts source to addon

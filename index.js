@@ -1,8 +1,6 @@
 /* jshint node: true */
 'use strict';
 
-var path = require('path');
-
 module.exports = {
   name: 'ember-highcharts',
 
@@ -18,10 +16,6 @@ module.exports = {
     };
 
     registry.add('js', plugin);
-  },
-
-  treeForVendor: function() {
-    return this.treeGenerator(path.join(__dirname, 'bower_components'));
   },
 
   included: function(app) {

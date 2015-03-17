@@ -18,16 +18,17 @@ export default Ember.Component.extend({
   chartOptions: undefined,
   chart: null,
   theme: undefined,
+  callback: undefined,
 
   buildOptions: computed('chartOptions', 'content.@each.isLoaded', function() {
-    let chartOptions = Ember.$.extend(true, {}, get(this, 'theme'), get(this, 'chartOptions'));
-    let chartContent = get(this, 'content.length') ? get(this, 'content') : [{
-      id    : 'noData',
-      data  : 0,
-      color : '#aaaaaa'
-    }];
-
-    let defaults = { series: chartContent };
+    let defaultChartData = [{
+          id    : 'noData',
+          data  : 0,
+          color : '#aaaaaa'
+        }],
+        chartOptions = Ember.$.extend(true, {}, get(this, 'theme'), get(this, 'chartOptions')),
+        chartContent = get(this, 'content.length') ? get(this, 'content') : defaultChartData,
+        defaults = { series: chartContent };
 
     return merge(defaults, chartOptions);
   }),
@@ -37,8 +38,8 @@ export default Ember.Component.extend({
       return;
     }
 
-    let chart  = get(this, 'chart');
-    let noData = chart.get('noData');
+    let chart  = get(this, 'chart'),
+        noData = chart.get('noData');
 
     if (noData != null) {
       noData.remove();
@@ -58,15 +59,16 @@ export default Ember.Component.extend({
   },
 
   draw() {
-    let options = [ get(this, 'buildOptions') ];
-    let mode  = get(this, 'mode');
+    let completeChartOptions = [ get(this, 'buildOptions'), get(this, 'callback') ],
+        mode  = get(this, 'mode'),
+        $element = this.$(),
+        chart;
 
     if (typeof mode === 'string' && !!mode) {
-      options.unshift(mode);
+      completeChartOptions.unshift(mode);
     }
 
-    let $element = this.$();
-    let chart    = $element.highcharts.apply($element, options).highcharts();
+    chart = $element.highcharts.apply($element, completeChartOptions).highcharts();
 
     set(this, 'chart', chart);
   },

@@ -92,6 +92,14 @@ file should provide a hook that returns the final configuration.
  }
 ```
 
+### Generating Chart Components
+
+Ember-highcharts also provides blueprints to easily create sub-classes of the default high-charts component.
+
+```bash
+ember generate chart <chart-name>
+```
+
 ## Contributing
 
 See [Contributing guidelines](CONTRIBUTING.md).

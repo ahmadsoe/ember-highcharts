@@ -92,6 +92,9 @@ file should provide a hook that returns the final configuration.
  }
 ```
 
+## Contributing
+
+See [Contributing guidelines](CONTRIBUTING.md).
 
 ## Credit
 

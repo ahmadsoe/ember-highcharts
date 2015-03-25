@@ -18,6 +18,7 @@ export default Ember.Component.extend({
   chartOptions: undefined,
   chart: null,
   theme: undefined,
+  callback: undefined,
 
   buildOptions: computed('chartOptions', 'content.@each.isLoaded', function() {
     let chartOptions = Ember.$.extend(true, {}, get(this, 'theme'), get(this, 'chartOptions'));
@@ -58,15 +59,15 @@ export default Ember.Component.extend({
   },
 
   draw() {
-    let options = [ get(this, 'buildOptions') ];
+    let completeChartOptions = [ get(this, 'buildOptions'), get(this, 'callback') ];
     let mode  = get(this, 'mode');
 
     if (typeof mode === 'string' && !!mode) {
-      options.unshift(mode);
+      completeChartOptions.unshift(mode);
     }
 
     let $element = this.$();
-    let chart    = $element.highcharts.apply($element, options).highcharts();
+    let chart    = $element.highcharts.apply($element, completeChartOptions).highcharts();
 
     set(this, 'chart', chart);
   },

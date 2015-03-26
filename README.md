@@ -142,3 +142,9 @@ This add-on is built based on the [gist](https://gist.github.com/poteto/cd2bb47e
 
 - Fix ENOENT error on bower_components
 - Include Highcharts source to addon
+
+### 0.1.2
+
+- Added chart blueprint
+- Added contributing guidelines
+- Added Highchart initializer to accept secondary argument

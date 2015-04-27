@@ -58,7 +58,7 @@ export default Ember.Controller.extend({
       }
     }
   },
-  
+
   chartData: [
     {
       name: 'Jane',
@@ -98,6 +98,36 @@ Ember-highcharts also provides blueprints to easily create sub-classes of the de
 
 ```bash
 ember generate chart <chart-name>
+```
+
+### Overriding Chart Redrawing
+
+This addon observes changes to chartData and redraws the chart using the highcharts
+[Series.setData](http://api.highcharts.com/highcharts#Series.setData) method. You can extend this
+component to handle advanced redrawing use cases like dynamically updating labels and titles
+(ex: [Chart.setTitle()](http://api.highcharts.com/highcharts#Chart.setTitle)).
+
+```javascript
+// components/dynamic-high-charts.js
+import Ember from 'ember';
+import EmberHighChartsComponent from 'ember-highcharts/components/high-charts';
+
+export default EmberHighChartsComponent.extend({
+
+  contentDidChange: Ember.observer('content.@each.isLoaded', function() {
+    // add redraw logic here. ex:
+    var chart = this.get('chart');
+    var seriesName = this.get('content')[0].name;
+    chart.series[0].update({ name: seriesName, data: this.get('content')[0].data }, false);
+    chart.setTitle(null, { text: seriesName }, false);
+    chart.redraw();
+  })
+
+});
+```
+
+```handlebars
+{{dynamic-high-charts mode=chartMode content=chartData chartOptions=chartOptions theme=theme}}
 ```
 
 ## Contributing

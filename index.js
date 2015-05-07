@@ -34,6 +34,10 @@ module.exports = {
     if (options.includeHighMaps) {
       app.import('vendor/highmaps-release/highmaps.src.js');
     }
+
+    if (options.includeHighChartsMore) {
+      app.import('vendor/highcharts-more-release/highcharts-more.src.js');
+    }
   }
 };
 

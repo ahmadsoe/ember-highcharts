@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.3
+
+- [DOC] How to override chart redrawing
+- Added Highcharts-more
+
 ## 0.1.2
 
 - Added chart blueprint

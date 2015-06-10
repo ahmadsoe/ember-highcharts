@@ -79,6 +79,8 @@ export default Ember.Component.extend({
 
   _destroyChart: on('willDestroyElement', function() {
     this._super();
-    get(this, 'chart').destroy();
+    if (get(this, 'chart')) {
+      get(this, 'chart').destroy();  
+    }
   })
 });

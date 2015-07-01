@@ -28,8 +28,8 @@ test('it renders', function(assert) {
 test('has default options', function(assert) {
   assert.expect(1);
 
-  let element = this.render();
-  let credit  = element.find(':contains(Highcharts.com)');
+  this.render();
+  let credit  = this.$().find(':contains(Highcharts.com)');
 
   assert.equal(credit.length, 0, 'Highcharts default credits not present');
 });
@@ -37,8 +37,8 @@ test('has default options', function(assert) {
 test('has local options', function(assert) {
   assert.expect(1);
 
-  let element = this.render();
-  let credit  = element.find(':contains(ember-highcharts-configured-title)');
+  this.render();
+  let credit  = this.$().find(':contains(ember-highcharts-configured-title)');
 
   assert.notEqual(credit.length, 0, 'ember-highcharts-configured-title credits present');
 });
@@ -65,6 +65,6 @@ test('Highstock has navigator', function(assert) {
     }]
   });
   var element = this.render();
-  var navigator = element.find('.highcharts-navigator');
+  var navigator = this.$().find('.highcharts-navigator');
   assert.notEqual(navigator.length, 0, '.highcharts-navigator present');
 });

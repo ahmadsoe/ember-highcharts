@@ -8,7 +8,7 @@ A [Highcharts](http://www.highcharts.com/products/highcharts), [Highstock](http:
 ember install:addon ember-highcharts
 ```
 
-This addon will use Highcharts by default, if you want to use Highstocks, Highmaps and/or Highcharts-more, add this options to your `Brocfile.js`:
+This addon will use Highcharts by default, if you want to use Highstocks, Highmaps, Highcharts-more and/or Highcharts-3D, add this options to your `Brocfile.js`:
 
 ```javascript
 var app = new EmberApp({
@@ -18,6 +18,7 @@ var app = new EmberApp({
     includeHighStock: true,
     includeHighMaps: true,
     includeHighChartsMore: true
+    includeHighCharts3D: true
   }
   ---
 });

@@ -23,7 +23,7 @@ module.exports = {
 
     var options = app.options.emberHighCharts || {includeHighCharts: true};
 
-    if (options.includeHighCharts) {
+    if (options.includeHighCharts || options.includeHighCharts3D) {
       app.import('vendor/highcharts-release/highcharts.src.js');
     }
 
@@ -37,6 +37,10 @@ module.exports = {
 
     if (options.includeHighChartsMore) {
       app.import('vendor/highcharts-more-release/highcharts-more.src.js');
+    }
+
+    if (options.includeHighCharts3D){
+      app.import('vendor/highcharts-3d-release/highcharts-3d.src.js');
     }
   }
 };

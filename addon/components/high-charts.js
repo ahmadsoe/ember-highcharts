@@ -67,9 +67,10 @@ export default Ember.Component.extend({
     }
 
     let $element = this.$();
-    let chart    = $element.highcharts.apply($element, completeChartOptions).highcharts();
-
-    set(this, 'chart', chart);
+    if ($element) {
+      let chart    = $element.highcharts.apply($element, completeChartOptions).highcharts();
+      set(this, 'chart', chart);
+    }
   },
 
   _renderChart: on('didInsertElement', function() {
@@ -79,6 +80,8 @@ export default Ember.Component.extend({
 
   _destroyChart: on('willDestroyElement', function() {
     this._super();
-    get(this, 'chart').destroy();
+    if (get(this, 'chart')) {
+      get(this, 'chart').destroy();  
+    }
   })
 });

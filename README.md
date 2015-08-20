@@ -5,7 +5,7 @@ A [Highcharts](http://www.highcharts.com/products/highcharts), [Highstock](http:
 ## Installation
 
 ```
-ember install:addon ember-highcharts
+ember install ember-highcharts
 ```
 
 This addon will use Highcharts by default, if you want to use Highstocks, Highmaps, Highcharts-more, Highcharts-3D and/or additional modules, add this options to your `ember-cli-build.js`:

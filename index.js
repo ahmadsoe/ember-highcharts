@@ -1,11 +1,17 @@
 /* jshint node: true */
 'use strict';
 
+var path = require('path');
+
 module.exports = {
   name: 'ember-highcharts',
 
+  treeForVendor: function() {
+    return this.treeGenerator(path.join(__dirname, 'node_modules'));
+  },
+
   included: function(app) {
-    this._super.included(app);
+    this._super.included.apply(this, arguments);
 
     var options = app.options.emberHighCharts || {includeHighCharts: true};
 
@@ -22,11 +28,11 @@ module.exports = {
     }
 
     if (options.includeHighChartsMore) {
-      app.import('vendor/highcharts-more-release/highcharts-more.src.js');
+      app.import('vendor/highcharts-release/highcharts-more.src.js');
     }
 
     if (options.includeHighCharts3D){
-      app.import('vendor/highcharts-3d-release/highcharts-3d.src.js');
+      app.import('vendor/highcharts-release/highcharts-3d.src.js');
     }
   }
 };

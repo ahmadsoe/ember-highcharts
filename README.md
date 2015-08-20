@@ -8,7 +8,7 @@ A [Highcharts](http://www.highcharts.com/products/highcharts), [Highstock](http:
 ember install:addon ember-highcharts
 ```
 
-This addon will use Highcharts by default, if you want to use Highstocks, Highmaps, Highcharts-more and/or Highcharts-3D, add this options to your `Brocfile.js`:
+This addon will use Highcharts by default, if you want to use Highstocks, Highmaps, Highcharts-more, Highcharts-3D and/or additional modules, add this options to your `ember-cli-build.js`:
 
 ```javascript
 var app = new EmberApp({
@@ -17,8 +17,9 @@ var app = new EmberApp({
     includeHighCharts: false,
     includeHighStock: true,
     includeHighMaps: true,
-    includeHighChartsMore: true
-    includeHighCharts3D: true
+    includeHighChartsMore: true,
+    includeHighCharts3D: true,
+    includeModules: ['broken-axis', 'heatmap', ... ] // available modules: broken-axis, canvas-tools, data, drilldowm, exporting, funnel, heatmap, no-data-to-display, solid-gauge, treemap
   }
   ---
 });

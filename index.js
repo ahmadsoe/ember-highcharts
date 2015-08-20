@@ -31,8 +31,15 @@ module.exports = {
       app.import('vendor/highcharts-release/highcharts-more.src.js');
     }
 
-    if (options.includeHighCharts3D){
+    if (options.includeHighCharts3D) {
       app.import('vendor/highcharts-release/highcharts-3d.src.js');
+    }
+
+    if (options.includeModules) {
+      var modules = options.includeModules;
+      for (var i = 0; i < modules.length; i++) {
+        app.import('vendor/highcharts-release/modules/' + modules[i] + '.src.js');
+      }
     }
   }
 };

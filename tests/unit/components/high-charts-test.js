@@ -43,7 +43,6 @@ test('has local options', function(assert) {
   assert.notEqual(credit.length, 0, 'ember-highcharts-configured-title credits present');
 });
 
-
 test('Highstock has navigator', function(assert) {
   this.subject({
     mode: 'StockChart',
@@ -64,7 +63,7 @@ test('Highstock has navigator', function(assert) {
       ]
     }]
   });
-  var element = this.render();
+  this.render();
   var navigator = this.$().find('.highcharts-navigator');
   assert.notEqual(navigator.length, 0, '.highcharts-navigator present');
 });

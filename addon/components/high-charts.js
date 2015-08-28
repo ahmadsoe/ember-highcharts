@@ -2,30 +2,31 @@ import Ember from 'ember';
 import { setDefaultHighChartOptions } from '../utils/option-loader';
 
 const {
+  Component,
   computed,
   get,
   set,
   merge,
   on,
-  observer,
-  run
+  run,
+  $
 } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['highcharts-wrapper'],
   content: undefined,
-  mode:    undefined,
+  mode: undefined,
   chartOptions: undefined,
   chart: null,
   theme: undefined,
   callback: undefined,
 
-  buildOptions: computed('chartOptions', 'content.@each.isLoaded', function() {
-    let chartOptions = Ember.$.extend(true, {}, get(this, 'theme'), get(this, 'chartOptions'));
+  buildOptions: computed('chartOptions', 'content.[]', function() {
+    let chartOptions = $.extend(true, {}, get(this, 'theme'), get(this, 'chartOptions'));
     let chartContent = get(this, 'content.length') ? get(this, 'content') : [{
-      id    : 'noData',
-      data  : 0,
-      color : '#aaaaaa'
+      id: 'noData',
+      data: 0,
+      color: '#aaaaaa'
     }];
 
     let defaults = { series: chartContent };
@@ -33,12 +34,14 @@ export default Ember.Component.extend({
     return merge(defaults, chartOptions);
   }),
 
-  contentDidChange: observer('content.@each.isLoaded', function() {
+  didReceiveAttrs() {
+    this._super(...arguments);
+
     if (!(get(this, 'content') && get(this, 'chart'))) {
       return;
     }
 
-    let chart  = get(this, 'chart');
+    let chart = get(this, 'chart');
     let noData = chart.get('noData');
 
     if (noData != null) {
@@ -52,7 +55,7 @@ export default Ember.Component.extend({
         return chart.addSeries(series);
       }
     });
-  }),
+  },
 
   drawAfterRender() {
     run.scheduleOnce('afterRender', this, 'draw');
@@ -68,7 +71,7 @@ export default Ember.Component.extend({
 
     let $element = this.$();
     if ($element) {
-      let chart    = $element.highcharts.apply($element, completeChartOptions).highcharts();
+      let chart = $element.highcharts.apply($element, completeChartOptions).highcharts();
       set(this, 'chart', chart);
     }
   },
@@ -79,9 +82,8 @@ export default Ember.Component.extend({
   }),
 
   _destroyChart: on('willDestroyElement', function() {
-    this._super();
     if (get(this, 'chart')) {
-      get(this, 'chart').destroy();  
+      get(this, 'chart').destroy();
     }
   })
 });

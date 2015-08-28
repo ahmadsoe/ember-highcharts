@@ -25,6 +25,10 @@ var app = new EmberApp({
 });
 ```
 
+## Requirements
+* Ember >= 1.13.0
+  * If you need support for < Ember 1.13.0, use ember-highcharts v0.1.3
+
 ## Usage
 
 In your template:

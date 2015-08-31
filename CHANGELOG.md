@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0
+
+- Check that chart exists before calling destroy
+- Update Ember CLI to 1.13.8
+- Import Highcharts source from NPM instead of vendor files
+- Add support for Highcharts 3D
+- Add support for Highcharts modules
+- [BREAKING] Remove observer in favor of didReceiveAttrs
+
 ## 0.1.3
 
 - [DOC] How to override chart redrawing

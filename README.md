@@ -139,7 +139,7 @@ export default EmberHighChartsComponent.extend({
 
 ## Contributing
 
-see [contributing guidelines](contributing.md).
+see [contributing guidelines](CONTRIBUTING.md).
 
 ## Changelog
 

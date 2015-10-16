@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+- Add support for Ember 2.x
+- Fix incorrect import path in chart blueprint
+
 ## 0.2.0
 
 - Check that chart exists before calling destroy

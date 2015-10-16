@@ -2,15 +2,10 @@ import {
   moduleForComponent,
   test
 } from 'ember-qunit';
-import { initialize } from '../../../initializers/highcharts';
 
 moduleForComponent('high-charts', 'HighChartsComponent', {
   // specify the other units that are required for this test
-  needs: [ 'highcharts-config:application' ],
-  beforeEach: function() {
-    let container = this.container;
-    initialize(container);
-  }
+  needs: [ 'highcharts-config:application' ]
 });
 
 test('it renders', function(assert) {

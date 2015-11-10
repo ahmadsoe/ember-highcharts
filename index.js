@@ -2,12 +2,23 @@
 'use strict';
 
 var path = require('path');
+var BroccoliMergeTrees = require('broccoli-merge-trees');
 
 module.exports = {
   name: 'ember-highcharts',
 
   treeForVendor: function() {
-    return this.treeGenerator(path.join(__dirname, 'node_modules'));
+    var highChartsTree = this.treeGenerator(path.dirname(require.resolve('highcharts-release/highcharts.js')));
+    var highMapsTree = this.treeGenerator(path.dirname(require.resolve('highmaps-release/highmaps.js')));
+    var highStocksTree = this.treeGenerator(path.dirname(require.resolve('highstocks-release/highstocks.js')));
+    var highChartsMoreTree = this.treeGenerator(path.dirname(require.resolve('highcharts-release/highcharts-more.src.js')));
+    var highCharts3DTree = this.treeGenerator(path.dirname(require.resolve('highcharts-release/highcharts-3d.src.js')));
+
+    var trees = new BroccoliMergeTrees([highChartsTree, highMapsTree, highStocksTree, highChartsMoreTree, highCharts3DTree], {
+      overwrite: true
+    });
+
+    return this._super.treeForAddon.call(this, trees);
   },
 
   included: function(app) {

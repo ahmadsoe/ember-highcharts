@@ -8,9 +8,9 @@ module.exports = {
   name: 'ember-highcharts',
 
   treeForVendor: function() {
-    var highChartsTree = this.treeGenerator(path.dirname(require.resolve('highcharts-release/highcharts.js')));
-    var highMapsTree = this.treeGenerator(path.dirname(require.resolve('highmaps-release/highmaps.js')));
-    var highStockTree = this.treeGenerator(path.dirname(require.resolve('highstock-release/highstock.js')));
+    var highChartsTree = this.treeGenerator(path.dirname(require.resolve('highcharts-release/highcharts.src.js')));
+    var highMapsTree = this.treeGenerator(path.dirname(require.resolve('highmaps-release/highmaps.src.js')));
+    var highStockTree = this.treeGenerator(path.dirname(require.resolve('highstock-release/highstock.src.js')));
     var highChartsMoreTree = this.treeGenerator(path.dirname(require.resolve('highcharts-release/highcharts-more.src.js')));
     var highCharts3DTree = this.treeGenerator(path.dirname(require.resolve('highcharts-release/highcharts-3d.src.js')));
 

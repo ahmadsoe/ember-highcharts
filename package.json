@@ -19,6 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "ember-cli-babel": "^5.1.3",
+    "broccoli-merge-trees": "^1.0.0",
     "highcharts-release": "^4.1.7",
     "highmaps-release": "^1.1.7",
     "highstock-release": "^2.1.7"

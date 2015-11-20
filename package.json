@@ -21,7 +21,8 @@
     "ember-cli-babel": "^5.1.3",
     "highcharts-release": "^4.1.7",
     "highmaps-release": "^1.1.7",
-    "highstock-release": "^2.1.7"
+    "highstock-release": "^2.1.7",
+    "semver": "^5.1.0"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.1.2",

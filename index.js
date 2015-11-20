@@ -2,11 +2,16 @@
 'use strict';
 
 var path = require('path');
+var semver = require('semver');
+var npm = require('npm');
 
 module.exports = {
   name: 'ember-highcharts',
 
   treeForVendor: function() {
+    if (semver.gte(npm.version, '3.0.0')) {
+      return this.treeGenerator(path.join('node_modules'));
+    }
     return this.treeGenerator(path.join(__dirname, 'node_modules'));
   },
 

@@ -7,7 +7,9 @@ module.exports = {
   name: 'ember-highcharts',
 
   treeForVendor: function() {
-    return this.treeGenerator(path.join(__dirname, 'node_modules'));
+    // support both flat and nested node_modules structure (npm2 vs npm3+)
+    var nodeModulesDir = require.resolve('highcharts-release').split('/highcharts-release')[0];
+    return this.treeGenerator(nodeModulesDir);
   },
 
   included: function(app) {

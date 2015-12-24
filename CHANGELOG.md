@@ -1,6 +1,11 @@
 # Changelog
 
+## 0.3.0
+
+- Import Highcharts source from bower
+
 ## 0.2.1
+
 - Add support for Ember 2.x
 - Fix incorrect import path in chart blueprint
 

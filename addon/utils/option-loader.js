@@ -1,9 +1,9 @@
 var localConfig = null;
 
-export function setDefaultHighChartOptions(container) {
+export function setDefaultHighChartOptions(owner) {
   if (!localConfig) {
-    // use options defined in highcharts-config if they exist in the container
-    var localConfigBuilder = container.lookupFactory('highcharts-config:application');
+    // use options defined in highcharts-configs/application.js if they exist
+    var localConfigBuilder = owner._lookupFactory('highcharts-config:application');
     if (localConfigBuilder) {
       localConfig = localConfigBuilder(defaultOptions);
     } else {

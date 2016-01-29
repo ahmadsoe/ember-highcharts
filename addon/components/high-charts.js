@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import { setDefaultHighChartOptions } from '../utils/option-loader';
+import getOwner from 'ember-getowner-polyfill';
 
 const {
   Component,
@@ -78,7 +79,7 @@ export default Component.extend({
 
   _renderChart: on('didInsertElement', function() {
     this.drawAfterRender();
-    setDefaultHighChartOptions(this.container);
+    setDefaultHighChartOptions(getOwner(this));
   }),
 
   _destroyChart: on('willDestroyElement', function() {

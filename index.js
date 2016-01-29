@@ -4,9 +4,10 @@
 module.exports = {
   name: 'ember-highcharts',
 
-  included: function(app) {
+  included: function(target) {
     this._super.included.apply(this, arguments);
 
+    var app = target.app || target;
     var options = app.options.emberHighCharts || { includeHighCharts: true };
 
     if (options.includeHighCharts || options.includeHighCharts3D) {

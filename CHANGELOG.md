@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.0
+
+- Moving bower dependencies to npm
+- Upgrade to ember-cli 1.13.15
+- Updating option detection to work with a composed addon
+- Use "getOwner" helper to lookup highcharts config
+
 ## 0.3.0
 
 - Import Highcharts source from bower

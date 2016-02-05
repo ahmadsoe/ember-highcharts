@@ -16,29 +16,30 @@ module.exports = {
     var highchartsPath = 'vendor/highcharts';
 
     if (options.includeHighCharts || options.includeHighCharts3D) {
-      app.import(highchartsPath + '/highcharts.src.js');
+      app.import(path.join(highchartsPath, 'highcharts.src.js'));
     }
 
     if (options.includeHighStock) {
-      app.import(highchartsPath + '/highstock.src.js');
+      app.import(path.join(highchartsPath, 'highstock.src.js'));
     }
 
     if (options.includeHighMaps) {
-      app.import(highchartsPath + '/highmaps.src.js');
+      app.import(path.join(highchartsPath, 'highmaps.src.js'));
     }
 
     if (options.includeHighChartsMore) {
-      app.import(highchartsPath + '/highcharts/highcharts-more.src.js');
+      app.import(path.join(highchartsPath, 'highcharts-more.src.js'));
     }
 
     if (options.includeHighCharts3D) {
-      app.import(highchartsPath + '/highcharts/highcharts-3d.src.js');
+      app.import(path.join(highchartsPath, 'highcharts-3d.src.js'));
     }
 
     if (options.includeModules) {
       var modules = options.includeModules;
       for (var i = 0; i < modules.length; i++) {
-        app.import(highchartsPath + '/modules/' + modules[i] + '.src.js');
+        var moduleFilename = modules[i] + '.src.js';
+        app.import(path.join(highchartsPath, 'modules', moduleFilename));
       }
     }
   },

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1
+
+- Fix path issue for highcharts-more & highcharts-3d
+
 ## 0.4.0
 
 - Moving bower dependencies to npm

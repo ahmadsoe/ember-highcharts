@@ -5,6 +5,7 @@ import getOwner from 'ember-getowner-polyfill';
 const {
   Component,
   computed,
+  observer,
   get,
   set,
   merge,
@@ -33,6 +34,10 @@ export default Component.extend({
     let defaults = { series: chartContent };
 
     return merge(defaults, chartOptions);
+  }),
+  
+  buildOptionsChanged: observer('buildOptions', function() {
+    this.drawAfterRender();
   }),
 
   didReceiveAttrs() {

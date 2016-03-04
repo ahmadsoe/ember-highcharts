@@ -1,3 +1,10 @@
-html, body {
-  margin: 20px;
+#title {
+  margin: 20px 0;
+}
+
+section {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 100px;
+  padding-bottom: 20px;
 }

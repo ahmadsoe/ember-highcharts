@@ -1,8 +1,8 @@
 import Ember from 'ember';
-import stockData from '../data/stock';
 import defaultTheme from '../themes/default-theme';
 
-export default Ember.Controller.extend({
+export default Ember.Component.extend({
+
   chartOptions: {
     chart: {
       type: 'bar'
@@ -19,6 +19,7 @@ export default Ember.Controller.extend({
       }
     }
   },
+
   chartData: [{
     name: 'Jane',
     data: [1, 0, 4]
@@ -27,19 +28,6 @@ export default Ember.Controller.extend({
     data: [5, 7, 3]
   }],
 
-  stockChartOptions: {
-    rangeSelector: {
-      selected: 1
-    },
-    title: {
-      text: 'Highstock: AAPL Stock Price'
-    }
-  },
-
-  stockChartData: [{
-    name: 'AAPL',
-    data: stockData
-  }],
-
   theme: defaultTheme
+
 });

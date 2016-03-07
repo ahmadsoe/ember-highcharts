@@ -49,13 +49,29 @@ export default Component.extend({
       noData.remove();
     }
 
-    return get(this, 'content').forEach((series, idx) => {
+    let numToRemove = chart.series.length - get(this, 'content').length;
+
+    for (let i = numToRemove; i > 0; i--) {
+
+      let lastIndex = chart.series.length - 1;
+
+      if (chart.series[lastIndex]) {
+        chart.series[lastIndex].remove(false);
+      }
+
+    }
+
+    get(this, 'content').forEach((series, idx) => {
+
       if (chart.series[idx]) {
-        return chart.series[idx].setData(series.data);
+        return chart.series[idx].setData(series.data, false);
       } else {
-        return chart.addSeries(series);
+        return chart.addSeries(series, false);
       }
     });
+
+    return chart.redraw();
+
   },
 
   drawAfterRender() {
@@ -64,7 +80,7 @@ export default Component.extend({
 
   draw() {
     let completeChartOptions = [ get(this, 'buildOptions'), get(this, 'callback') ];
-    let mode  = get(this, 'mode');
+    let mode = get(this, 'mode');
 
     if (typeof mode === 'string' && !!mode) {
       completeChartOptions.unshift(mode);

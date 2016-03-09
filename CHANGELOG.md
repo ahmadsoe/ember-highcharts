@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.2
+
+- Redesign dummy app
+- Add support for updating chart when series data is removed
+- Add integration tests for manipulating series data
+
 ## 0.4.1
 
 - Fix path issue for highcharts-more & highcharts-3d

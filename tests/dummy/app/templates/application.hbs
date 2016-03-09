@@ -1,4 +1,25 @@
-<h2 id="title">Welcome to Ember.js</h2>
+<div class="container-fluid">
 
-{{high-charts content=chartData chartOptions=chartOptions theme=theme}}
-{{high-charts mode='StockChart' content=stockChartData chartOptions=stockChartOptions}}
+  <h2 id="title">Ember Highcharts</h2>
+
+  <section>
+    <h3>Basic line chart</h3>
+    {{chart-basic-line}}
+  </section>
+
+  <section>
+    <h3>Basic bar chart with custom theme</h3>
+    {{chart-basic-bar}}
+  </section>
+
+  <section>
+    <h3>Highstock single line series</h3>
+    {{chart-highstock}}
+  </section>
+
+  <section>
+    <h3>Interactive line chart</h3>
+    {{chart-interactive}}
+  </section>
+
+</div>

@@ -7,6 +7,15 @@ export const lineChartOptions = {
   }
 };
 
+export const stockChartOptions = {
+  rangeSelector: {
+    selected: 1
+  },
+  title: {
+    text: 'AAPL Stock Price'
+  }
+};
+
 export const cityData = [
   {
     name: 'Chicago',
@@ -30,6 +39,17 @@ export const cityData = [
       [1, 13.21],
       [2, 9.6],
       [3, 16.5]
+    ]
+  }
+];
+
+export const stockData = [
+  {
+    name: 'AAPL',
+    data: [
+      [1147651200000, 67.79],
+      [1147737600000, 64.98],
+      [1147824000000, 65.26]
     ]
   }
 ];

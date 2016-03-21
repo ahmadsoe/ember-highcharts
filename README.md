@@ -1,4 +1,9 @@
-# Ember-highcharts [![Build Status](https://travis-ci.org/ahmadsoe/ember-highcharts.svg)](https://travis-ci.org/ahmadsoe/ember-highcharts) [![npm version](https://badge.fury.io/js/ember-highcharts.svg)](http://badge.fury.io/js/ember-highcharts)
+[![Build Status](https://travis-ci.org/ahmadsoe/ember-highcharts.svg?branch=master)](https://travis-ci.org/ahmadsoe/ember-highcharts)
+[![Ember Observer Score](http://emberobserver.com/badges/ember-highcharts.svg)](http://emberobserver.com/addons/ember-highcharts)
+[![Code Climate](https://codeclimate.com/github/ahmadsoe/ember-highcharts/badges/gpa.svg)](https://codeclimate.com/github/ahmadsoe/ember-highcharts)
+[![npm version](https://badge.fury.io/js/ember-highcharts.svg)](https://badge.fury.io/js/ember-highcharts)
+
+# Ember-highcharts
 
 A [Highcharts](http://www.highcharts.com/products/highcharts), [Highstock](http://www.highcharts.com/products/highstock) and [Highmaps](http://www.highcharts.com/products/highmaps) component for [Ember CLI](http://www.ember-cli.com/).
 

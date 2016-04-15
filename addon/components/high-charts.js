@@ -7,11 +7,12 @@ const {
   computed,
   get,
   set,
-  merge,
   on,
   run,
   $
 } = Ember;
+
+const assign = Ember.assign || Ember.merge;
 
 export default Component.extend({
   classNames: ['highcharts-wrapper'],
@@ -32,7 +33,7 @@ export default Component.extend({
 
     let defaults = { series: chartContent };
 
-    return merge(defaults, chartOptions);
+    return assign(defaults, chartOptions);
   }),
 
   didReceiveAttrs() {

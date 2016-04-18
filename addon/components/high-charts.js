@@ -39,40 +39,24 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
 
-    if (!(get(this, 'content') && get(this, 'chart'))) {
-      return;
-    }
+    const content = get(this, 'content');
+    const chart = get(this, 'chart');
+    if (!content || !chart) return;
 
-    let chart = get(this, 'chart');
     let noData = chart.get('noData');
+    if (noData != null) noData.remove();
 
-    if (noData != null) {
-      noData.remove();
-    }
+    // remove series that aren't navigator
+    const seriesToRemove = chart.series.filter((series) => (series.name !== 'Navigator'));
+    seriesToRemove.forEach((series) => series.remove(false));
 
-    let numToRemove = chart.series.length - get(this, 'content').length;
+    // readd and add new series
+    content.forEach((series) => chart.addSeries(series, false));
 
-    for (let i = numToRemove; i > 0; i--) {
-
-      let lastIndex = chart.series.length - 1;
-
-      if (chart.series[lastIndex]) {
-        chart.series[lastIndex].remove(false);
-      }
-
-    }
-
-    get(this, 'content').forEach((series, idx) => {
-
-      if (chart.series[idx]) {
-        return chart.series[idx].setData(series.data, false);
-      } else {
-        return chart.addSeries(series, false);
-      }
-    });
+    // reset navigator data
+    if (chart.xAxis.length > 0) chart.xAxis[0].setExtremes();
 
     return chart.redraw();
-
   },
 
   drawAfterRender() {

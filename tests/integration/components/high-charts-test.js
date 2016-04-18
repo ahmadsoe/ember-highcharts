@@ -6,7 +6,8 @@ import {
   lineChartOptions,
   stockChartOptions,
   cityData,
-  stockData
+  stockData,
+  updatedStockData
 } from '../constants';
 
 moduleForComponent('high-charts', 'Integration | Component | High Charts', {
@@ -82,4 +83,30 @@ test('should have navigator series for highstock', function(assert) {
   `);
 
   assert.equal(this.$('.highcharts-navigator').length, 1, '.highcharts-navigator class is present');
+});
+
+test('should update data on all svg paths on highstock chart', function(assert) {
+  assert.expect(1);
+
+  this.set('stockChartOptions', stockChartOptions);
+  this.set('stockData', stockData);
+
+  this.render(hbs`
+    {{high-charts mode="StockChart" content=stockData chartOptions=stockChartOptions}}
+  `);
+
+  const generateDArray = () => {
+    const highchartSeries = this.$('.highcharts-series');
+    return highchartSeries.map((i) => {
+      const series = highchartSeries[i];
+      return $(series).find('path').attr('d');
+    });
+  };
+
+  const dVals = generateDArray();
+
+  this.set('stockData', updatedStockData);
+  const newDVals = generateDArray();
+
+  assert.notEqual(dVals[1], newDVals[1]);
 });

@@ -53,3 +53,14 @@ export const stockData = [
     ]
   }
 ];
+
+export const updatedStockData = [
+  {
+    name: 'AAPL',
+    data: [
+      [1147651200000, 90.79],
+      [1147737600000, 89.98],
+      [1147824000000, 88.26]
+    ]
+  }
+];

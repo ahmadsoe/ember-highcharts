@@ -39,19 +39,28 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
 
-    const content = get(this, 'content');
-    const chart = get(this, 'chart');
+    const { content, chart, mode } = this.getProperties('content', 'chart', 'mode');
     if (!content || !chart) return;
 
     let noData = chart.get('noData');
     if (noData != null) noData.remove();
 
-    // remove series that aren't navigator
-    const seriesToRemove = chart.series.filter((series) => (series.name !== 'Navigator'));
-    seriesToRemove.forEach((series) => series.remove(false));
+    // remove and update current series
+    chart.series.forEach((series) => {
+      if (series.name === 'Navigator' && mode === 'StockChart') return;
 
-    // readd and add new series
-    content.forEach((series) => chart.addSeries(series, false));
+      const contentSeriesArray = content.filter((contentSeries) => (series.name === contentSeries.name));
+      if (contentSeriesArray.length === 0) return series.remove(false);
+
+      series.setData(contentSeriesArray[0].data, false, false, false);
+    });
+
+    // add new series
+    content.forEach((contentSeries) => {
+      const chartSeriesArray = chart.series.filter((series) => (series.name === contentSeries.name));
+      if (chartSeriesArray.length > 0) return;
+      chart.addSeries(contentSeries, false);
+    });
 
     // reset navigator data
     if (chart.xAxis.length > 0) chart.xAxis[0].setExtremes();

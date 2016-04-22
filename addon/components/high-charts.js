@@ -66,7 +66,7 @@ export default Component.extend({
         return chartSeriesToRemove.push(series);
       }
 
-      series.setData(contentSeries.data, false, false, false);
+      series.setData(contentSeries.data, false);
     });
     chartSeriesToRemove.forEach((series) => series.remove(false));
 

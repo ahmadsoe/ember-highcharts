@@ -40,30 +40,50 @@ export default Component.extend({
     this._super(...arguments);
 
     const { content, chart, mode } = this.getProperties('content', 'chart', 'mode');
-    if (!content || !chart) return;
+    if (!content || !chart) {
+      return;
+    }
 
     let noData = chart.get('noData');
-    if (noData != null) noData.remove();
+    if (noData != null) {
+      noData.remove();
+    }
+
+    const contentSeriesMap = content.reduce((contentSeriesMap, contentSeries) => {
+      contentSeriesMap[contentSeries.name] = contentSeries;
+      return contentSeriesMap;
+    }, {});
 
     // remove and update current series
+    const chartSeriesToRemove = [];
     chart.series.forEach((series) => {
-      if (series.name === 'Navigator' && mode === 'StockChart') return;
+      if (series.name === 'Navigator' && mode === 'StockChart') {
+        return;
+      }
 
-      const contentSeriesArray = content.filter((contentSeries) => (series.name === contentSeries.name));
-      if (contentSeriesArray.length === 0) return series.remove(false);
+      const contentSeries = contentSeriesMap[series.name];
+      if (!contentSeries) {
+        return chartSeriesToRemove.push(series);
+      }
 
-      series.setData(contentSeriesArray[0].data, false, false, false);
+      series.setData(contentSeries.data, false, false, false);
     });
+    chartSeriesToRemove.forEach((series) => series.remove(false));
+
+    const chartSeriesNames = chart.series.map((series) => series.name);
 
     // add new series
     content.forEach((contentSeries) => {
-      const chartSeriesArray = chart.series.filter((series) => (series.name === contentSeries.name));
-      if (chartSeriesArray.length > 0) return;
+      if (chartSeriesNames.indexOf(contentSeries.name) >= 0) {
+        return;
+      }
       chart.addSeries(contentSeries, false);
     });
 
     // reset navigator data
-    if (chart.xAxis.length > 0) chart.xAxis[0].setExtremes();
+    if (chart.xAxis.length > 0) {
+      chart.xAxis[0].setExtremes();
+    }
 
     return chart.redraw();
   },

@@ -39,40 +39,66 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
 
-    if (!(get(this, 'content') && get(this, 'chart'))) {
+    const { content, chart, mode } = this.getProperties('content', 'chart', 'mode');
+    if (!content || !chart) {
       return;
     }
 
-    let chart = get(this, 'chart');
     let noData = chart.get('noData');
-
     if (noData != null) {
       noData.remove();
     }
 
-    let numToRemove = chart.series.length - get(this, 'content').length;
+    const isStockChart = mode === 'StockChart';
 
-    for (let i = numToRemove; i > 0; i--) {
 
-      let lastIndex = chart.series.length - 1;
+    // create maps to make series data easier to work with
+    const contentSeriesMap = content.reduce((contentSeriesMap, contentSeries) => {
+      contentSeriesMap[contentSeries.name] = contentSeries;
+      return contentSeriesMap;
+    }, {});
 
-      if (chart.series[lastIndex]) {
-        chart.series[lastIndex].remove(false);
+    const chartSeriesMap = chart.series.reduce((chartSeriesMap, chartSeries) => {
+      chartSeriesMap[chartSeries.name] = chartSeries;
+      return chartSeriesMap;
+    }, {});
+
+
+    // remove and update current series
+    const chartSeriesToRemove = [];
+
+    chart.series.forEach((series) => {
+      if (isStockChart && series.name === 'Navigator') {
+        return;
       }
 
-    }
+      const contentSeries = contentSeriesMap[series.name];
 
-    get(this, 'content').forEach((series, idx) => {
+      if (!contentSeries) {
+        return chartSeriesToRemove.push(series);
+      }
 
-      if (chart.series[idx]) {
-        return chart.series[idx].setData(series.data, false);
-      } else {
-        return chart.addSeries(series, false);
+      series.setData(contentSeries.data, false);
+    });
+
+    chartSeriesToRemove.forEach((series) => series.remove(false));
+
+
+    // add new series
+    content.forEach((contentSeries) => {
+      if (!chartSeriesMap.hasOwnProperty(contentSeries.name)) {
+        chart.addSeries(contentSeries, false);
       }
     });
 
-    return chart.redraw();
 
+    // reset navigator data
+    if (isStockChart && chart.xAxis.length) {
+      chart.xAxis[0].setExtremes();
+    }
+
+
+    return chart.redraw();
   },
 
   drawAfterRender() {

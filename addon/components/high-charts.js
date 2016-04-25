@@ -49,41 +49,54 @@ export default Component.extend({
       noData.remove();
     }
 
+    const isStockChart = mode === 'StockChart';
+
+
+    // create maps to make series data easier to work with
     const contentSeriesMap = content.reduce((contentSeriesMap, contentSeries) => {
       contentSeriesMap[contentSeries.name] = contentSeries;
       return contentSeriesMap;
     }, {});
 
+    const chartSeriesMap = chart.series.reduce((chartSeriesMap, chartSeries) => {
+      chartSeriesMap[chartSeries.name] = chartSeries;
+      return chartSeriesMap;
+    }, {});
+
+
     // remove and update current series
     const chartSeriesToRemove = [];
+
     chart.series.forEach((series) => {
-      if (series.name === 'Navigator' && mode === 'StockChart') {
+      if (isStockChart && series.name === 'Navigator') {
         return;
       }
 
       const contentSeries = contentSeriesMap[series.name];
+
       if (!contentSeries) {
         return chartSeriesToRemove.push(series);
       }
 
       series.setData(contentSeries.data, false);
     });
+
     chartSeriesToRemove.forEach((series) => series.remove(false));
 
-    const chartSeriesNames = chart.series.map((series) => series.name);
 
     // add new series
     content.forEach((contentSeries) => {
-      if (chartSeriesNames.indexOf(contentSeries.name) >= 0) {
-        return;
+      if (!chartSeriesMap.hasOwnProperty(contentSeries.name)) {
+        chart.addSeries(contentSeries, false);
       }
-      chart.addSeries(contentSeries, false);
     });
 
+
     // reset navigator data
-    if (chart.xAxis.length > 0) {
+    if (isStockChart && chart.xAxis.length) {
       chart.xAxis[0].setExtremes();
     }
+
 
     return chart.redraw();
   },

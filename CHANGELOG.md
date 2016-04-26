@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.3
+
+- Clean up tests
+- Upgrade to ember-cli 2.4.2
+- Add ember observer and code climate badges
+- Changed merge -> assign to silent deprecation warning in Ember 2.5
+- Update highstock component to be interactive
+- Refactor logic for handling chart updates
+
 ## 0.4.2
 
 - Redesign dummy app

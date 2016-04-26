@@ -27,6 +27,20 @@ test('should include local options', function(assert) {
     'expected credits text present');
 });
 
+test('should render empty series for no chart content', function(assert) {
+  assert.expect(2);
+
+  this.content = [];
+
+  this.render(hbs`
+    {{high-charts content=content chartOptions=lineChartOptions}}
+  `);
+
+  const $legend = this.$('.highcharts-legend .highcharts-legend-item text');
+  assert.equal($legend.length, 1, 'expected one series');
+  assert.equal($legend.first().text(), 'Series 1', 'expected default series name');
+});
+
 test('should add a series', function(assert) {
   assert.expect(2);
 

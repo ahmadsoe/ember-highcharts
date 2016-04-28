@@ -5,7 +5,10 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     emberHighCharts: {
       includeHighCharts: false,
-      includeHighStock: true
+      includeHighStock: true,
+      includeModules: [
+        'map'
+      ]
     }
   });
 

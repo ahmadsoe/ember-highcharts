@@ -21,10 +21,10 @@ var app = new EmberApp({
   emberHighCharts: {
     includeHighCharts: false,
     includeHighStock: true,
-    includeHighMaps: true,
+    includeHighMaps: false,
     includeHighChartsMore: true,
     includeHighCharts3D: true,
-    includeModules: ['broken-axis', 'heatmap', ... ] // available modules: broken-axis, canvas-tools, data, drilldowm, exporting, funnel, heatmap, no-data-to-display, solid-gauge, treemap
+    includeModules: ['broken-axis', 'heatmap', 'map', ... ] // available modules: broken-axis, canvas-tools, data, drilldowm, exporting, funnel, heatmap, no-data-to-display, solid-gauge, treemap, map
   }
   ---
 });

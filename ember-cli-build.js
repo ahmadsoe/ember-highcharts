@@ -7,7 +7,8 @@ module.exports = function(defaults) {
       includeHighCharts: false,
       includeHighStock: true,
       includeModules: [
-        'map'
+        'map',
+        'drilldown'
       ]
     }
   });

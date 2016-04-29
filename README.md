@@ -44,7 +44,7 @@ The possible values are:
 
 ### chartOptions
 
-The `chartOptions` argument matches up with the `chart` option in the Highcharts/Highstock/Highmaps API.
+The `chartOptions` argument is a generic object for setting different options with Highcharts/Highstock/Highmaps.
 Use this option to set things like the chart title and axis settings.
 
 ### content

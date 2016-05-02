@@ -10,7 +10,8 @@ module.exports = function(defaults) {
       includeModules: [
         'map',
         'drilldown',
-        'solid-gauge'
+        'solid-gauge',
+        'funnel'
       ]
     }
   });

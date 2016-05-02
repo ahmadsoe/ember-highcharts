@@ -6,9 +6,11 @@ module.exports = function(defaults) {
     emberHighCharts: {
       includeHighCharts: false,
       includeHighStock: true,
+      includeHighChartsMore: true,
       includeModules: [
         'map',
-        'drilldown'
+        'drilldown',
+        'solid-gauge'
       ]
     }
   });

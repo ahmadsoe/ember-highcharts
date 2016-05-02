@@ -44,11 +44,6 @@ export default Component.extend({
       return;
     }
 
-    let noData = chart.get('noData');
-    if (noData != null) {
-      noData.remove();
-    }
-
     const isStockChart = mode === 'StockChart';
 
 

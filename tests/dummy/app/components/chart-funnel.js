@@ -6,15 +6,9 @@ export default Ember.Component.extend({
     chart: {
       type: 'funnel'
     },
-
     title: {
       text: 'Sales funnel'
     },
-
-    credits: {
-      enabled: false
-    },
-
     plotOptions: {
       series: {
         dataLabels: {
@@ -27,22 +21,22 @@ export default Ember.Component.extend({
         neckHeight: '25%'
       }
     },
-
     legend: {
       enabled: true
     }
-
   },
 
-  chartData: [{
-    name: 'Unique users',
-    data: [
-      ['Website visits', 15654],
-      ['Downloads', 4064],
-      ['Requested price list', 1987],
-      ['Invoice sent', 976],
-      ['Finalized', 846]
-    ]
-  }]
+  chartData: [
+    {
+      name: 'Unique users',
+      data: [
+        ['Website visits', 15654],
+        ['Downloads', 4064],
+        ['Requested price list', 1987],
+        ['Invoice sent', 976],
+        ['Finalized', 846]
+      ]
+    }
+  ]
 
 });

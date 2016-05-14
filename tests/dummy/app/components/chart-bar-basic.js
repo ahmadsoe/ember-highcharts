@@ -14,19 +14,23 @@ export default Ember.Component.extend({
       categories: ['Apples', 'Bananas', 'Oranges']
     },
     yAxis: {
+      allowDecimals: false,
       title: {
         text: 'Fruit eaten'
       }
     }
   },
 
-  chartData: [{
-    name: 'Jane',
-    data: [1, 0, 4]
-  }, {
-    name: 'John',
-    data: [5, 7, 3]
-  }],
+  chartData: [
+    {
+      name: 'Jane',
+      data: [5, 0, 20]
+    },
+    {
+      name: 'John',
+      data: [25, 30, 15]
+    }
+  ],
 
   theme: defaultTheme
 

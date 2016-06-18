@@ -8,7 +8,9 @@ module.exports = function(defaults) {
       includeHighCharts: false,
       includeHighStock: true,
       includeHighChartsMore: true,
+      includeHighCharts3D: true,
       includeModules: [
+        'boost',
         'map',
         'drilldown',
         'solid-gauge',

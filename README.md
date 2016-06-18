@@ -121,8 +121,8 @@ var app = new EmberApp({
     includeHighCharts3D: true,
     includeModules: ['map', 'broken-axis', 'heatmap', ... ]
     /* available modules:
-      map, broken-axis, canvas-tools, data, drilldown, exporting,
-      funnel, heatmap, no-data-to-display, solid-gauge, treemap
+      boost, broken-axis, canvas-tools, data, drilldown, exporting, funnel,
+      heatmap, map, no-data-to-display, offline-exporting, solid-gauge, treemap
     */
   }
 });

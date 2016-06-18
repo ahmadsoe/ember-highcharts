@@ -15,7 +15,7 @@ module.exports = {
     var options = app.options.emberHighCharts || { includeHighCharts: true };
     var highchartsPath = 'vendor/highcharts';
 
-    if (options.includeHighCharts || options.includeHighCharts3D) {
+    if (options.includeHighCharts) {
       app.import(path.join(highchartsPath, 'highcharts.src.js'));
     }
 
@@ -32,6 +32,15 @@ module.exports = {
     }
 
     if (options.includeHighCharts3D) {
+      // boost module need to be imported before highcharts-3d
+      if (options.includeModules) {
+        var boostIndex = options.includeModules.indexOf('boost');
+        if (boostIndex !== -1) {
+          app.import(path.join(highchartsPath, 'modules', 'boost.src.js'));
+          options.includeModules.splice(boostIndex, 1);
+        }
+      }
+
       app.import(path.join(highchartsPath, 'highcharts-3d.src.js'));
     }
 

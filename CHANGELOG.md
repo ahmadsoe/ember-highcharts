@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.4.4
+
+- Add test for 'noData' use case and remove unused code
+- Add highmaps demo
+- Cleanup documentation
+- Add chart drilldown demo
+- Add solid gauge demo
+- Add sales funnel demo
+- Add heat map demo
+- Add waterfall demo
+- Standardize components in dummp app
+- Update to ember-cli 2.5.1
+- Fix import boost module before hightchart-3d
+- Add scatter chart demo
+
 ## 0.4.3
 
 - Clean up tests

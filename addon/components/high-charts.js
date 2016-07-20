@@ -119,6 +119,7 @@ export default Component.extend({
       chart.xAxis[0].setExtremes();
     }
 
+    set(this, '_previousSeries', content);
 
     return chart.redraw();
   },

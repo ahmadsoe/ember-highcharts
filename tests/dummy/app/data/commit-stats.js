@@ -1,7 +1,6 @@
 export default [
   {
     "name": "angular/angular",
-    "total": 3225,
     "data": [
       ["03/14/2015", 64],
       ["03/21/2015", 57],
@@ -59,7 +58,6 @@ export default [
   },
   {
     "name": "emberjs/ember.js",
-    "total": 1660,
     "data": [
       ["03/14/2015", 65],
       ["03/21/2015", 41],

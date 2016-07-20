@@ -17,6 +17,18 @@ export default Ember.Service.extend({
     });
   },
 
+  updateSeriesDataWithSeries(chartData, rangeStart, rangeEnd) {
+    console.log('updateSeriesDataWithSeries');
+    const numPoints = this.getRandomInt(rangeStart, rangeEnd);
+    return chartData.map(series => {
+      return {
+        name: series.name,
+        currentTime: new Date(),
+        data: series.data.slice(0, numPoints)
+      };
+    });
+  },
+
   updateSeriesCount(chartData, numSeries) {
     console.log('setSeriesCount:', numSeries);
     const chartDataCopy = Ember.copy(chartData, true);

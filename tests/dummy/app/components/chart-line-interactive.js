@@ -34,6 +34,11 @@ export default Ember.Component.extend({
       this.set('chartData', newChartData);
     },
 
+    updateSeriesDataWithSeries() {
+      const newChartData = this.get('dynamicChart').updateSeriesDataWithSeries(commitStats, 2, 52);
+      this.set('chartData', newChartData);
+    },
+
     setSeriesCount(numSeries) {
       const newChartData = this.get('dynamicChart').updateSeriesCount(commitStats, numSeries);
       this.set('chartData', newChartData);

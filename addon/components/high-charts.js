@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import { setDefaultHighChartOptions } from '../utils/option-loader';
+import { getSeriesMap, getSeriesChanges } from '../utils/chart-data';
 import getOwner from 'ember-getowner-polyfill';
 
 const {
@@ -48,15 +49,8 @@ export default Component.extend({
 
 
     // create maps to make series data easier to work with
-    const contentSeriesMap = content.reduce((contentSeriesMap, contentSeries) => {
-      contentSeriesMap[contentSeries.name] = contentSeries;
-      return contentSeriesMap;
-    }, {});
-
-    const chartSeriesMap = chart.series.reduce((chartSeriesMap, chartSeries) => {
-      chartSeriesMap[chartSeries.name] = chartSeries;
-      return chartSeriesMap;
-    }, {});
+    const contentSeriesMap = getSeriesMap(content);
+    const chartSeriesMap = getSeriesMap(chart.series);
 
 
     // remove and update current series
@@ -73,7 +67,16 @@ export default Component.extend({
         return chartSeriesToRemove.push(series);
       }
 
-      series.setData(contentSeries.data, false);
+      const updatedKeys = getSeriesChanges(contentSeries, series);
+
+      // call series.update() when other series attributes like pointStart have changed
+      if (updatedKeys.length) {
+        series.update(contentSeries, false);
+      }
+      else {
+        series.setData(contentSeries.data, false);
+      }
+
     });
 
     chartSeriesToRemove.forEach((series) => series.remove(false));

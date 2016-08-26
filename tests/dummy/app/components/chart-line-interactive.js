@@ -34,6 +34,17 @@ export default Ember.Component.extend({
       this.set('chartData', newChartData);
     },
 
+    fullUpdateToSeries() {
+      let newChartData = this.get('dynamicChart').updateSeriesData(commitStats, 2, 52);
+
+      // updated currentTime attribute causes series.update() to be used instead of series.setData()
+      newChartData.forEach(series => {
+        series.currentTime = Date.now();
+      });
+
+      this.set('chartData', newChartData);
+    },
+
     setSeriesCount(numSeries) {
       const newChartData = this.get('dynamicChart').updateSeriesCount(commitStats, numSeries);
       this.set('chartData', newChartData);

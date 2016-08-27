@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+- Improve logic for series updates
+
 ## 0.4.4
 
 - Add test for 'noData' use case and remove unused code

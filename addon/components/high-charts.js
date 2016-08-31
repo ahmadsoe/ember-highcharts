@@ -26,11 +26,15 @@ export default Component.extend({
 
   buildOptions: computed('chartOptions', 'content.[]', function() {
     let chartOptions = $.extend(true, {}, get(this, 'theme'), get(this, 'chartOptions'));
-    let chartContent = get(this, 'content.length') ? get(this, 'content') : [{
-      id: 'noData',
-      data: 0,
-      color: '#aaaaaa'
-    }];
+    let chartContent = get(this, 'content');
+    // if 'no-data-to-display' module has been imported, keep empty series and leave it to highcharts to show no data label.
+    if (!get(this, 'content.length') && !Highcharts.Chart.prototype.showNoData) {
+      chartContent = [{
+        id: 'noData',
+        data: 0,
+        color: '#aaaaaa'
+      }];
+    }
 
     let defaults = { series: chartContent };
 

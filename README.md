@@ -235,6 +235,12 @@ See [contributing guidelines](CONTRIBUTING.md).
 See [CHANGELOG.md](CHANGELOG.md).
 
 
+## Licensing
+
+Highcharts has its own seperate [licensing agreement](https://shop.highsoft.com/highcharts).
+
+The ember-highcharts addon is released under the MIT license.
+
 ## Credit
 
 This add-on is built based on the [gist](https://gist.github.com/poteto/cd2bb47e77bf87c94d33) and

@@ -180,7 +180,7 @@ var app = new EmberApp({
 });
 ```
 
-You will need to add a number of CSS rules for a chart to display properly; more details can be found in the HighCharts article: [Chart Design and Style > Style by CSS](Style by CSS). The [linked CodePen example](http://codepen.io/TorsteinHonsi/pen/KMNbRN) includes a comprehensive SCSS file. 
+You will need to add a number of CSS rules for a chart to display properly; more details can be found in the HighCharts article: [Chart Design and Style > Style by CSS](http://www.highcharts.com/docs/chart-design-and-style/style-by-css). The [linked CodePen example](http://codepen.io/TorsteinHonsi/pen/KMNbRN) includes a comprehensive SCSS file. 
 
 ### Global Highcharts Config Options
 

@@ -124,3 +124,15 @@ test('should update data on all svg paths on highstock chart', function(assert) 
 
   assert.notEqual(dVals[1], newDVals[1]);
 });
+
+test('should yield the chart instance when used in block form', function(assert) {
+  this.set('cityData', cityData);
+  this.set('lineChartOptions', lineChartOptions);
+  this.render(hbs`
+    {{#high-charts content=cityData chartOptions=lineChartOptions as |chart|}}
+      <span class="chart-test-content">{{chart.series.length}}</span>
+    {{/high-charts}}
+  `);
+
+  assert.equal(this.$('.chart-test-content').text(), 3, 'chart instance series count');
+});

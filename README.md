@@ -29,7 +29,7 @@ ember install ember-highcharts
 This component takes in four arguments:
 
 ```handlebars
-{{high-charts mode=mode chartOptions=chartOptions content=content theme=theme}}
+{{high-charts mode=mode chartOptions=chartOptions content=content theme=theme callback=afterRenderCallback}}
 ```
 ### mode
 
@@ -56,6 +56,11 @@ Use this option to set the series data for your chart.
 
 The `theme` argument is optional and it allows you to pass in a
 [Highcharts theme](http://www.highcharts.com/docs/chart-design-and-style/themes).
+
+### callback
+
+The `callback` argument is executed after the chart object is finished loading and rendering.
+Use this option for example to render images into the chart.
 
 ### Example Bar Chart
 
@@ -94,12 +99,12 @@ export default Ember.Controller.extend({
   }],
 
   theme: defaultTheme
-
+  
 });
 ```
 
 ```handlebars
-{{high-charts chartOptions=chartOptions content=chartData theme=theme}}
+{{high-charts chartOptions=chartOptions content=chartData theme=theme callback=afterRenderCallback}}
 ```
 
 Check out more chart examples in the [tests/dummy app](tests/dummy/app) in this repo.

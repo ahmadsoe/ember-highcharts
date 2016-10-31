@@ -194,6 +194,18 @@ Ember-highcharts also provides blueprints to easily create sub-classes of the de
 ember generate chart <chart-name>
 ```
 
+### Obtaining a Reference to the Chart Instance
+
+The `chart` instance is exposed to the yielded content if used in block form:
+
+```handlebars
+{{#high-charts mode=mode chartOptions=chartOptions content=content theme=theme as |chart|}}
+  {{my-custom-legend chart=chart}}
+{{/high-charts}}
+```
+
+_where `my-custom-legend` is an example component that may wish to access the `chart` instance_.
+
 ### Overriding Chart Redrawing
 
 This addon observes changes to chartData and redraws the chart using the highcharts

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.1
+
+- Update to ember-cli 2.7.0
+- Don't add fake series when highcharts 'no-data-to-display' module is imported
+- Yield chart instance when used in block form
+
 ## 0.5.0
 
 - Improve logic for series updates

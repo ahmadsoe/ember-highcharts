@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import { setDefaultHighChartOptions } from '../utils/option-loader';
 import { getSeriesMap, getSeriesChanges } from '../utils/chart-data';
+import layout from 'ember-highcharts/templates/components/high-charts';
 import getOwner from 'ember-getowner-polyfill';
 
 const {
@@ -16,6 +17,7 @@ const {
 const assign = Ember.assign || Ember.merge;
 
 export default Component.extend({
+  layout,
   classNames: ['highcharts-wrapper'],
   content: undefined,
   mode: undefined,

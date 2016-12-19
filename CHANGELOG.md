@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.2
+
+- Made the high-charts component “engine friendly” for engine based Ember apps
+- Prefer overriding didInsertElement and willDestroyElement
+
 ## 0.5.1
 
 - Update to ember-cli 2.7.0

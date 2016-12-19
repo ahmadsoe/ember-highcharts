@@ -9,7 +9,6 @@ const {
   computed,
   get,
   set,
-  on,
   run,
   $
 } = Ember;
@@ -124,14 +123,18 @@ export default Component.extend({
     }
   },
 
-  _renderChart: on('didInsertElement', function() {
+  didInsertElement() {
+    this._super(...arguments);
+
     this.drawAfterRender();
     setDefaultHighChartOptions(getOwner(this));
-  }),
+  },
 
-  _destroyChart: on('willDestroyElement', function() {
+  willDestroyElement() {
+    this._super(...arguments);
+
     if (get(this, 'chart')) {
       get(this, 'chart').destroy();
     }
-  })
+  }
 });

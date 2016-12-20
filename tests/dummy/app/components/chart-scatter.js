@@ -15,9 +15,9 @@ export default Ember.Component.extend({
     }
 
     return [{
+      data,
       type: 'scatter',
       color: 'rgba(152,0,67,0.1)',
-      data: data,
       marker: {
         radius: 1
       },
@@ -45,10 +45,10 @@ export default Ember.Component.extend({
       maxPadding: 0
     },
     title: {
-      text: 'Scatter chart with ' + Highcharts.numberFormat(totalData, 0, ' ') + ' points'
+      text: `Scatter chart with ${Highcharts.numberFormat(totalData, 0, ' ')} points`
     },
     legend: {
       enabled: false
-    },
+    }
   }
 });

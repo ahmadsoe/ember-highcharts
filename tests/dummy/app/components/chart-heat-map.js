@@ -35,10 +35,10 @@ export default Ember.Component.extend({
     },
 
     tooltip: {
-      formatter: function () {
-        const x = this.series.xAxis.categories[this.point.x];
-        const y = this.series.yAxis.categories[this.point.y];
-        const value = this.point.value;
+      formatter() {
+        let x = this.series.xAxis.categories[this.point.x];
+        let y = this.series.yAxis.categories[this.point.y];
+        let { value } = this.point;
         return `<b>${x}</b> sold <br><b>${value}</b> items on <br><b>${y}</b>`;
       }
     }

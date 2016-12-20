@@ -36,7 +36,7 @@ test('should render empty series for no chart content', function(assert) {
     {{high-charts content=content chartOptions=lineChartOptions}}
   `);
 
-  const $legend = this.$('.highcharts-legend .highcharts-legend-item text');
+  let $legend = this.$('.highcharts-legend .highcharts-legend-item text');
   assert.equal($legend.length, 1, 'expected one series');
   assert.equal($legend.first().text(), 'Series 1', 'expected default series name');
 });
@@ -109,18 +109,18 @@ test('should update data on all svg paths on highstock chart', function(assert) 
     {{high-charts mode="StockChart" content=stockData chartOptions=stockChartOptions}}
   `);
 
-  const generateDArray = () => {
-    const highchartSeries = this.$('.highcharts-series');
+  let generateDArray = () => {
+    let highchartSeries = this.$('.highcharts-series');
     return highchartSeries.map((i) => {
-      const series = highchartSeries[i];
-      return $(series).find('path').attr('d');
+      let series = highchartSeries[i];
+      return Ember.$(series).find('path').attr('d');
     });
   };
 
-  const dVals = generateDArray();
+  let dVals = generateDArray();
 
   this.set('stockData', updatedStockData);
-  const newDVals = generateDArray();
+  let newDVals = generateDArray();
 
   assert.notEqual(dVals[1], newDVals[1]);
 });

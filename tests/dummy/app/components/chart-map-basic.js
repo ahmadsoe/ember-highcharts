@@ -2,7 +2,6 @@ import Ember from 'ember';
 import mapData from '../data/us-ca-map';
 
 export default Ember.Component.extend({
-
   chartOptions: {
     title: {
       text: 'California'
@@ -27,9 +26,9 @@ export default Ember.Component.extend({
         {
           'hc-key': 'us-ca-073',
           'value': 20
-        },
+        }
       ],
-      mapData: mapData,
+      mapData,
       joinBy: 'hc-key',
       dataLabels: {
         enabled: true,
@@ -37,5 +36,4 @@ export default Ember.Component.extend({
       }
     }
   ]
-
 });

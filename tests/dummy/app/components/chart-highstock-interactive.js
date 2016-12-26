@@ -2,7 +2,6 @@ import Ember from 'ember';
 import stockData from '../data/stock';
 
 export default Ember.Component.extend({
-
   dynamicChart: Ember.inject.service('dynamic-chart'),
 
   chartOptions: {
@@ -17,17 +16,14 @@ export default Ember.Component.extend({
   chartData: Ember.copy(stockData, true),
 
   actions: {
-
     updateSeriesData() {
-      const newChartData = this.get('dynamicChart').updateSeriesData(stockData, 100, 514);
+      let newChartData = this.get('dynamicChart').updateSeriesData(stockData, 100, 514);
       this.set('chartData', newChartData);
     },
 
     setSeriesCount(numSeries) {
-      const newChartData = this.get('dynamicChart').updateSeriesCount(stockData, numSeries);
+      let newChartData = this.get('dynamicChart').updateSeriesCount(stockData, numSeries);
       this.set('chartData', newChartData);
     }
-
   }
-
 });

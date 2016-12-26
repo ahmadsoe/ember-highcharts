@@ -4,12 +4,12 @@ import { module, test } from 'qunit';
 module('Unit | Utility | Chart data');
 
 test('#getSeriesMap returns valid object', function(assert) {
-  const seriesGroup = [
+  let seriesGroup = [
     { name: 'series1', data: [1, 2] },
     { name: 'series2', data: [3, 4] }
   ];
 
-  const expectedSeriesMap = {
+  let expectedSeriesMap = {
     series1: {
       name: 'series1',
       data: [1, 2]
@@ -24,40 +24,40 @@ test('#getSeriesMap returns valid object', function(assert) {
 });
 
 test('#getSeriesChanges detects "name" key change', function(assert) {
-  const contentSeries = {
+  let contentSeries = {
     name: 'new series name',
     data: [1, 2]
   };
 
-  const series = {
+  let series = {
     name: 'series1',
     data: [1, 2]
   };
 
-  const keys = getSeriesChanges(contentSeries, series);
+  let keys = getSeriesChanges(contentSeries, series);
 
   assert.equal(keys.length, 1);
   assert.equal(keys[0], 'name');
 });
 
 test('#getSeriesChanges ignores changes for invalid keys', function(assert) {
-  const contentSeries = {
+  let contentSeries = {
     name: 'new series name',
     data: [3, 4],
     _legendItemPos: 2,
     obj: { foo: 'buzz' },
-    fun: () => console.log('more fun')
+    fun: () => console.log('more fun') // eslint-disable-line no-console
   };
 
-  const series = {
+  let series = {
     name: 'series1',
     data: [1, 2],
     _legendItemPos: 1,
     obj: { foo: 'bar' },
-    fun: () => console.log('fun')
+    fun: () => console.log('fun') // eslint-disable-line no-console
   };
 
-  const keys = getSeriesChanges(contentSeries, series);
+  let keys = getSeriesChanges(contentSeries, series);
 
   assert.equal(keys.indexOf('data'), -1, 'expected "data" key to be ignored');
   assert.equal(keys.indexOf('_legendItemPos'), -1, 'expected private keys to be ignored');

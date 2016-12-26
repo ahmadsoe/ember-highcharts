@@ -1,9 +1,10 @@
-var localConfig = null;
+/* global Highcharts */
+let localConfig = null;
 
 export function setDefaultHighChartOptions(owner) {
   if (!localConfig) {
     // use options defined in highcharts-configs/application.js if they exist
-    var localConfigBuilder = owner._lookupFactory('highcharts-config:application');
+    let localConfigBuilder = owner._lookupFactory('highcharts-config:application');
     if (localConfigBuilder) {
       localConfig = localConfigBuilder(defaultOptions);
     } else {
@@ -14,7 +15,7 @@ export function setDefaultHighChartOptions(owner) {
   Highcharts.setOptions(localConfig);
 }
 
-var defaultOptions = {
+let defaultOptions = {
   plotOptions: {
     series: {
       shadow: false

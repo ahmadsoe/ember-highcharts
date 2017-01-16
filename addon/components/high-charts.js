@@ -3,12 +3,12 @@ import Ember from 'ember';
 import { setDefaultHighChartOptions } from '../utils/option-loader';
 import { getSeriesMap, getSeriesChanges } from '../utils/chart-data';
 import layout from 'ember-highcharts/templates/components/high-charts';
-import getOwner from 'ember-getowner-polyfill';
 
 const {
   Component,
   computed,
   get,
+  getOwner,
   getProperties,
   set,
   run,

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.3
+
+- Upgrade to ember-cli 2.11
+- Fix deprecated warning ember-getowner-polyfill
+- Switch to ESLint and fixing style
+
 ## 0.5.2
 
 - Made the high-charts component “engine friendly” for engine based Ember apps

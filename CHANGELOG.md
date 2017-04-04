@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.4
+
+- Replace _lookupFactory() with factoryFor()
+- Upgrade to ember-cli 2.12
+
 ## 0.5.3
 
 - Upgrade to ember-cli 2.11

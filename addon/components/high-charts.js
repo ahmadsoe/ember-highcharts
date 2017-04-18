@@ -7,6 +7,7 @@ import layout from 'ember-highcharts/templates/components/high-charts';
 const {
   Component,
   computed,
+  observer,
   get,
   getOwner,
   getProperties,
@@ -43,6 +44,10 @@ export default Component.extend({
     let defaults = { series: chartContent };
 
     return assign(defaults, chartOptions);
+  }),
+  
+  buildOptionsChanged: observer('buildOptions', function() {
+    this.drawAfterRender();
   }),
 
   didReceiveAttrs() {

@@ -39,6 +39,7 @@ export default Ember.Component.extend({
         '<b>{point.y:.2f}%</b> of total<br/>`
     },
     drilldown: {
+      activeDataLabelStyle: {},
       series: [
         {
           name: 'Microsoft Internet Explorer',

@@ -64,7 +64,7 @@ export default Component.extend({
     let chartSeriesToRemove = [];
 
     chart.series.forEach((series) => {
-      if (isStockChart && series.name === 'Navigator') {
+      if (isStockChart && series.name.match(/^Navigator/)) {
         return;
       }
 

@@ -114,6 +114,7 @@ export default Component.extend({
       completeChartOptions.unshift(mode);
     }
 
+    let $element = this.$('.chart-container');
     if ($element) {
       let chart = $element.highcharts(...completeChartOptions).highcharts();
       set(this, 'chart', chart);

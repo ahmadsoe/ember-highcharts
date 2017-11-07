@@ -23,7 +23,7 @@ export default {
   title: {
     style: {
       color: 'black',
-      //fontSize: '18px',
+      // fontSize: '18px',
       fontWeight: 'bold'
     }
   },

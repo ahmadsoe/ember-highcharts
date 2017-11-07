@@ -1,6 +1,7 @@
 /bower_components
 /config/ember-try.js
 /dist
+/gh-pages
 /tests
 /tmp
 **/.gitkeep
@@ -8,9 +9,10 @@
 .editorconfig
 .ember-cli
 .gitignore
-.jshintrc
+.eslintrc.js
 .watchmanconfig
 .travis.yml
 bower.json
 ember-cli-build.js
+gh-pages.sh
 testem.js

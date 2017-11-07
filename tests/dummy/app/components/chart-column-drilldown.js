@@ -10,8 +10,8 @@ export default Ember.Component.extend({
       text: 'Browser market shares. January, 2015 to May, 2015'
     },
     subtitle: {
-      text: 'Click the columns to view versions. Source: ' +
-        '<a href="http://netmarketshare.com">netmarketshare.com</a>.'
+      text: `Click the columns to view versions. Source: '
+        '<a href="http://netmarketshare.com">netmarketshare.com</a>.`
     },
     xAxis: {
       type: 'category'
@@ -35,8 +35,8 @@ export default Ember.Component.extend({
     },
     tooltip: {
       headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-      pointFormat: '<span style="color:{point.color}">{point.name}</span>: ' +
-        '<b>{point.y:.2f}%</b> of total<br/>'
+      pointFormat: `<span style="color:{point.color}">{point.name}</span>: '
+        '<b>{point.y:.2f}%</b> of total<br/>`
     },
     drilldown: {
       series: [

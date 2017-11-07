@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.5.4
+
+- Replace _lookupFactory() with factoryFor()
+- Upgrade to ember-cli 2.12
+
+## 0.5.3
+
+- Upgrade to ember-cli 2.11
+- Fix deprecated warning ember-getowner-polyfill
+- Switch to ESLint and fixing style
+
+## 0.5.2
+
+- Made the high-charts component “engine friendly” for engine based Ember apps
+- Prefer overriding didInsertElement and willDestroyElement
+
+## 0.5.1
+
+- Update to ember-cli 2.7.0
+- Don't add fake series when highcharts 'no-data-to-display' module is imported
+- Yield chart instance when used in block form
+
 ## 0.5.0
 
 - Improve logic for series updates

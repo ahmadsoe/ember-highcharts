@@ -52,8 +52,8 @@ export default Ember.Component.extend({
             'fontSize': '50px',
             'text-align': 'center'
           },
-          format: '<div style="text-align: center;"><p style="line-height: 0.6;">{y:.1f}<br/>' +
-            '<span style="font-size:19px;color:silver">mph</span></p></div>'
+          format: `<div style="text-align: center;"><p style="line-height: 0.6;">{y:.1f}<br/>'
+            '<span style="font-size:19px;color:silver">mph</span></p></div>`
         }
       }
     }

@@ -32,6 +32,9 @@ module.exports = {
     if (options.includeHighCharts) {
       app.import(path.join(highchartsPath, 'highcharts.src.js'));
     }
+    else if (options.includeHighChartsStyledMode) {
+      app.import(path.join(highchartsPath, '/js/highcharts.src.js'));
+    }
 
     if (options.includeHighStock) {
       app.import(path.join(highchartsPath, 'highstock.src.js'));

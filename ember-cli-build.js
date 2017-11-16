@@ -7,6 +7,7 @@ module.exports = function(defaults) {
     emberHighCharts: {
       includeHighCharts: false,
       includeHighStock: true,
+      useStyledMode: false,
       includeHighChartsMore: true,
       includeHighCharts3D: true,
       includeModules: [

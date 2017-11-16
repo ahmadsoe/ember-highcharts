@@ -27,7 +27,7 @@ module.exports = {
     }
 
     var options = app.options.emberHighCharts || { includeHighCharts: true };
-    var highchartsPath = 'vendor/highcharts';
+    var highchartsPath = options.useStyledMode ? 'vendor/highcharts/js' : 'vendor/highcharts';
 
     if (options.includeHighCharts) {
       app.import(path.join(highchartsPath, 'highcharts.src.js'));

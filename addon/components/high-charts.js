@@ -101,6 +101,10 @@ export default Component.extend({
     return chart.redraw();
   },
 
+  chartOptionsObserver: Ember.observer('chartOptions', function() {
+    this.drawAfterRender();
+  }),
+
   drawAfterRender() {
     run.scheduleOnce('afterRender', this, 'draw');
   },

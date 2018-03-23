@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import { copy } from '@ember/object/internals';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import commitStats from '../data/commit-stats';
 
-export default Ember.Component.extend({
-  dynamicChart: Ember.inject.service('dynamic-chart'),
+export default Component.extend({
+  dynamicChart: service('dynamic-chart'),
 
   chartOptions: {
     chart: {
@@ -24,7 +26,7 @@ export default Ember.Component.extend({
     }
   },
 
-  chartData: Ember.copy(commitStats, true),
+  chartData: copy(commitStats, true),
 
   actions: {
     updateSeriesData() {

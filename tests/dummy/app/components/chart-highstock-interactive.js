@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import { copy } from '@ember/object/internals';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import stockData from '../data/stock';
 
-export default Ember.Component.extend({
-  dynamicChart: Ember.inject.service('dynamic-chart'),
+export default Component.extend({
+  dynamicChart: service('dynamic-chart'),
 
   chartOptions: {
     rangeSelector: {
@@ -13,7 +15,7 @@ export default Ember.Component.extend({
     }
   },
 
-  chartData: Ember.copy(stockData, true),
+  chartData: copy(stockData, true),
 
   actions: {
     updateSeriesData() {

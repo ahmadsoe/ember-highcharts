@@ -1,21 +1,14 @@
 /* global Highcharts */
-import Ember from 'ember';
+import { assign } from '@ember/polyfills';
+
+import Component from '@ember/component';
+import { getOwner } from '@ember/application';
+import { set, getProperties, get, computed } from '@ember/object';
+import { run } from '@ember/runloop';
+import $ from 'jquery';
 import { setDefaultHighChartOptions } from '../utils/option-loader';
 import { getSeriesMap, getSeriesChanges } from '../utils/chart-data';
 import layout from 'ember-highcharts/templates/components/high-charts';
-
-const {
-  Component,
-  computed,
-  get,
-  getOwner,
-  getProperties,
-  set,
-  run,
-  $
-} = Ember;
-
-const assign = Ember.assign || Ember.merge;
 
 export default Component.extend({
   layout,

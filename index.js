@@ -1,17 +1,16 @@
-/* eslint-env node */
 'use strict';
 
-var Funnel = require('broccoli-funnel');
-var mergeTrees = require('broccoli-merge-trees');
-var path = require('path');
+let Funnel = require('broccoli-funnel');
+let mergeTrees = require('broccoli-merge-trees');
+let path = require('path');
 
 module.exports = {
   name: 'ember-highcharts',
 
-  included: function() {
+  included() {
     this._super.included.apply(this, arguments);
 
-    var app;
+    let app;
 
     // If the addon has the _findHost() method (in ember-cli >= 2.7.0), we'll just
     // use that.
@@ -20,14 +19,14 @@ module.exports = {
     } else {
       // Otherwise, we'll use this implementation borrowed from the _findHost()
       // method in ember-cli.
-      var current = this;
+      let current = this;
       do {
         app = current.app || app;
       } while (current.parent.parent && (current = current.parent));
     }
 
-    var options = app.options.emberHighCharts || { includeHighCharts: true };
-    var highchartsPath = options.useStyledMode ? 'vendor/highcharts/js' : 'vendor/highcharts';
+    let options = app.options.emberHighCharts || { includeHighCharts: true };
+    let highchartsPath = options.useStyledMode ? 'vendor/highcharts/js' : 'vendor/highcharts';
 
     if (options.includeHighCharts) {
       app.import(path.join(highchartsPath, 'highcharts.src.js'));
@@ -48,7 +47,7 @@ module.exports = {
     if (options.includeHighCharts3D) {
       // boost module need to be imported before highcharts-3d
       if (options.includeModules) {
-        var boostIndex = options.includeModules.indexOf('boost');
+        let boostIndex = options.includeModules.indexOf('boost');
         if (boostIndex !== -1) {
           app.import(path.join(highchartsPath, 'modules', 'boost.src.js'));
           options.includeModules.splice(boostIndex, 1);
@@ -59,17 +58,17 @@ module.exports = {
     }
 
     if (options.includeModules) {
-      var modules = options.includeModules;
-      for (var i = 0; i < modules.length; i++) {
-        var moduleFilename = modules[i] + '.src.js';
+      let modules = options.includeModules;
+      for (let i = 0; i < modules.length; i++) {
+        let moduleFilename = `${modules[i]}.src.js`;
         app.import(path.join(highchartsPath, 'modules', moduleFilename));
       }
     }
   },
 
-  treeForVendor: function(vendorTree) {
-    var trees = [];
-    var highchartsPath = path.dirname(require.resolve('highcharts'));
+  treeForVendor(vendorTree) {
+    let trees = [];
+    let highchartsPath = path.dirname(require.resolve('highcharts'));
 
     if (vendorTree) {
       trees.push(vendorTree);

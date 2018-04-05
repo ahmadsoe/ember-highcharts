@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { copy } from '@ember/object/internals';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -53,7 +54,7 @@ test('should add a series', function(assert) {
   assert.equal(this.$('.highcharts-legend .highcharts-legend-item').length, 3, 'base series count');
 
   // add a series to chart content
-  let cityDataCopy = Ember.copy(cityData, true);
+  let cityDataCopy = copy(cityData, true);
   cityDataCopy.push({
     name: 'San Fransico',
     data: [
@@ -79,7 +80,7 @@ test('should remove a series', function(assert) {
   assert.equal(this.$('.highcharts-legend .highcharts-legend-item').length, 3, 'base series count');
 
   // remove a series from chart content
-  let cityDataCopy = Ember.copy(cityData, true);
+  let cityDataCopy = copy(cityData, true);
   cityDataCopy = cityDataCopy.slice(0, 2);
 
   this.set('cityData', cityDataCopy);
@@ -113,7 +114,7 @@ test('should update data on all svg paths on highstock chart', function(assert) 
     let highchartSeries = this.$('.highcharts-series');
     return highchartSeries.map((i) => {
       let series = highchartSeries[i];
-      return Ember.$(series).find('path').attr('d');
+      return $(series).find('path').attr('d');
     });
   };
 

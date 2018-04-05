@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import defaultTheme from '../themes/default-theme';
 
-export default Ember.Component.extend({
+export default Component.extend({
 
   chartOptions: {
     chart: {

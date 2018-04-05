@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { copy } from '@ember/object/internals';
+import Service from '@ember/service';
 
-export default Ember.Service.extend({
+export default Service.extend({
 
   getRandomInt(min, max) {
     return parseInt(Math.random() * (max - min) + min, 10);
@@ -17,7 +18,7 @@ export default Ember.Service.extend({
   },
 
   updateSeriesCount(chartData, numSeries) {
-    let chartDataCopy = Ember.copy(chartData, true);
+    let chartDataCopy = copy(chartData, true);
     return chartDataCopy.slice(0, numSeries);
   }
 });

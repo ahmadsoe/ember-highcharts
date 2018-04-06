@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.0
+
+- Ember 3.0 update
+- Updated blueprint to match current settings
+- Switching nested addon detection to findHost.
+- Upgrade to Highcharts 5.0.12, fix breaking tests
+
 ## 0.5.4
 
 - Replace _lookupFactory() with factoryFor()

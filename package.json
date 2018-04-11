@@ -27,7 +27,7 @@
     "ember-assign-polyfill": "^2.2.0",
     "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^2.0.1",
-    "ember-getowner-polyfill": "^1.2.2"
+    "ember-getowner-polyfill": "^2.2.0"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",

@@ -5,10 +5,18 @@ import Component from '@ember/component';
 import { getOwner } from '@ember/application';
 import { set, getProperties, get, computed } from '@ember/object';
 import { run } from '@ember/runloop';
-import $ from 'jquery';
 import { setDefaultHighChartOptions } from '../utils/option-loader';
 import { getSeriesMap, getSeriesChanges } from '../utils/chart-data';
 import layout from 'ember-highcharts/templates/components/high-charts';
+
+/* Map ember-highcharts modes to Highcharts methods
+ * https://api.highcharts.com/class-reference/Highcharts.html
+ */
+const CHART_TYPES = {
+  StockChart: 'stockChart',
+  Map: 'mapChart',
+  undefined: 'chart'
+};
 
 export default Component.extend({
   layout,
@@ -21,7 +29,7 @@ export default Component.extend({
   callback: undefined,
 
   buildOptions: computed('chartOptions', 'content.[]', function() {
-    let chartOptions = $.extend(true, {}, get(this, 'theme'), get(this, 'chartOptions'));
+    let chartOptions = assign({}, get(this, 'theme'), get(this, 'chartOptions'));
     let chartContent = get(this, 'content');
 
     // if 'no-data-to-display' module has been imported, keep empty series and leave it to highcharts to show no data label.
@@ -99,16 +107,12 @@ export default Component.extend({
   },
 
   draw() {
-    let $element = this.$('.chart-container');
-    let mode = get(this, 'mode');
+    let element = this.element && this.element.querySelector('.chart-container');
+    let mode = CHART_TYPES[get(this, 'mode')];
     let completeChartOptions = [get(this, 'buildOptions'), get(this, 'callback')];
 
-    if (typeof mode === 'string' && !!mode) {
-      completeChartOptions.unshift(mode);
-    }
-
-    if ($element) {
-      let chart = $element.highcharts(...completeChartOptions).highcharts();
+    if (element) {
+      let chart = Highcharts[mode](element, ...completeChartOptions);
       set(this, 'chart', chart);
     }
   },

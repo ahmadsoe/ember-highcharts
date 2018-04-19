@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.0
+
+- Remove jQuery from high-charts component
+- Move boostrap to NPM and out of bower
+- Removed single quotes in the chart-solid-guage 'format'.
+- Merge pull request #136 from lamabiker/update-ember-cli-polyfill
+- update ember-getowner-polyfill dependency
+
 ## 0.6.0
 
 - Ember 3.0 update

@@ -3,7 +3,7 @@ import { assign } from '@ember/polyfills';
 
 import Component from '@ember/component';
 import { getOwner } from '@ember/application';
-import { set, getProperties, get, computed } from '@ember/object';
+import { set, getProperties, get, computed, observer } from '@ember/object';
 import { run } from '@ember/runloop';
 import { setDefaultHighChartOptions } from '../utils/option-loader';
 import { getSeriesMap, getSeriesChanges } from '../utils/chart-data';
@@ -44,6 +44,10 @@ export default Component.extend({
     let defaults = { series: chartContent };
 
     return assign(defaults, chartOptions);
+  }),
+
+  chartOptionsObserver: observer('chartOptions', function() {
+    this.drawAfterRender();
   }),
 
   didReceiveAttrs() {

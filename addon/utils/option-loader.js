@@ -1,4 +1,3 @@
-/* global Highcharts */
 let localConfig = null;
 
 export function setDefaultHighChartOptions(owner) {

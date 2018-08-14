@@ -1,4 +1,3 @@
-/* global Highcharts */
 import { assign } from '@ember/polyfills';
 
 import Component from '@ember/component';

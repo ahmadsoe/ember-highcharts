@@ -17,6 +17,7 @@ module.exports = {
   },
   globals: {
     Highcharts: false,
+    define: false
   },
   rules: {
     'ember/avoid-leaking-state-in-ember-objects': 'off',

@@ -25,8 +25,10 @@
     "bootstrap": "3.3.7",
     "broccoli-funnel": "^2.0.1",
     "broccoli-merge-trees": "^1.2.0",
+    "deepmerge": "2.1.1",
     "ember-cli-babel": "^6.6.0",
-    "ember-cli-htmlbars": "^2.0.1"
+    "ember-cli-htmlbars": "^2.0.1",
+    "ember-cli-node-assets": "^0.2.2"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",

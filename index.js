@@ -6,6 +6,16 @@ let path = require('path');
 
 module.exports = {
   name: 'ember-highcharts',
+  options: {
+    nodeAssets: {
+      deepmerge: {
+        vendor: {
+          srcDir: 'dist',
+          include: ['umd.js']
+        }
+      }
+    }
+  },
 
   included() {
     this._super.included.apply(this, arguments);
@@ -64,6 +74,9 @@ module.exports = {
         app.import(path.join(highchartsPath, 'modules', moduleFilename));
       }
     }
+
+    app.import('vendor/deepmerge/umd.js');
+    app.import('vendor/shims/deepmerge.js');
   },
 
   treeForVendor(vendorTree) {

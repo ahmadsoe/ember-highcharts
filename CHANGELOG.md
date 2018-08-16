@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+- Fix issue where `theme` and `chartOptions` were not being deep merged properly (#142)
+
 ## 1.0.0
 
 - Remove Ember 1.3, 2.4, and 2.8 support

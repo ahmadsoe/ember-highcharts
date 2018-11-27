@@ -1,63 +1,63 @@
-'use strict';
+"use strict";
 
-const getChannelURL = require('ember-source-channel-url');
+const getChannelURL = require("ember-source-channel-url");
 
-module.exports = function() {
+module.exports = function () {
   return Promise.all([
-    getChannelURL('release'),
-    getChannelURL('beta'),
-    getChannelURL('canary')
+    getChannelURL("release"),
+    getChannelURL("beta"),
+    getChannelURL("canary"),
   ]).then((urls) => {
     return {
       useYarn: true,
       scenarios: [
         {
-          name: 'ember-lts-3.0',
+          name: "ember-lts-3.0",
           npm: {
             devDependencies: {
-              'ember-source': '~3.0.0'
-            }
-          }
+              "ember-source": "~3.0.0",
+            },
+          },
         },
         {
-          name: 'ember-lts-3.12',
+          name: "ember-lts-3.12",
           npm: {
             devDependencies: {
-              'ember-source': '~3.12.0'
-            }
-          }
+              "ember-source": "~3.12.0",
+            },
+          },
         },
         {
-          name: 'ember-release',
+          name: "ember-release",
           npm: {
             devDependencies: {
-              'ember-source': urls[0]
-            }
-          }
+              "ember-source": urls[0],
+            },
+          },
         },
         {
-          name: 'ember-beta',
+          name: "ember-beta",
           npm: {
             devDependencies: {
-              'ember-source': urls[1]
-            }
-          }
+              "ember-source": urls[1],
+            },
+          },
         },
         {
-          name: 'ember-canary',
+          name: "ember-canary",
           npm: {
             devDependencies: {
-              'ember-source': urls[2]
-            }
-          }
+              "ember-source": urls[2],
+            },
+          },
         },
         {
-          name: 'ember-default',
+          name: "ember-default",
           npm: {
-            devDependencies: {}
-          }
-        }
-      ]
+            devDependencies: {},
+          },
+        },
+      ],
     };
   });
 };

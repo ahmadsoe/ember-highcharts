@@ -69,6 +69,9 @@
     "node": ">= 10.*"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "versionCompatibility": {
+      "ember": ">=2.12.0"
+   }
   }
 }

@@ -110,7 +110,10 @@ export default Component.extend({
       chart.xAxis[0].setExtremes();
     }
 
-    return chart.redraw();
+    chart.redraw();
+
+    // Call drawAfterRender to pick up any options that have been updated.
+    return this.drawAfterRender();
   },
 
   drawAfterRender() {

@@ -1,4 +1,5 @@
 import { copy } from '@ember/object/internals';
+import { assign } from '@ember/polyfills';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -134,4 +135,19 @@ test('should yield the chart instance when used in block form', function(assert)
   `);
 
   assert.equal(document.querySelector('.chart-test-content').textContent, 3, 'chart instance series count');
+});
+
+test('chart should reflect updated chart options when set on the component', function(assert) {
+  let newTitle = 'New Title';
+  this.set('cityData', cityData);
+  this.set('lineChartOptions', lineChartOptions);
+  this.render(hbs`
+    {{high-charts content=cityData chartOptions=lineChartOptions}}
+  `);
+
+  assert.equal(document.querySelector('.highcharts-title').textContent, lineChartOptions.title.text, 'chart title is correct');
+
+  this.set('lineChartOptions', assign({}, lineChartOptions, { title: { text: newTitle } }));
+
+  assert.equal(document.querySelector('.highcharts-title').textContent, newTitle, 'chart title is updated');
 });

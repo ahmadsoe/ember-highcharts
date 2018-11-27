@@ -1,5 +1,7 @@
 # Changelog
 
+- Remove - support for ember < 2.12 (configure ember try)
+
 ## 1.1.1
 
 - Component should not throw an exception on a "falsy" mode attribute

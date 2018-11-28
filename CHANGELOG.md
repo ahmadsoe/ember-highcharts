@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0
+
+- Use ember-copy instead of Ember's deprecated internal copy
+- Drop support for Node 4.x
+
 ## 1.0.1
 
 - Fix issue where `theme` and `chartOptions` were not being deep merged properly (#142)

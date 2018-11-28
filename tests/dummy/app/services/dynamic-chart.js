@@ -1,4 +1,4 @@
-import { copy } from '@ember/object/internals';
+import { copy } from 'ember-copy';
 import Service from '@ember/service';
 
 export default Service.extend({

@@ -135,3 +135,27 @@ test('should yield the chart instance when used in block form', function(assert)
 
   assert.equal(document.querySelector('.chart-test-content').textContent, 3, 'chart instance series count');
 });
+
+test('should accept "falsy" mode attribute for default highcharts operation', function(assert) {
+  assert.expect(4);
+
+  this.render(hbs`
+    {{high-charts}}
+  `);
+  assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart without a mode specified');
+
+  this.render(hbs`
+    {{high-charts mode=""}}
+  `);
+  assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart with empty string mode');
+
+  this.render(hbs`
+    {{high-charts mode=false}}
+  `);
+  assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart with false boolean mode');
+
+  this.render(hbs`
+    {{high-charts mode=null}}
+  `);
+  assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart with null mode');
+});

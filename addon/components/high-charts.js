@@ -110,7 +110,8 @@ export default Component.extend({
 
   draw() {
     let element = this.element && this.element.querySelector('.chart-container');
-    let mode = CHART_TYPES[get(this, 'mode')];
+    let modeAttr = get(this, 'mode') || undefined;
+    let mode = CHART_TYPES[modeAttr];
     let completeChartOptions = [get(this, 'buildOptions'), get(this, 'callback')];
 
     if (element) {

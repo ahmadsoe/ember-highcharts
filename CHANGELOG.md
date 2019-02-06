@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1
+
+- Component should not throw an exception on a "falsy" mode attribute
+
 ## 1.1.0
 
 - Use ember-copy instead of Ember's deprecated internal copy

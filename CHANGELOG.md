@@ -1,5 +1,7 @@
 # Changelog
 
+- Fix - upgrade bootstrap to 3.4.1 - fix xss secufity vulnerability 
+  https://blog.getbootstrap.com/2019/02/13/bootstrap-4-3-1-and-3-4-1/ 
 - Change - update dev dependencies
 - Add - chart options are updateable - credits @broldak 
 - Remove - support for ember < 2.12 (configure ember try)

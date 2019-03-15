@@ -22,7 +22,7 @@
     "test": "ember try:each"
   },
   "dependencies": {
-    "bootstrap": "3.3.7",
+    "bootstrap": "3.4.1",
     "broccoli-funnel": "^2.0.1",
     "broccoli-merge-trees": "^1.2.0",
     "deepmerge": "2.1.1",

@@ -1,4 +1,6 @@
 import Component from '@ember/component';
+import { get, set } from '@ember/object';
+import { assign } from '@ember/polyfills';
 import mapData from '../data/us-ca-map';
 
 export default Component.extend({
@@ -35,5 +37,13 @@ export default Component.extend({
         format: '{point.name}'
       }
     }
-  ]
+  ],
+
+  actions: {
+    changeTitle() {
+      let newOptions = assign({}, get(this, 'chartOptions'), { title: { text: 'United States' } });
+
+      set(this, 'chartOptions', newOptions);
+    }
+  }
 });

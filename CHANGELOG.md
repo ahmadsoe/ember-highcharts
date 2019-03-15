@@ -1,5 +1,7 @@
 # Changelog
 
+- Change - update dev dependencies
+- Add - chart options are updateable - credits @broldak 
 - Remove - support for ember < 2.12 (configure ember try)
 
 ## 1.1.1

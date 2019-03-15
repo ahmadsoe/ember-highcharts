@@ -1,4 +1,5 @@
-import { copy } from 'ember-copy';
+import { copy } from '@ember/object/internals';
+import { assign } from '@ember/polyfills';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -158,4 +159,19 @@ test('should accept "falsy" mode attribute for default highcharts operation', fu
     {{high-charts mode=null}}
   `);
   assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart with null mode');
+});
+
+test('chart should reflect updated chart options when set on the component', function(assert) {
+  let newTitle = 'New Title';
+  this.set('cityData', cityData);
+  this.set('lineChartOptions', lineChartOptions);
+  this.render(hbs`
+    {{high-charts content=cityData chartOptions=lineChartOptions}}
+  `);
+
+  assert.equal(document.querySelector('.highcharts-title').textContent, lineChartOptions.title.text, 'chart title is correct');
+
+  this.set('lineChartOptions', assign({}, lineChartOptions, { title: { text: newTitle } }));
+
+  assert.equal(document.querySelector('.highcharts-title').textContent, newTitle, 'chart title is updated');
 });

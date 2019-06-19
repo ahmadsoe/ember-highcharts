@@ -14,6 +14,7 @@ import merge from 'deepmerge';
 const CHART_TYPES = {
   StockChart: 'stockChart',
   Map: 'mapChart',
+  Gantt: 'ganttChart',
   undefined: 'chart'
 };
 

@@ -20,6 +20,9 @@ module.exports = {
   included(app) {
     this._super.included.apply(this, arguments);
 
+    // The app argument passed to included is the host app or parent addon.
+    // And the addon has a `import` api exposed since ember-cli/ember-cli#5877.
+    // If the `app.import` is available we can just use that.
     if (typeof app.import !== 'function') {
       // If the addon has the _findHost() method (in ember-cli >= 2.7.0), we'll just
       // use that.

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0
+
+- Use the "app" argument if available
+- Bump bootstrap version to fix security vulnerability
+
 ## 1.1.1
 
 - Component should not throw an exception on a "falsy" mode attribute

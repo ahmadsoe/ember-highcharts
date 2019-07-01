@@ -22,7 +22,6 @@
     "test": "ember try:each"
   },
   "dependencies": {
-    "bootstrap": "3.4.1",
     "broccoli-funnel": "^2.0.1",
     "broccoli-merge-trees": "^1.2.0",
     "deepmerge": "2.1.1",
@@ -32,6 +31,7 @@
     "ember-copy": "^1.0.0"
   },
   "devDependencies": {
+    "bootstrap": "3.4.1",
     "broccoli-asset-rev": "^2.4.5",
     "ember-cli": "~3.0.2",
     "ember-cli-app-version": "^2.0.0",

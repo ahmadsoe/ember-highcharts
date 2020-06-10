@@ -57,6 +57,10 @@
     "highcharts": "^8.0.0",
     "loader.js": "^4.7.0"
   },
+  "resolutions": {
+    "source-map-resolve": "^0.6.0",
+    "websocket-extensions": "^0.1.4"
+  },
   "engines": {
     "node": ">= 10.*"
   },

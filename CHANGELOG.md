@@ -1,9 +1,5 @@
 # Changelog
 
-## 2.0.1
-
-- Update readme to reflect correct ember version
-
 ## 2.0.0
 
 - Bump _all_ dependencies to latest

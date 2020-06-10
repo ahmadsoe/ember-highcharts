@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.0
+
+- Bump _all_ dependencies to latest
+- Updated integration tests to async/await framework
+- Drop support for Node <=8
+- Drop testing for ember-source older than 2.18, add some for early 3.*
+- Update eslint things, add a few disables
+- Add `await settled();` to 1 test to fix it
+
 ## 1.2.0
 
 - Use the "app" argument if available

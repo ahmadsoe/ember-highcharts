@@ -13,8 +13,8 @@ and [Highmaps](http://www.highcharts.com/products/highmaps) component for [Ember
 ## Requirements
 
 * Ember CLI
-* Ember >= 2.12.0
-  * If you need support for Ember < 2.12.0, use ember-highcharts < v1.0.0
+* Ember >= 2.18.0
+  * If you need support for Ember < 2.18.0, use ember-highcharts < v1.2.0
   * If you need support for Ember < 1.13.0, use ember-highcharts v0.1.3
 
 

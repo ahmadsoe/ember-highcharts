@@ -1,7 +1,7 @@
 import { assign } from '@ember/polyfills';
 import Component from '@ember/component';
 import { getOwner } from '@ember/application';
-import { set, getProperties, get, computed, getWithDefault } from '@ember/object';
+import { set, getProperties, get, computed } from '@ember/object';
 import { run } from '@ember/runloop';
 import { setDefaultHighChartOptions } from '../utils/option-loader';
 import { getSeriesMap, getSeriesChanges } from '../utils/chart-data';
@@ -28,8 +28,15 @@ export default Component.extend({
   callback: undefined,
 
   buildOptions: computed('chartOptions', 'content.[]', function() {
-    let theme = getWithDefault(this, 'theme', {});
-    let passedChartOptions = getWithDefault(this, 'chartOptions', {});
+    let theme = get(this, 'theme');
+    if (theme === undefined) {
+      theme = {};
+    }
+
+    let passedChartOptions = get(this, 'chartOptions');
+    if (passedChartOptions === undefined) {
+      passedChartOptions = {};
+    }
 
     let chartOptions = merge(theme, passedChartOptions);
     let chartContent = get(this, 'content');
@@ -91,6 +98,7 @@ export default Component.extend({
 
     // add new series
     content.forEach((contentSeries) => {
+      // eslint-disable-next-line no-prototype-builtins
       if (!chartSeriesMap.hasOwnProperty(contentSeries.name)) {
         chart.addSeries(contentSeries, false);
       }

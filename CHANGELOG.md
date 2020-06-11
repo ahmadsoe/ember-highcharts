@@ -5,9 +5,10 @@
 - Bump _all_ dependencies to latest
 - Updated integration tests to async/await framework
 - Drop support for Node <=8
-- Drop testing for ember-source older than 2.18, add some for early 3.*
+- Add testing for ember early 3.*
 - Update eslint things, add a few disables
 - Add `await settled();` to 1 test to fix it
+- Migrate `getWithDefault` in prep for ember 3.20
 
 ## 1.2.0
 

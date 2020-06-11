@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
-    "bootstrap": "^3.4.1",
+    "bootstrap": "^4.5.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-cli": "^3.18.0",
     "ember-cli-app-version": "^3.2.0",
@@ -51,10 +51,10 @@
     "ember-source-channel-url": "^2.0.1",
     "ember-try": "^1.4.0",
     "eslint": "^7.2.0",
-    "eslint-plugin-ember": "^8.0.0",
+    "eslint-plugin-ember": "^8.6.0",
     "eslint-plugin-ember-best-practices": "^1.1.2",
-    "eslint-plugin-node": "^11.0.0",
-    "highcharts": "^8.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "highcharts": "^8.1.1",
     "loader.js": "^4.7.0"
   },
   "resolutions": {

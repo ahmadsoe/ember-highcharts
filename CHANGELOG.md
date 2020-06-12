@@ -9,6 +9,7 @@
 - Update eslint things, add a few disables
 - Add `await settled();` to 1 test to fix it
 - Migrate `getWithDefault` in prep for ember 3.20
+- Remove support for Ember <3.*
 
 ## 1.2.0
 

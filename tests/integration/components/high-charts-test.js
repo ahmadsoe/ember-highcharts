@@ -1,6 +1,8 @@
 import { copy } from 'ember-copy';
-import { moduleForComponent, test } from 'ember-qunit';
-import hbs from 'htmlbars-inline-precompile';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, settled } from '@ember/test-helpers';
+import { hbs } from 'ember-cli-htmlbars';
 
 import {
   lineChartOptions,
@@ -10,152 +12,154 @@ import {
   updatedStockData
 } from '../constants';
 
-moduleForComponent('high-charts', 'Integration | Component | High Charts', {
-  integration: true
-});
+module('Integration | Component | High Charts', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('should include local options', function(assert) {
-  assert.expect(2);
+  test('should include local options', async function(assert) {
+    assert.expect(2);
 
-  this.render(hbs`
-    {{high-charts}}
-  `);
+    await render(hbs`
+      {{high-charts}}
+    `);
 
-  // custom highcharts-configs/application.js is auto-loaded from tests/dummy/app
-  let highchartsCreditsText = document.querySelector('.highcharts-credits').textContent.trim();
-  assert.notOk(highchartsCreditsText.match('Highcharts.com'), 'default credits not present');
-  assert.equal(highchartsCreditsText, 'ember-highcharts-configured-title', 'expected credits text present');
-});
-
-test('should render empty series for no chart content', function(assert) {
-  assert.expect(2);
-
-  this.content = [];
-
-  this.render(hbs`
-    {{high-charts content=content chartOptions=lineChartOptions}}
-  `);
-
-  let legend = document.querySelectorAll('.highcharts-legend .highcharts-legend-item text');
-  assert.equal(legend.length, 1, 'expected one series');
-  assert.equal(legend[0].textContent.trim(), 'Series 1', 'expected default series name');
-});
-
-test('should add a series', function(assert) {
-  assert.expect(2);
-
-  this.cityData = cityData;
-  this.lineChartOptions = lineChartOptions;
-  this.render(hbs`
-    {{high-charts content=cityData chartOptions=lineChartOptions}}
-  `);
-
-  assert.equal(document.querySelectorAll('.highcharts-legend .highcharts-legend-item').length, 3, 'base series count');
-
-  // add a series to chart content
-  let cityDataCopy = copy(cityData, true);
-  cityDataCopy.push({
-    name: 'San Fransico',
-    data: [
-      [1, 7.0],
-      [2, 9.5],
-      [3, 9.5]
-    ]
+    // custom highcharts-configs/application.js is auto-loaded from tests/dummy/app
+    let highchartsCreditsText = document.querySelector('.highcharts-credits').textContent.trim();
+    assert.notOk(highchartsCreditsText.match('Highcharts.com'), 'default credits not present');
+    assert.equal(highchartsCreditsText, 'ember-highcharts-configured-title', 'expected credits text present');
   });
 
-  this.set('cityData', cityDataCopy);
-  assert.equal(document.querySelectorAll('.highcharts-legend .highcharts-legend-item').length, 4, 'new series count');
-});
+  test('should render empty series for no chart content', async function(assert) {
+    assert.expect(2);
 
-test('should remove a series', function(assert) {
-  assert.expect(2);
+    this.content = [];
 
-  this.cityData = cityData;
-  this.lineChartOptions = lineChartOptions;
-  this.render(hbs`
-    {{high-charts content=cityData chartOptions=lineChartOptions}}
-  `);
+    await render(hbs`
+      {{high-charts content=content chartOptions=lineChartOptions}}
+    `);
 
-  assert.equal(document.querySelectorAll('.highcharts-legend .highcharts-legend-item').length, 3, 'base series count');
+    let legend = document.querySelectorAll('.highcharts-legend .highcharts-legend-item text');
+    assert.equal(legend.length, 1, 'expected one series');
+    assert.equal(legend[0].textContent.trim(), 'Series 1', 'expected default series name');
+  });
 
-  // remove a series from chart content
-  let cityDataCopy = copy(cityData, true);
-  cityDataCopy = cityDataCopy.slice(0, 2);
+  test('should add a series', async function(assert) {
+    assert.expect(2);
 
-  this.set('cityData', cityDataCopy);
-  assert.equal(document.querySelectorAll('.highcharts-legend .highcharts-legend-item').length, 2, 'new series count');
-});
+    this.cityData = cityData;
+    this.lineChartOptions = lineChartOptions;
+    await render(hbs`
+      {{high-charts content=cityData chartOptions=lineChartOptions}}
+    `);
 
-test('should have navigator series for highstock', function(assert) {
-  assert.expect(1);
+    assert.equal(document.querySelectorAll('.highcharts-legend .highcharts-legend-item').length, 3, 'base series count');
 
-  this.stockData = stockData;
-  this.stockChartOptions = stockChartOptions;
-
-  this.render(hbs`
-    {{high-charts mode="StockChart" content=stockData chartOptions=stockChartOptions}}
-  `);
-
-  assert.equal(document.querySelectorAll('.highcharts-navigator').length, 1, '.highcharts-navigator class is present');
-});
-
-test('should update data on all svg paths on highstock chart', function(assert) {
-  assert.expect(1);
-
-  this.set('stockChartOptions', stockChartOptions);
-  this.set('stockData', stockData);
-
-  this.render(hbs`
-    {{high-charts mode="StockChart" content=stockData chartOptions=stockChartOptions}}
-  `);
-
-  let generateDArray = () => {
-    let highchartSeries = Array.from(document.querySelectorAll('.highcharts-series'));
-    return highchartSeries.map((series) => {
-      return series.querySelector('path').getAttribute('d');
+    // add a series to chart content
+    let cityDataCopy = copy(cityData, true);
+    cityDataCopy.push({
+      name: 'San Francisco',
+      data: [
+        [1, 7.0],
+        [2, 9.5],
+        [3, 9.5]
+      ]
     });
-  };
 
-  let dVals = generateDArray();
+    this.set('cityData', cityDataCopy);
+    assert.equal(document.querySelectorAll('.highcharts-legend .highcharts-legend-item').length, 4, 'new series count');
+  });
 
-  this.set('stockData', updatedStockData);
-  let newDVals = generateDArray();
+  test('should remove a series', async function(assert) {
+    assert.expect(2);
 
-  assert.notEqual(dVals[1], newDVals[1]);
-});
+    this.cityData = cityData;
+    this.lineChartOptions = lineChartOptions;
+    await render(hbs`
+      {{high-charts content=cityData chartOptions=lineChartOptions}}
+    `);
 
-test('should yield the chart instance when used in block form', function(assert) {
-  this.set('cityData', cityData);
-  this.set('lineChartOptions', lineChartOptions);
-  this.render(hbs`
-    {{#high-charts content=cityData chartOptions=lineChartOptions as |chart|}}
-      <span class="chart-test-content">{{chart.series.length}}</span>
-    {{/high-charts}}
-  `);
+    assert.equal(document.querySelectorAll('.highcharts-legend .highcharts-legend-item').length, 3, 'base series count');
 
-  assert.equal(document.querySelector('.chart-test-content').textContent, 3, 'chart instance series count');
-});
+    // remove a series from chart content
+    let cityDataCopy = copy(cityData, true);
+    cityDataCopy = cityDataCopy.slice(0, 2);
 
-test('should accept "falsy" mode attribute for default highcharts operation', function(assert) {
-  assert.expect(4);
+    this.set('cityData', cityDataCopy);
+    assert.equal(document.querySelectorAll('.highcharts-legend .highcharts-legend-item').length, 2, 'new series count');
+  });
 
-  this.render(hbs`
-    {{high-charts}}
-  `);
-  assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart without a mode specified');
+  test('should have navigator series for highstock', async function(assert) {
+    assert.expect(1);
 
-  this.render(hbs`
-    {{high-charts mode=""}}
-  `);
-  assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart with empty string mode');
+    this.stockData = stockData;
+    this.stockChartOptions = stockChartOptions;
 
-  this.render(hbs`
-    {{high-charts mode=false}}
-  `);
-  assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart with false boolean mode');
+    await render(hbs`
+      {{high-charts mode="StockChart" content=stockData chartOptions=stockChartOptions}}
+    `);
 
-  this.render(hbs`
-    {{high-charts mode=null}}
-  `);
-  assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart with null mode');
+    assert.equal(document.querySelectorAll('.highcharts-navigator').length, 1, '.highcharts-navigator class is present');
+  });
+
+  test('should update data on all svg paths on highstock chart', async function(assert) {
+    assert.expect(1);
+
+    this.set('stockChartOptions', stockChartOptions);
+    this.set('stockData', stockData);
+
+    await render(hbs`
+      {{high-charts mode="StockChart" content=stockData chartOptions=stockChartOptions}}
+    `);
+
+    let generateDArray = () => {
+      let highchartSeries = Array.from(document.querySelectorAll('.highcharts-series'));
+      return highchartSeries.map((series) => {
+        return series.querySelector('path').getAttribute('d');
+      });
+    };
+
+    let dVals = generateDArray();
+
+    this.set('stockData', updatedStockData);
+    await settled();
+    let newDVals = generateDArray();
+    await settled();
+
+    assert.notEqual(dVals[1], newDVals[1]);
+  });
+
+  test('should yield the chart instance when used in block form', async function(assert) {
+    this.set('cityData', cityData);
+    this.set('lineChartOptions', lineChartOptions);
+    await render(hbs`
+      {{#high-charts content=cityData chartOptions=lineChartOptions as |chart|}}
+        <span class="chart-test-content">{{chart.series.length}}</span>
+      {{/high-charts}}
+    `);
+
+    assert.equal(document.querySelector('.chart-test-content').textContent, 3, 'chart instance series count');
+  });
+
+  test('should accept "falsy" mode attribute for default highcharts operation', async function(assert) {
+    assert.expect(4);
+
+    await render(hbs`
+      {{high-charts}}
+    `);
+    assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart without a mode specified');
+
+    await render(hbs`
+      {{high-charts mode=""}}
+    `);
+    assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart with empty string mode');
+
+    await render(hbs`
+      {{high-charts mode=false}}
+    `);
+    assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart with false boolean mode');
+
+    await render(hbs`
+      {{high-charts mode=null}}
+    `);
+    assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart with null mode');
+  });
 });

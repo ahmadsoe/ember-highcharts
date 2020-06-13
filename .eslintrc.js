@@ -5,12 +5,8 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: [
-    'ember'
-  ],
-  extends: [
-    'eslint:recommended',
-    'plugin:ember/recommended',
-    'plugin:ember-suave/recommended'
+    'ember',
+    'ember-best-practices'
   ],
   env: {
     browser: true

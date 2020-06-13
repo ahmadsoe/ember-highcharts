@@ -3,7 +3,6 @@
 [![Code Climate](https://codeclimate.com/github/ahmadsoe/ember-highcharts/badges/gpa.svg)](https://codeclimate.com/github/ahmadsoe/ember-highcharts)
 [![npm version](https://badge.fury.io/js/ember-highcharts.svg)](https://badge.fury.io/js/ember-highcharts)
 
-
 # Ember-highcharts
 
 A [Highcharts](http://www.highcharts.com/products/highcharts), [Highstock](http://www.highcharts.com/products/highstock),
@@ -13,7 +12,8 @@ and [Highmaps](http://www.highcharts.com/products/highmaps) component for [Ember
 ## Requirements
 
 * Ember CLI
-* Ember >= 2.12.0
+* Ember >= 3
+  * If you need support for Ember < 3, use ember-highcharts < v1.2.0
   * If you need support for Ember < 2.12.0, use ember-highcharts < v1.0.0
   * If you need support for Ember < 1.13.0, use ember-highcharts v0.1.3
 

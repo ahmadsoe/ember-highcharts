@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.0
+
+- Bump `ember-cli-babel` to v7
+
 ## 2.0.0
 
 - Bump _all_ dependencies to latest

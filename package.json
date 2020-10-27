@@ -29,7 +29,8 @@
     "ember-auto-import": "^1.6.0",
     "ember-cli-babel": "^7.0.0",
     "ember-cli-htmlbars": "^5.1.2",
-    "ember-copy": "^1.0.0"
+    "ember-copy": "^1.0.0",
+    "validate-peer-dependencies": "^1.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -56,6 +57,9 @@
     "eslint-plugin-node": "^11.1.0",
     "highcharts": "^8.1.1",
     "loader.js": "^4.7.0"
+  },
+  "peerDependencies": {
+    "highcharts": ">= 5.0.0"
   },
   "resolutions": {
     "source-map-resolve": "^0.6.0",

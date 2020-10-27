@@ -3,9 +3,18 @@
 let Funnel = require('broccoli-funnel');
 let mergeTrees = require('broccoli-merge-trees');
 let path = require('path');
+let validatePeerDependencies = require('validate-peer-dependencies');
 
 module.exports = {
   name: 'ember-highcharts',
+
+  init() {
+    this._super.init.apply(this, arguments);
+
+    validatePeerDependencies(__dirname, {
+      resolvePeerDependenciesFrom: this.parent.root,
+    });
+  },
 
   included(app) {
     this._super.included.apply(this, arguments);

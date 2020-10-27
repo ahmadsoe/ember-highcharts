@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.0
+- Use ember-auto-import instead of ember-cli-node-assets
+- Use peerDependencies and validate them
+
 ## 2.1.0
 
 - Bump `ember-cli-babel` to v7

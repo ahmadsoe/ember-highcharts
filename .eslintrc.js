@@ -2,37 +2,39 @@ module.exports = {
   root: true,
   parser: 'babel-eslint',
   parserOptions: {
-    ecmaVersion: 2017,
+    ecmaVersion: 2018,
     sourceType: 'module'
   },
   plugins: [
-    'ember',
-    'ember-best-practices'
+    'ember'
+  ],
+  extends: [
+    'eslint:recommended',
+    'plugin:ember/recommended'
   ],
   env: {
     browser: true
   },
-  globals: {
-    Highcharts: false,
-    define: false
-  },
   rules: {
-    'ember/avoid-leaking-state-in-ember-objects': 'off',
-    'ember-suave/no-direct-property-access': 'off'
   },
   overrides: [
     // node files
     {
       files: [
+        '.ember-cli.js',
+        '.eslintrc.js',
+        '.template-lintrc.js',
+        'ember-cli-build.js',
         'index.js',
         'testem.js',
-        'ember-cli-build.js',
+        'blueprints/*/index.js',
         'config/**/*.js',
         'tests/dummy/config/**/*.js'
       ],
       excludedFiles: [
-        'app/**',
         'addon/**',
+        'addon-test-support/**',
+        'app/**',
         'tests/dummy/app/**'
       ],
       parserOptions: {
@@ -45,7 +47,7 @@ module.exports = {
       },
       plugins: ['node'],
       rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
-        camelcase: 'off'
+        // add your custom rules and overrides for node files here
       })
     }
   ]

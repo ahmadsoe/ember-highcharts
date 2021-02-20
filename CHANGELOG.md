@@ -1,5 +1,14 @@
 # Changelog
 
+
+## 3.0.0
+- Applied `ember init -b @ember/octane-addon-blueprint` for general upgrade goodness
+- Bumped `highcharts@^9.0.1`
+- Bumped `ember-copy@^2.0.1`
+- Bumped `devDeps` across the board
+- Implement Glimmer version of highcharts
+
+
 ## 2.2.0
 - Use ember-auto-import instead of ember-cli-node-assets
 - Use peerDependencies and validate them

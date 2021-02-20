@@ -3,18 +3,17 @@
 let Funnel = require('broccoli-funnel');
 let mergeTrees = require('broccoli-merge-trees');
 let path = require('path');
+let validatePeerDependencies = require('validate-peer-dependencies');
 
 module.exports = {
   name: 'ember-highcharts',
-  options: {
-    nodeAssets: {
-      deepmerge: {
-        vendor: {
-          srcDir: 'dist',
-          include: ['umd.js']
-        }
-      }
-    }
+
+  init() {
+    this._super.init.apply(this, arguments);
+
+    validatePeerDependencies(__dirname, {
+      resolvePeerDependenciesFrom: this.parent.root,
+    });
   },
 
   included(app) {
@@ -77,9 +76,6 @@ module.exports = {
         app.import(path.join(highchartsPath, 'modules', moduleFilename));
       }
     }
-
-    app.import('vendor/deepmerge/umd.js');
-    app.import('vendor/shims/deepmerge.js');
   },
 
   treeForVendor(vendorTree) {

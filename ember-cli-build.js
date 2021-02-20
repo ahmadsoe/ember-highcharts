@@ -16,7 +16,7 @@ module.exports = function(defaults) {
         'drilldown',
         'solid-gauge',
         'funnel',
-        'heatmap'
+        'heatmap',
       ]
     }
   });

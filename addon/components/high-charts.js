@@ -1,90 +1,125 @@
-import { assign } from '@ember/polyfills';
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+
 import { getOwner } from '@ember/application';
-import { set, getProperties, get, computed } from '@ember/object';
 import { run } from '@ember/runloop';
+
 import { setDefaultHighChartOptions } from '../utils/option-loader';
 import { getSeriesMap, getSeriesChanges } from '../utils/chart-data';
-import layout from 'ember-highcharts/templates/components/high-charts';
+
+import { assign } from '@ember/polyfills';
 import merge from 'deepmerge';
 
-/* Map ember-highcharts modes to Highcharts methods
- * https://api.highcharts.com/class-reference/Highcharts.html
- */
-const CHART_TYPES = {
+const CHART_TYPES = Object.freeze({
   StockChart: 'stockChart',
   Map: 'mapChart',
-  undefined: 'chart'
-};
+  undefined: 'chart',
+});
 
-export default Component.extend({
-  layout,
-  classNames: ['highcharts-wrapper'],
-  content: undefined,
-  mode: undefined,
-  chartOptions: undefined,
-  chart: null,
-  theme: undefined,
-  callback: undefined,
+const EMPTY_CHART_CONTENT = [Object.freeze({
+  id: 'noData',
+  data: 0,
+  color: '#aaaaaa'
+})];
 
-  buildOptions: computed('chartOptions', 'content.[]', function() {
-    let theme = get(this, 'theme');
-    if (theme === undefined) {
-      theme = {};
-    }
+export default class HighCharts extends Component {
+  get content() {
+    return this.args.content ?? undefined;
+  }
 
-    let passedChartOptions = get(this, 'chartOptions');
-    if (passedChartOptions === undefined) {
-      passedChartOptions = {};
-    }
+  get chartOptions() {
+    return this.args.chartOptions ?? undefined;
+  }
 
-    let chartOptions = merge(theme, passedChartOptions);
-    let chartContent = get(this, 'content');
+  get mode() {
+    return this.args.mode ?? undefined;
+  }
+
+  get theme() {
+    return this.args.theme ?? undefined;
+  }
+
+  get callback() {
+    return this.args.callback ?? undefined;
+  }
+
+  @tracked
+  el = undefined;
+
+  @tracked
+  chart = null;
+
+  get buildOptions() {
+    const chartOptions = merge(this.theme, this.chartOptions ?? {});
+    let chartContent = this.content;
 
     // if 'no-data-to-display' module has been imported, keep empty series and leave it to highcharts to show no data label.
-    if (!get(this, 'content.length') && !Highcharts.Chart.prototype.showNoData) {
-      chartContent = [{
-        id: 'noData',
-        data: 0,
-        color: '#aaaaaa'
-      }];
+    // eslint-disable-next-line no-undef
+    if (!this.content?.length && !Highcharts.Chart.prototype.showNoData) {
+      chartContent = EMPTY_CHART_CONTENT;
     }
 
-    let defaults = { series: chartContent };
+    const defaults = { series: chartContent };
 
     return assign(defaults, chartOptions);
-  }),
+  }
 
-  didReceiveAttrs() {
-    this._super(...arguments);
+  drawAfterRender() {
+    run.scheduleOnce('afterRender', this, 'draw');
+  }
 
-    let { content, chart, mode } = getProperties(this, 'content', 'chart', 'mode');
+  draw() {
+    const element = this.el?.querySelector('.chart-container');
+
+    // for any mode that is falsy ('', undefined, false), set it to default 'chart'
+    const mode = CHART_TYPES[this.mode] ?? CHART_TYPES.undefined;
+    const completeChartOptions = [this.buildOptions, this.callback];
+
+    if (element) {
+      // eslint-disable-next-line no-undef
+      const chart = Highcharts[mode](element, ...completeChartOptions);
+      this.chart = chart;
+    }
+  }
+
+
+  @action
+  onDidInsert(el) {
+    this.el = el;
+    this.drawAfterRender();
+    setDefaultHighChartOptions(getOwner(this));
+  }
+
+  @action
+  onDidUpdate() {
+    const { content, chart, mode } = this;
 
     if (!content || !chart) {
       return;
     }
 
-    let isStockChart = mode === 'StockChart';
-
+    const isStockChart = mode === 'StockChart';
     // create maps to make series data easier to work with
-    let contentSeriesMap = getSeriesMap(content);
-    let chartSeriesMap = getSeriesMap(chart.series);
+    const contentSeriesMap = getSeriesMap(content);
+    const chartSeriesMap = getSeriesMap(chart.series);
 
     // remove and update current series
-    let chartSeriesToRemove = [];
+    const chartSeriesToRemove = [];
 
     chart.series.forEach((series) => {
       if (isStockChart && series.name.match(/^Navigator/)) {
         return;
       }
 
-      let contentSeries = contentSeriesMap[series.name];
+      const contentSeries = contentSeriesMap[series.name];
 
       if (!contentSeries) {
         return chartSeriesToRemove.push(series);
       }
 
-      let updatedKeys = getSeriesChanges(contentSeries, series);
+      const updatedKeys = getSeriesChanges(contentSeries, series);
 
       // call series.update() when other series attributes like pointStart have changed
       if (updatedKeys.length) {
@@ -110,36 +145,16 @@ export default Component.extend({
     }
 
     return chart.redraw();
-  },
-
-  drawAfterRender() {
-    run.scheduleOnce('afterRender', this, 'draw');
-  },
-
-  draw() {
-    let element = this.element && this.element.querySelector('.chart-container');
-    let modeAttr = get(this, 'mode') || undefined;
-    let mode = CHART_TYPES[modeAttr];
-    let completeChartOptions = [get(this, 'buildOptions'), get(this, 'callback')];
-
-    if (element) {
-      let chart = Highcharts[mode](element, ...completeChartOptions);
-      set(this, 'chart', chart);
-    }
-  },
-
-  didInsertElement() {
-    this._super(...arguments);
-
-    this.drawAfterRender();
-    setDefaultHighChartOptions(getOwner(this));
-  },
-
-  willDestroyElement() {
-    this._super(...arguments);
-
-    if (get(this, 'chart')) {
-      get(this, 'chart').destroy();
-    }
   }
-});
+
+  @action
+  setChart(chart) {
+    this.chart = chart;
+  }
+
+  willDestroy(...args) {
+    super.willDestroy(...args);
+
+    this.chart?.destroy();
+  }
+}

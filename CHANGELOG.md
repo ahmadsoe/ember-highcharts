@@ -7,10 +7,12 @@
 - Bumped `ember-copy@^2.0.1`
 - Bumped `devDeps` across the board
 - Implement Glimmer version of highcharts
-
+- Update tests
+- Use `render-modifiers` bridge with `{{did-insert}}` and `{{did-update}}`
+- Update tests to use Angle Bracket Syntax
 
 ## 2.2.0
-- Use ember-auto-import instead of ember-cli-node-assets
+- Use `ember-auto-import` instead of `ember-cli-node-assets`
 - Use peerDependencies and validate them
 
 ## 2.1.0

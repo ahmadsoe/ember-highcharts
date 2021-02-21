@@ -1,9 +1,8 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import defaultTheme from '../themes/default-theme';
 
-export default Component.extend({
-
-  chartOptions: {
+export default class BarBasic extends Component {
+  chartOptions = {
     chart: {
       type: 'bar'
     },
@@ -19,9 +18,9 @@ export default Component.extend({
         text: 'Fruit eaten'
       }
     }
-  },
+  }
 
-  chartData: [
+  chartData = [
     {
       name: 'Jane',
       data: [5, 0, 20]
@@ -30,8 +29,7 @@ export default Component.extend({
       name: 'John',
       data: [25, 30, 15]
     }
-  ],
+  ]
 
-  theme: defaultTheme
-
-});
+  theme = defaultTheme
+}

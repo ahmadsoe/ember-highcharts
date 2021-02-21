@@ -1,5 +1,5 @@
 export function getSeriesMap(seriesGroup) {
-  let seriesMap = seriesGroup.reduce((seriesMap, seriesItem) => {
+  const seriesMap = seriesGroup.reduce((seriesMap, seriesItem) => {
     seriesMap[seriesItem.name] = seriesItem;
     return seriesMap;
   }, {});
@@ -8,10 +8,10 @@ export function getSeriesMap(seriesGroup) {
 }
 
 export function getSeriesChanges(contentSeries, series) {
-  let updatedKeys = Object.keys(contentSeries).filter((key) => {
-    let isValidKey = key !== 'data' && key.charAt(0) !== '_';
-    let isValidType = ['object', 'function'].indexOf(typeof contentSeries[key]) === -1;
-    let isTheSame = contentSeries[key] === series[key];
+  const updatedKeys = Object.keys(contentSeries).filter((key) => {
+    const isValidKey = key !== 'data' && key.charAt(0) !== '_';
+    const isValidType = ['object', 'function'].indexOf(typeof contentSeries[key]) === -1;
+    const isTheSame = contentSeries[key] === series[key];
 
     return isValidKey && isValidType && !isTheSame;
   });

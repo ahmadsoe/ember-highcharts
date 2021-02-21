@@ -3,16 +3,17 @@ let localConfig = null;
 export function setDefaultHighChartOptions(owner) {
   if (!localConfig) {
     // use options defined in highcharts-configs/application.js if they exist
-    let configFactory = owner.factoryFor('highcharts-config:application');
+    const configFactory = owner.factoryFor('highcharts-config:application');
 
     if (configFactory && configFactory.class) {
-      let localConfigBuilder = configFactory.class;
+      const localConfigBuilder = configFactory.class;
       localConfig = localConfigBuilder(defaultOptions);
     } else {
       localConfig = defaultOptions;
     }
   }
 
+  // eslint-disable-next-line no-undef
   Highcharts.setOptions(localConfig);
 }
 

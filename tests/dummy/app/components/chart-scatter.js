@@ -1,11 +1,11 @@
-import { computed } from '@ember/object';
-
-import Component from '@ember/component';
+/* eslint-disable no-undef */
+import Component from '@glimmer/component';
 
 const totalData = 100000;
 
-export default Component.extend({
-  chartData: computed(function() {
+export default class Scatter extends Component {
+
+  get chartData() {
     let data = [];
 
     for (let i = 0; i < totalData; i += 1) {
@@ -27,9 +27,9 @@ export default Component.extend({
         pointFormat: '[{point.x:.1f}, {point.y:.1f}]'
       }
     }];
-  }),
+  }
 
-  chartOptions: {
+  chartOptions = {
     chart: {
       zoomType: 'xy'
     },
@@ -52,4 +52,4 @@ export default Component.extend({
       enabled: false
     }
   }
-});
+}

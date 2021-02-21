@@ -1,9 +1,9 @@
 'use strict';
 
-let Funnel = require('broccoli-funnel');
-let mergeTrees = require('broccoli-merge-trees');
-let path = require('path');
-let validatePeerDependencies = require('validate-peer-dependencies');
+const Funnel = require('broccoli-funnel');
+const mergeTrees = require('broccoli-merge-trees');
+const path = require('path');
+const validatePeerDependencies = require('validate-peer-dependencies');
 
 module.exports = {
   name: 'ember-highcharts',
@@ -37,8 +37,8 @@ module.exports = {
       }
     }
 
-    let options = app.options.emberHighCharts || { includeHighCharts: true };
-    let highchartsPath = options.useStyledMode ? 'vendor/highcharts/js' : 'vendor/highcharts';
+    const options = app.options.emberHighCharts || { includeHighCharts: true };
+    const highchartsPath = options.useStyledMode ? 'vendor/highcharts/js' : 'vendor/highcharts';
 
     if (options.includeHighCharts) {
       app.import(path.join(highchartsPath, 'highcharts.src.js'));
@@ -59,7 +59,7 @@ module.exports = {
     if (options.includeHighCharts3D) {
       // boost module need to be imported before highcharts-3d
       if (options.includeModules) {
-        let boostIndex = options.includeModules.indexOf('boost');
+        const boostIndex = options.includeModules.indexOf('boost');
         if (boostIndex !== -1) {
           app.import(path.join(highchartsPath, 'modules', 'boost.src.js'));
           options.includeModules.splice(boostIndex, 1);
@@ -70,18 +70,18 @@ module.exports = {
     }
 
     if (options.includeModules) {
-      let modules = options.includeModules;
+      const modules = options.includeModules;
       for (let i = 0; i < modules.length; i++) {
-        let moduleFilename = `${modules[i]}.src.js`;
+        const moduleFilename = `${modules[i]}.src.js`;
         app.import(path.join(highchartsPath, 'modules', moduleFilename));
       }
     }
   },
 
   treeForVendor(vendorTree) {
-    let trees = [];
+    const trees = [];
     // eslint-disable-next-line node/no-unpublished-require
-    let highchartsPath = path.dirname(require.resolve('highcharts'));
+    const highchartsPath = path.dirname(require.resolve('highcharts'));
 
     if (vendorTree) {
       trees.push(vendorTree);

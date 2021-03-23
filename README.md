@@ -207,10 +207,6 @@ ember generate chart <chart-name>
 The `chart` instance is exposed to the yielded content if used in block form:
 
 ```handlebars
-{{#high-charts mode=mode chartOptions=chartOptions content=content theme=theme as |chart|}}
-  {{my-custom-legend chart=chart}}
-{{/high-charts}}
-
 <HighCharts
   @mode={{this.mode}}
   @chartOptions={{this.chartOptions}}

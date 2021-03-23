@@ -6,23 +6,15 @@ import { action } from '@ember/object';
 import { getOwner } from '@ember/application';
 import { run } from '@ember/runloop';
 
+import buildOptions from '../utils/build-options';
 import { setDefaultHighChartOptions } from '../utils/option-loader';
 import { getSeriesMap, getSeriesChanges } from '../utils/chart-data';
-
-import { assign } from '@ember/polyfills';
-import merge from 'deepmerge';
 
 const CHART_TYPES = Object.freeze({
   StockChart: 'stockChart',
   Map: 'mapChart',
   undefined: 'chart',
 });
-
-const EMPTY_CHART_CONTENT = [Object.freeze({
-  id: 'noData',
-  data: 0,
-  color: '#aaaaaa'
-})];
 
 export default class HighCharts extends Component {
   get content() {
@@ -52,18 +44,7 @@ export default class HighCharts extends Component {
   chart = null;
 
   get buildOptions() {
-    const chartOptions = merge(this.theme, this.chartOptions ?? {});
-    let chartContent = this.content;
-
-    // if 'no-data-to-display' module has been imported, keep empty series and leave it to highcharts to show no data label.
-    // eslint-disable-next-line no-undef
-    if (!this.content?.length && !Highcharts.Chart.prototype.showNoData) {
-      chartContent = EMPTY_CHART_CONTENT;
-    }
-
-    const defaults = { series: chartContent };
-
-    return assign(defaults, chartOptions);
+    return buildOptions(this.theme, this.chartOptions, this.content);
   }
 
   drawAfterRender() {
@@ -83,7 +64,6 @@ export default class HighCharts extends Component {
       this.chart = chart;
     }
   }
-
 
   @action
   onDidInsert(el) {

@@ -1,15 +1,18 @@
 # Changelog
 
-
 ## 3.0.0
 - Applied `ember init -b @ember/octane-addon-blueprint` for general upgrade goodness
+- Moved templates to co-location
 - Bumped `highcharts@^9.0.1`
 - Bumped `ember-copy@^2.0.1`
 - Bumped `devDeps` across the board
 - Implement Glimmer version of highcharts
-- Update tests
+- Update tests; now with Angle Bracket Goodness™
+- Clean up `ember-try` config
+- Various lint fixes
 - Use `render-modifiers` bridge with `{{did-insert}}` and `{{did-update}}`
-- Update tests to use Angle Bracket Syntax
+- Export the build-options getter; move component test to util unit test
+- Drop node 10
 
 ## 2.2.0
 - Use `ember-auto-import` instead of `ember-cli-node-assets`

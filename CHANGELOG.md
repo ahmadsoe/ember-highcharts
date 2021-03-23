@@ -13,6 +13,7 @@
 - Use `render-modifiers` bridge with `{{did-insert}}` and `{{did-update}}`
 - Export the build-options getter; move component test to util unit test
 - Drop node 10
+- Bring ember support to [LTS](https://emberjs.com/releases/lts/) with travis
 
 ## 2.2.0
 - Use `ember-auto-import` instead of `ember-cli-node-assets`

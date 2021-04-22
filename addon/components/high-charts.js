@@ -16,6 +16,7 @@ import { getSeriesMap, getSeriesChanges } from '../utils/chart-data';
 const CHART_TYPES = Object.freeze({
   StockChart: 'stockChart',
   Map: 'mapChart',
+  Gantt: 'ganttChart',
   undefined: 'chart',
 });
 

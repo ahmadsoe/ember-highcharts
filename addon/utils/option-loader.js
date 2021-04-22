@@ -13,7 +13,6 @@ export function setDefaultHighChartOptions(owner) {
     }
   }
 
-  // eslint-disable-next-line no-undef
   Highcharts.setOptions(localConfig);
 }
 

@@ -12,7 +12,6 @@ export default function buildOptions(theme, options = {}, content) {
   // if 'no-data-to-display' module has been imported, keep empty series
   // and leave it to highcharts to show no data label.
 
-  // eslint-disable-next-line no-undef
   const isEmpty = !Highcharts.Chart.prototype.showNoData && !content?.length;
   const chartOptions = merge(theme, options);
   const defaults = {

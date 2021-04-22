@@ -10,6 +10,9 @@ import buildOptions from '../utils/build-options';
 import { setDefaultHighChartOptions } from '../utils/option-loader';
 import { getSeriesMap, getSeriesChanges } from '../utils/chart-data';
 
+/* Map ember-highcharts modes to Highcharts methods
+ * https://api.highcharts.com/class-reference/Highcharts.html
+ */
 const CHART_TYPES = Object.freeze({
   StockChart: 'stockChart',
   Map: 'mapChart',
@@ -59,7 +62,6 @@ export default class HighCharts extends Component {
     const completeChartOptions = [this.buildOptions, this.callback];
 
     if (element) {
-      // eslint-disable-next-line no-undef
       const chart = Highcharts[mode](element, ...completeChartOptions);
       this.chart = chart;
     }

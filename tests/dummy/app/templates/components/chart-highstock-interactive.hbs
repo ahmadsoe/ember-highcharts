@@ -3,4 +3,8 @@
 <button class="btn btn-default" type="button" {{action "setSeriesCount" 1}}>One Series</button>
 <button class="btn btn-default" type="button" {{action "setSeriesCount" 2}}>Two Series</button>
 
-{{high-charts mode='StockChart' content=chartData chartOptions=chartOptions}}
+<HighCharts
+  @mode='StockChart'
+  @content={{this.chartData}}
+  @chartOptions={{this.chartOptions}}
+/>

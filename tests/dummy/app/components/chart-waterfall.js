@@ -1,7 +1,8 @@
-import Component from '@ember/component';
+/* eslint-disable no-undef */
+import Component from '@glimmer/component';
 
-export default Component.extend({
-  chartOptions: {
+export default class Waterfall extends Component {
+  chartOptions = {
     chart: {
       type: 'waterfall'
     },
@@ -22,9 +23,9 @@ export default Component.extend({
     tooltip: {
       pointFormat: '<b>${point.y:,.2f}</b> USD'
     }
-  },
+  }
 
-  chartData: [{
+  chartData = [{
     upColor: '#90ed7d',
     color: '#f7a35c',
     data: [
@@ -73,4 +74,4 @@ export default Component.extend({
     },
     pointPadding: 0
   }]
-});
+}

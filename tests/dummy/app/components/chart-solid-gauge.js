@@ -1,8 +1,8 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 
-export default Component.extend({
+export default class Scatter extends Component {
 
-  chartOptions: {
+  chartOptions = {
     chart: {
       type: 'solidgauge'
     },
@@ -57,9 +57,9 @@ export default Component.extend({
         }
       }
     }
-  },
+  }
 
-  chartData: [
+  chartData = [
     {
       name: 'Speed',
       data: [60],
@@ -69,4 +69,4 @@ export default Component.extend({
     }
   ]
 
-});
+}

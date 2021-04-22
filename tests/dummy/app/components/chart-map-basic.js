@@ -1,17 +1,17 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import mapData from '../data/us-ca-map';
 
-export default Component.extend({
-  chartOptions: {
+export default class MapBasic extends Component {
+  chartOptions = {
     title: {
       text: 'California'
     },
     colorAxis: {
       min: 0
     }
-  },
+  }
 
-  chartData: [
+  chartData = [
     {
       name: 'Random data',
       data: [
@@ -36,4 +36,4 @@ export default Component.extend({
       }
     }
   ]
-});
+}

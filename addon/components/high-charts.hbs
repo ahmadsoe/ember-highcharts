@@ -1,0 +1,14 @@
+<div class="highcharts-wrapper"
+  {{did-insert this.onDidInsert}}
+  {{did-update
+    this.onDidUpdate
+    this.content
+    this.chartOptions
+    this.theme
+    this.mode
+  }}
+  ...attributes
+>
+  <div class="chart-container"></div>
+  {{yield this.chart}}
+</div>

@@ -1,8 +1,8 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 
-export default Component.extend({
+export default class Funnel extends Component {
 
-  chartOptions: {
+  chartOptions = {
     chart: {
       type: 'funnel'
     },
@@ -24,9 +24,9 @@ export default Component.extend({
     legend: {
       enabled: true
     }
-  },
+  }
 
-  chartData: [
+  chartData = [
     {
       name: 'Unique users',
       data: [
@@ -39,4 +39,4 @@ export default Component.extend({
     }
   ]
 
-});
+}

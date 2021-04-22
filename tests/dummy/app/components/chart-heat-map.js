@@ -1,8 +1,8 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 
-export default Component.extend({
+export default class Funnel extends Component {
 
-  chartOptions: {
+  chartOptions = {
     chart: {
       type: 'heatmap',
       marginTop: 50,
@@ -43,9 +43,9 @@ export default Component.extend({
       }
     }
 
-  },
+  }
 
-  chartData: [
+  chartData = [
     {
       name: 'Sales per',
       borderWidth: 1,
@@ -108,4 +108,4 @@ export default Component.extend({
     }
   ]
 
-});
+}

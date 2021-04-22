@@ -1,8 +1,8 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 
-export default Component.extend({
+export default class ColumnDrilldown extends Component {
 
-  chartOptions: {
+  chartOptions = {
     chart: {
       type: 'column'
     },
@@ -112,9 +112,9 @@ export default Component.extend({
         }
       ]
     }
-  },
+  }
 
-  chartData: [
+  chartData = [
     {
       name: 'Brands',
       colorByPoint: true,
@@ -153,4 +153,4 @@ export default Component.extend({
     }
   ]
 
-});
+}

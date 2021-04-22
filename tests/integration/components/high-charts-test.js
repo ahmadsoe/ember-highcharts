@@ -19,7 +19,7 @@ module('Integration | Component | High Charts', function(hooks) {
     assert.expect(2);
 
     await render(hbs`
-      {{high-charts}}
+      <HighCharts />
     `);
 
     // custom highcharts-configs/application.js is auto-loaded from tests/dummy/app
@@ -34,7 +34,10 @@ module('Integration | Component | High Charts', function(hooks) {
     this.content = [];
 
     await render(hbs`
-      {{high-charts content=content chartOptions=lineChartOptions}}
+      <HighCharts
+        @content={{this.cityData}}
+        @chartOptions={{this.lineChartOptions}}
+      />
     `);
 
     let legend = document.querySelectorAll('.highcharts-legend .highcharts-legend-item text');
@@ -48,7 +51,10 @@ module('Integration | Component | High Charts', function(hooks) {
     this.cityData = cityData;
     this.lineChartOptions = lineChartOptions;
     await render(hbs`
-      {{high-charts content=cityData chartOptions=lineChartOptions}}
+      <HighCharts
+        @content={{this.cityData}}
+        @chartOptions={{this.lineChartOptions}}
+      />
     `);
 
     assert.equal(document.querySelectorAll('.highcharts-legend .highcharts-legend-item').length, 3, 'base series count');
@@ -74,7 +80,10 @@ module('Integration | Component | High Charts', function(hooks) {
     this.cityData = cityData;
     this.lineChartOptions = lineChartOptions;
     await render(hbs`
-      {{high-charts content=cityData chartOptions=lineChartOptions}}
+      <HighCharts
+        @content={{this.cityData}}
+        @chartOptions={{this.lineChartOptions}}
+      />
     `);
 
     assert.equal(document.querySelectorAll('.highcharts-legend .highcharts-legend-item').length, 3, 'base series count');
@@ -94,7 +103,11 @@ module('Integration | Component | High Charts', function(hooks) {
     this.stockChartOptions = stockChartOptions;
 
     await render(hbs`
-      {{high-charts mode="StockChart" content=stockData chartOptions=stockChartOptions}}
+      <HighCharts
+        @mode="StockChart"
+        @content={{this.stockData}}
+        @chartOptions={{this.stockChartOptions}}
+      />
     `);
 
     assert.equal(document.querySelectorAll('.highcharts-navigator').length, 1, '.highcharts-navigator class is present');
@@ -107,7 +120,11 @@ module('Integration | Component | High Charts', function(hooks) {
     this.set('stockData', stockData);
 
     await render(hbs`
-      {{high-charts mode="StockChart" content=stockData chartOptions=stockChartOptions}}
+      <HighCharts
+        @mode="StockChart"
+        @content={{this.stockData}}
+        @chartOptions={{this.stockChartOptions}}
+      />
     `);
 
     let generateDArray = () => {
@@ -131,9 +148,11 @@ module('Integration | Component | High Charts', function(hooks) {
     this.set('cityData', cityData);
     this.set('lineChartOptions', lineChartOptions);
     await render(hbs`
-      {{#high-charts content=cityData chartOptions=lineChartOptions as |chart|}}
+      <HighCharts
+        @content={{this.cityData}}
+        @chartOptions={{this.lineChartOptions}} as |chart|>
         <span class="chart-test-content">{{chart.series.length}}</span>
-      {{/high-charts}}
+      </HighCharts>
     `);
 
     assert.equal(document.querySelector('.chart-test-content').textContent, 3, 'chart instance series count');
@@ -143,22 +162,22 @@ module('Integration | Component | High Charts', function(hooks) {
     assert.expect(4);
 
     await render(hbs`
-      {{high-charts}}
+      <HighCharts />
     `);
     assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart without a mode specified');
 
     await render(hbs`
-      {{high-charts mode=""}}
+      <HighCharts @mode={{""}}/>
     `);
     assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart with empty string mode');
 
     await render(hbs`
-      {{high-charts mode=false}}
+      <HighCharts @mode={{false}}/>
     `);
     assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart with false boolean mode');
 
     await render(hbs`
-      {{high-charts mode=null}}
+      <HighCharts @mode={{null}}/>
     `);
     assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart with null mode');
   });

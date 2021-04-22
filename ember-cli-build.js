@@ -3,7 +3,7 @@
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
-  let app = new EmberAddon(defaults, {
+  const app = new EmberAddon(defaults, {
     emberHighCharts: {
       includeHighCharts: false,
       includeHighStock: true,
@@ -16,7 +16,7 @@ module.exports = function(defaults) {
         'drilldown',
         'solid-gauge',
         'funnel',
-        'heatmap'
+        'heatmap',
       ]
     }
   });

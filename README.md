@@ -30,7 +30,12 @@ ember install ember-highcharts
 This component takes in four arguments:
 
 ```handlebars
-{{high-charts mode=mode chartOptions=chartOptions content=content theme=theme}}
+<HighCharts
+  @mode={{this.mode}}
+  @chartOptions={{this.chartOptions}}
+  @content={{this.content}}
+  @theme={{this.theme}}
+/>
 ```
 ### mode
 
@@ -63,13 +68,12 @@ The `theme` argument is optional and it allows you to pass in a
 Here's an example of how to create a basic bar chart:
 
 ```js
-// controller
-import Ember from 'ember';
+// component.js
+import Component from '@glimmer/component';
 import defaultTheme from '../themes/default-theme';
 
-export default Ember.Controller.extend({
-
-  chartOptions: {
+export default class BarBasic extends Component {
+  chartOptions = {
     chart: {
       type: 'bar'
     },
@@ -84,23 +88,26 @@ export default Ember.Controller.extend({
         text: 'Fruit eaten'
       }
     }
-  },
+  }
 
-  chartData: [{
+  chartData = [{
     name: 'Jane',
     data: [1, 0, 4]
   }, {
     name: 'John',
     data: [5, 7, 3]
-  }],
+  }];
 
-  theme: defaultTheme
-
-});
+  theme = defaultTheme
+}
 ```
 
 ```handlebars
-{{high-charts chartOptions=chartOptions content=chartData theme=theme}}
+<HighCharts
+  @chartOptions={{this.chartOptions}}
+  @content={{this.chartData}}
+  @theme={{this.theme}}
+/>
 ```
 
 Check out more chart examples in the [tests/dummy app](tests/dummy/app) in this repo.
@@ -200,12 +207,18 @@ ember generate chart <chart-name>
 The `chart` instance is exposed to the yielded content if used in block form:
 
 ```handlebars
-{{#high-charts mode=mode chartOptions=chartOptions content=content theme=theme as |chart|}}
-  {{my-custom-legend chart=chart}}
-{{/high-charts}}
+<HighCharts
+  @mode={{this.mode}}
+  @chartOptions={{this.chartOptions}}
+  @content={{this.content}}
+  @theme={{this.theme}}
+  as |chart|
+>
+  <MyCustomLegend @chart={{chart}}>
+</HighCharts>
 ```
 
-_where `my-custom-legend` is an example component that may wish to access the `chart` instance_.
+_where `<MyCustomLegend>` is an example component that may wish to access the `chart` instance_.
 
 ### Overriding Chart Redrawing
 

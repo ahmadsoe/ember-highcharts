@@ -76,6 +76,9 @@
   "engines": {
     "node": ">= 12.*"
   },
+  "ember": {
+    "edition": "octane"
+  },
   "ember-addon": {
     "configPath": "tests/dummy/config"
   }

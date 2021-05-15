@@ -1,5 +1,8 @@
 # Changelog
 
+## 3.0.1
+- Set ember edition to "octane"
+
 ## 3.0.0
 - Applied `ember init -b @ember/octane-addon-blueprint` for general upgrade goodness
 - Moved templates to co-location

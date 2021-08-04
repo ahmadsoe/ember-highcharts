@@ -27,7 +27,7 @@ ember install ember-highcharts
 
 ## Usage
 
-This component takes in four arguments:
+This component takes in five arguments:
 
 ```handlebars
 <HighCharts
@@ -35,6 +35,7 @@ This component takes in four arguments:
   @chartOptions={{this.chartOptions}}
   @content={{this.content}}
   @theme={{this.theme}}
+  @callback={{this.callBackFunc}}
 />
 ```
 ### mode
@@ -63,6 +64,10 @@ Use this option to set the series data for your chart.
 
 The `theme` argument is optional and it allows you to pass in a
 [Highcharts theme](http://www.highcharts.com/docs/chart-design-and-style/themes).
+
+### callback
+
+The `callback` argument is optional and allows you to pass in a function that runs when the chart has finished loading ([API](https://api.highcharts.com/class-reference/Highcharts.Chart#Chart)).
 
 ### Example Bar Chart
 

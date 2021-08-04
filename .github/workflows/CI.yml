@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    # filtering branches here prevents duplicate builds from pull_request and push
+    branches:
+      - master
+      - "v*"
+    # always run CI for tags
+    tags:
+      - "*"
+
+jobs:
+  lint:
+    name: "Linting"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn install --frozen-lockfile --non-interactive
+      - run: yarn lint:js
+
+  tests:
+    needs: lint
+    name: "Tests: ubuntu (node@${{ matrix.node-version }})"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Node 15 is currently broken, Node 12 is almost EOL, Node 16 isn't out
+        node-version: ["14"]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn install --frozen-lockfile --non-interactive
+      - run: yarn test
+
+  try-scenarios:
+    name: Tests - ${{ matrix.ember-try-scenario }}
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.allow-failure }}
+    needs: tests
+
+    strategy:
+      fail-fast: true
+      matrix:
+        ember-try-scenario:
+          - ember-lts-3.16
+          - ember-lts-3.20
+          - ember-lts-3.24
+          - ember-release
+        allow-failure: [false]
+        include:
+          - ember-try-scenario: ember-beta
+            allow-failure: true
+          - ember-try-scenario: ember-canary
+            allow-failure: true
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          node-version: 12.x
+      - name: install dependencies
+        run: yarn install
+      - name: test
+        run: node_modules/.bin/ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup

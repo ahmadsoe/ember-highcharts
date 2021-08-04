@@ -33,7 +33,7 @@
     "ember-copy": "^2.0.1",
     "ember-holy-futuristic-template-namespacing-batman": "^1.1.0",
     "ember-modifier": "^2.1.1",
-    "validate-peer-dependencies": "^1.1.0"
+    "validate-peer-dependencies": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

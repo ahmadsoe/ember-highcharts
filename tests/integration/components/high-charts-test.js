@@ -201,4 +201,26 @@ module('Integration | Component | High Charts', function(hooks) {
       />
     `);
   });
+
+  test('should update when the chartOptions change', async function(assert) {
+    assert.expect(4);
+
+    this.cityData = cityData;
+    this.lineChartOptions = lineChartOptions;
+
+    await render(hbs`
+      <HighCharts
+        @content={{this.cityData}}
+        @chartOptions={{this.lineChartOptions}}
+      />
+    `);
+
+    assert.equal(document.querySelector('.highcharts-title').textContent, 'Series Test', 'Title is correct');
+    assert.equal(document.querySelector('.highcharts-subtitle').textContent, '', 'Subtitle is empty');
+
+    this.set('lineChartOptions', { subtitle: { text: 'Updated!'}});
+
+    assert.equal(document.querySelector('.highcharts-title').textContent, 'Series Test', 'Title remains the same');
+    assert.equal(document.querySelector('.highcharts-subtitle').textContent, 'Updated!', 'new series count');
+  });
 });

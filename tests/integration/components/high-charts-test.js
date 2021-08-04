@@ -181,4 +181,25 @@ module('Integration | Component | High Charts', function(hooks) {
     `);
     assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart with null mode');
   });
+
+  test('should call passed in callback once the chart has loaded', async function(assert) {
+    assert.expect(1);
+
+    const done = assert.async();
+
+    this.cityData = cityData;
+    this.lineChartOptions = lineChartOptions;
+    this.callBackFunc = () => {
+      assert.ok(true, 'Callback function was called');
+      done();
+    }
+
+    await render(hbs`
+      <HighCharts
+        @content={{this.cityData}}
+        @chartOptions={{this.lineChartOptions}}
+        @callback={{this.callBackFunc}}
+      />
+    `);
+  });
 });

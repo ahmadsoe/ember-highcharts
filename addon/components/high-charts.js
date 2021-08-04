@@ -76,12 +76,15 @@ export default class HighCharts extends Component {
   }
 
   @action
-  onDidUpdate() {
-    const { content, chart, mode } = this;
+  onDidUpdate(elem, positionalArgs, { content, chartOptions, mode}) {
+    const { chart } = this;
 
     if (!content || !chart) {
       return;
     }
+
+    // Set any new chartOptions, do no redraw as we'll do that later
+    chart.update(chartOptions, false);
 
     const isStockChart = mode === 'StockChart';
     // create maps to make series data easier to work with

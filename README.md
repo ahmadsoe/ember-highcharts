@@ -47,6 +47,7 @@ The possible values are:
 | falsy value    | defaults to Highcharts mode |
 | "StockChart"   | uses Highstock mode         |
 | "Map"          | uses Highmaps mode          |
+| "Gantt"        | uses Highcharts Gantt mode  |
 
 ### chartOptions
 

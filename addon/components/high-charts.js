@@ -4,7 +4,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 import { getOwner } from '@ember/application';
-import { run } from '@ember/runloop';
+import { scheduleOnce } from '@ember/runloop';
 
 import buildOptions from '../utils/build-options';
 import { setDefaultHighChartOptions } from '../utils/option-loader';
@@ -52,7 +52,7 @@ export default class HighCharts extends Component {
   }
 
   drawAfterRender() {
-    run.scheduleOnce('afterRender', this, 'draw');
+    scheduleOnce('afterRender', this, 'draw');
   }
 
   draw() {

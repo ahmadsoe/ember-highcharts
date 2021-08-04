@@ -1,5 +1,19 @@
 # Changelog
 
+## v3.1.0 (2021-08-04)
+
+#### :rocket: Enhancement
+* [#195](https://github.com/ahmadsoe/ember-highcharts/pull/195) Handle when chartOptions change ([@nlfurniss](https://github.com/nlfurniss))
+
+#### :house: Internal
+* [#204](https://github.com/ahmadsoe/ember-highcharts/pull/204) Use qunit-dom ([@nlfurniss](https://github.com/nlfurniss))
+* [#203](https://github.com/ahmadsoe/ember-highcharts/pull/203) Upgrade ember-qunit ([@nlfurniss](https://github.com/nlfurniss))
+* [#197](https://github.com/ahmadsoe/ember-highcharts/pull/197) Document and test callback argument ([@nlfurniss](https://github.com/nlfurniss))
+* [#196](https://github.com/ahmadsoe/ember-highcharts/pull/197) Add Gantt chart mode to readme ([@nlfurniss](https://github.com/nlfurniss))
+
+#### Committers: 1
+- Nathaniel Furniss ([@nlfurniss](https://github.com/nlfurniss))
+
 ## 3.0.1
 - Set ember edition to "octane"
 

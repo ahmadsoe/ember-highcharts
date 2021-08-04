@@ -65,7 +65,8 @@
     "eslint-plugin-node": "^11.1.0",
     "highcharts": "^9.0.1",
     "loader.js": "^4.7.0",
-    "qunit": "^2.16.0"
+    "qunit": "^2.16.0",
+    "qunit-dom": "^1.6.0"
   },
   "peerDependencies": {
     "highcharts": ">= 5.0.0"

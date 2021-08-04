@@ -23,9 +23,8 @@ module('Integration | Component | High Charts', function(hooks) {
     `);
 
     // custom highcharts-configs/application.js is auto-loaded from tests/dummy/app
-    let highchartsCreditsText = document.querySelector('.highcharts-credits').textContent.trim();
-    assert.notOk(highchartsCreditsText.match('Highcharts.com'), 'default credits not present');
-    assert.equal(highchartsCreditsText, 'ember-highcharts-configured-title', 'expected credits text present');
+    assert.dom('.highcharts-credits').doesNotIncludeText('Highcharts.com', 'default credits not present');
+    assert.dom('.highcharts-credits').hasText('ember-highcharts-configured-title', 'expected credits text present');
   });
 
   test('should render empty series for no chart content', async function(assert) {
@@ -40,9 +39,8 @@ module('Integration | Component | High Charts', function(hooks) {
       />
     `);
 
-    let legend = document.querySelectorAll('.highcharts-legend .highcharts-legend-item text');
-    assert.equal(legend.length, 1, 'expected one series');
-    assert.equal(legend[0].textContent.trim(), 'Series 1', 'expected default series name');
+    assert.dom('.highcharts-legend .highcharts-legend-item text').exists({ count: 1 }, 'expected one series');
+    assert.dom('.highcharts-legend .highcharts-legend-item text').hasText('Series 1', 'expected default series name');
   });
 
   test('should add a series', async function(assert) {
@@ -57,7 +55,7 @@ module('Integration | Component | High Charts', function(hooks) {
       />
     `);
 
-    assert.equal(document.querySelectorAll('.highcharts-legend .highcharts-legend-item').length, 3, 'base series count');
+    assert.dom('.highcharts-legend .highcharts-legend-item').exists({ count: 3 }, 'base series count');
 
     // add a series to chart content
     let cityDataCopy = copy(cityData, true);
@@ -71,7 +69,7 @@ module('Integration | Component | High Charts', function(hooks) {
     });
 
     this.set('cityData', cityDataCopy);
-    assert.equal(document.querySelectorAll('.highcharts-legend .highcharts-legend-item').length, 4, 'new series count');
+    assert.dom('.highcharts-legend .highcharts-legend-item').exists({ count: 4 }, 'new series count');
   });
 
   test('should remove a series', async function(assert) {
@@ -86,14 +84,14 @@ module('Integration | Component | High Charts', function(hooks) {
       />
     `);
 
-    assert.equal(document.querySelectorAll('.highcharts-legend .highcharts-legend-item').length, 3, 'base series count');
+    assert.dom('.highcharts-legend .highcharts-legend-item').exists({ count: 3 }, 'base series count');
 
     // remove a series from chart content
     let cityDataCopy = copy(cityData, true);
     cityDataCopy = cityDataCopy.slice(0, 2);
 
     this.set('cityData', cityDataCopy);
-    assert.equal(document.querySelectorAll('.highcharts-legend .highcharts-legend-item').length, 2, 'new series count');
+    assert.dom('.highcharts-legend .highcharts-legend-item').exists({ count: 2 }, 'new series count');
   });
 
   test('should have navigator series for highstock', async function(assert) {
@@ -110,7 +108,7 @@ module('Integration | Component | High Charts', function(hooks) {
       />
     `);
 
-    assert.equal(document.querySelectorAll('.highcharts-navigator').length, 1, '.highcharts-navigator class is present');
+    assert.dom('.highcharts-navigator').exists({ count: 1 }, '.highcharts-navigator class is present');
   });
 
   test('should update data on all svg paths on highstock chart', async function(assert) {
@@ -147,6 +145,7 @@ module('Integration | Component | High Charts', function(hooks) {
   test('should yield the chart instance when used in block form', async function(assert) {
     this.set('cityData', cityData);
     this.set('lineChartOptions', lineChartOptions);
+
     await render(hbs`
       <HighCharts
         @content={{this.cityData}}
@@ -155,7 +154,7 @@ module('Integration | Component | High Charts', function(hooks) {
       </HighCharts>
     `);
 
-    assert.equal(document.querySelector('.chart-test-content').textContent, 3, 'chart instance series count');
+    assert.dom('.chart-test-content').hasText('3', 'chart instance series count');
   });
 
   test('should accept "falsy" mode attribute for default highcharts operation', async function(assert) {
@@ -164,22 +163,22 @@ module('Integration | Component | High Charts', function(hooks) {
     await render(hbs`
       <HighCharts />
     `);
-    assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart without a mode specified');
+    assert.dom('.highcharts-container').exists({ count: 1 }, 'we rendered a chart without a mode specified');
 
     await render(hbs`
       <HighCharts @mode={{""}}/>
     `);
-    assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart with empty string mode');
+    assert.dom('.highcharts-container').exists({ count: 1 }, 'we rendered a chart with empty string mode');
 
     await render(hbs`
       <HighCharts @mode={{false}}/>
     `);
-    assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart with false boolean mode');
+    assert.dom('.highcharts-container').exists({ count: 1 }, 'we rendered a chart with false boolean mode');
 
     await render(hbs`
       <HighCharts @mode={{null}}/>
     `);
-    assert.equal(document.querySelectorAll('.highcharts-container').length, 1, 'we rendered a chart with null mode');
+    assert.dom('.highcharts-container').exists({ count: 1 }, 'we rendered a chart with null mode');
   });
 
   test('should call passed in callback once the chart has loaded', async function(assert) {

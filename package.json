@@ -38,7 +38,7 @@
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@ember/optional-features": "^2.0.0",
-    "@ember/test-helpers": "^2.2.5",
+    "@ember/test-helpers": "^2.3.0",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
     "babel-eslint": "^10.1.0",
@@ -54,7 +54,7 @@
     "ember-export-application-global": "^2.0.1",
     "ember-load-initializers": "^2.1.2",
     "ember-maybe-import-regenerator": "^0.1.6",
-    "ember-qunit": "^4.6.0",
+    "ember-qunit": "^5.1.4",
     "ember-resolver": "^8.0.2",
     "ember-source": "^3.25.1",
     "ember-source-channel-url": "^3.0.0",
@@ -64,7 +64,8 @@
     "eslint-plugin-ember-best-practices": "^1.1.2",
     "eslint-plugin-node": "^11.1.0",
     "highcharts": "^9.0.1",
-    "loader.js": "^4.7.0"
+    "loader.js": "^4.7.0",
+    "qunit": "^2.16.0"
   },
   "peerDependencies": {
     "highcharts": ">= 5.0.0"

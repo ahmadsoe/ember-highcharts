@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ahmadsoe/ember-highcharts.svg?branch=master)](https://travis-ci.org/ahmadsoe/ember-highcharts)
+[![CI Status](https://github.com/ahmadsoe/ember-highcharts/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/ahmadsoe/ember-highcharts/actions/workflows/CI.yml)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-highcharts.svg)](http://emberobserver.com/addons/ember-highcharts)
 [![Code Climate](https://codeclimate.com/github/ahmadsoe/ember-highcharts/badges/gpa.svg)](https://codeclimate.com/github/ahmadsoe/ember-highcharts)
 [![npm version](https://badge.fury.io/js/ember-highcharts.svg)](https://badge.fury.io/js/ember-highcharts)

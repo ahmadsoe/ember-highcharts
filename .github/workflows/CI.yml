@@ -22,17 +22,17 @@ jobs:
 
   tests:
     needs: lint
-    name: "Tests: ubuntu (node@${{ matrix.node-version }})"
+    name: "Tests: ubuntu (node@${{ matrix.node }})"
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # Node 15 is currently broken, Node 12 is almost EOL, Node 16 isn't out
-        node-version: ["14"]
+        node: [14]
 
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ matrix.node }}
       - run: yarn install --frozen-lockfile --non-interactive
       - run: yarn test
 
@@ -59,6 +59,7 @@ jobs:
             allow-failure: true
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
           node-version: 12.x
       - name: install dependencies

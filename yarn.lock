@@ -4962,9 +4962,9 @@ ember-export-application-global@^2.0.1:
   integrity sha512-B7wiurPgsxsSGzJuPFkpBWnaeuCu2PGpG2BjyrfA1VcL7//o+5RSnZqiCEY326y7qmxb2GoCgo0ft03KBU0rRw==
 
 ember-holy-futuristic-template-namespacing-batman@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ember-holy-futuristic-template-namespacing-batman/-/ember-holy-futuristic-template-namespacing-batman-1.1.0.tgz#b8e51beed1a32160760ede25258bce7c8858cfe4"
-  integrity sha512-TKTTXyOmhf2IGs4u3ioFUiVpA3LBUVGHgqNeyacol128YLgvs7/UTNUyQdg81D0Wh35lhuAQCYVEWNu5SJFI8w==
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/ember-holy-futuristic-template-namespacing-batman/-/ember-holy-futuristic-template-namespacing-batman-1.1.2.tgz#28e4dfd9f830f84fd74dee6a0550c0609df521e1"
+  integrity sha512-5lfsdxl14ZKLHSUOythET5UtE5Bzb1yZ6aAig7UnGaOhe8KvDZP6yDlV4FxEx9XnYa8+j9RcVqBb4sn2NessBA==
   dependencies:
     ember-cli-babel "^7.13.2"
     ember-cli-version-checker "^5.1.1"

@@ -134,13 +134,14 @@ var app = new EmberApp({
     includeHighChartsMore: true,
     includeHighCharts3D: true,
     includeModules: ['map', 'broken-axis', 'heatmap', ... ]
-    /* available modules:
+    /* Some available modules include:
       boost, broken-axis, canvas-tools, data, drilldown, exporting, funnel,
-      heatmap, map, no-data-to-display, offline-exporting, solid-gauge, treemap
+      heatmap, map, no-data-to-display, offline-exporting, solid-gauge, treemap.
     */
   }
 });
 ```
+All modules can be found [here](https://github.com/highcharts/highcharts/tree/master/ts/masters/modules).
 
 ### Highstock
 

@@ -83,7 +83,7 @@ export default class HighCharts extends Component {
       return;
     }
 
-    // Set any new chartOptions, do no redraw as we'll do that later
+    // Set any new chartOptions, do not redraw as we'll do that later
     chart.update(chartOptions, false);
 
     const isStockChart = mode === 'StockChart';
@@ -131,11 +131,6 @@ export default class HighCharts extends Component {
     }
 
     return chart.redraw();
-  }
-
-  @action
-  setChart(chart) {
-    this.chart = chart;
   }
 
   willDestroy(...args) {

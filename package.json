@@ -18,6 +18,7 @@
   "scripts": {
     "build": "ember build",
     "lint:js": "eslint ./*.js addon app config tests",
+    "release": "release-it",
     "start": "ember serve",
     "test": "ember test",
     "test:all": "ember try:each"
@@ -64,10 +65,11 @@
     "eslint-plugin-ember-best-practices": "^1.1.2",
     "eslint-plugin-node": "^11.1.0",
     "highcharts": "^9.0.1",
-    "lerna-changelog": "^1.0.1",
     "loader.js": "^4.7.0",
     "qunit": "^2.16.0",
-    "qunit-dom": "^1.6.0"
+    "qunit-dom": "^1.6.0",
+    "release-it": "^14.10.1",
+    "release-it-lerna-changelog": "^3.1.0"
   },
   "peerDependencies": {
     "highcharts": ">= 5.0.0"

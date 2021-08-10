@@ -947,18 +947,18 @@
     ember-modifier-manager-polyfill "^1.1.0"
 
 "@ember/test-helpers@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-2.3.0.tgz#dcd49ecab7b66e7ca02fdc6fcae88cb426c0b60f"
-  integrity sha512-MwG80aJj5NO19CgHHIQyrSXwzo0Xz0Vfx3MrvbzkqZSYowyazOrve8/UEt00ot6h3JxCVnbvL6rY/+G41pLE3A==
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-2.4.0.tgz#4680783cfad9c474de8a47dd30cc63f4bf8d70ef"
+  integrity sha512-tNYc7rsgr6vWfwSD7dkGZzCovrbdPdPwdqs1Q3m38rCGry00PUNadFGM4LL8T/4YmJMghAri3FpVv685ZPVBUA==
   dependencies:
-    "@ember/test-waiters" "^2.4.4"
+    "@ember/test-waiters" "^2.4.5"
     broccoli-debug "^0.6.5"
-    broccoli-funnel "^3.0.6"
+    broccoli-funnel "^3.0.8"
     ember-cli-babel "^7.26.6"
     ember-cli-htmlbars "^5.7.1"
     ember-destroyable-polyfill "^2.0.3"
 
-"@ember/test-waiters@^2.4.4":
+"@ember/test-waiters@^2.4.5":
   version "2.4.5"
   resolved "https://registry.yarnpkg.com/@ember/test-waiters/-/test-waiters-2.4.5.tgz#6e8e34d1bc46a9b0cc22cb11cc5936046e926031"
   integrity sha512-833JvHtHdEfBfKXgvmw+6oziFOpVfD4NQrc04Ztj59A11K9FPNfZ3P8YydL7LFTtdd7UfJ/cYCLAm+OwUxbotQ==
@@ -3209,7 +3209,7 @@ broccoli-funnel@^2.0.0, broccoli-funnel@^2.0.1, broccoli-funnel@^2.0.2:
     symlink-or-copy "^1.0.0"
     walk-sync "^0.3.1"
 
-broccoli-funnel@^3.0.3, broccoli-funnel@^3.0.6:
+broccoli-funnel@^3.0.3, broccoli-funnel@^3.0.8:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/broccoli-funnel/-/broccoli-funnel-3.0.8.tgz#f5b62e2763c3918026a15a3c833edc889971279b"
   integrity sha512-ng4eIhPYiXqMw6SyGoxPHR3YAwEd2lr9FgBI1CyTbspl4txZovOsmzFkMkGAlu88xyvYXJqHiM2crfLa65T1BQ==

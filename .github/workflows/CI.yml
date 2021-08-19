@@ -38,7 +38,7 @@ jobs:
 
   try-scenarios:
     name: Tests - ${{ matrix.ember-try-scenario }}
-    timeout-minutes: 60
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.allow-failure }}
     needs: tests

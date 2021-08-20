@@ -7117,9 +7117,9 @@ heimdalljs@^0.2.0, heimdalljs@^0.2.1, heimdalljs@^0.2.3, heimdalljs@^0.2.5, heim
     rsvp "~3.2.1"
 
 highcharts@^9.0.1:
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-9.0.1.tgz#49ec994a7897a96fc3e0880f49a0eca34adff6a2"
-  integrity sha512-0UmcCz2RmFuqfT/Igu3h5sGnkeSqqZwfuYrTzJ/htptmJAo5SSxH62NFcTjVRk+3WstoBJmoXR0v5FVGQUzK5A==
+  version "9.2.1"
+  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-9.2.1.tgz#d44e16c0b9c9a372d5aca1707649cb2b61781cdb"
+  integrity sha512-MVovbnlD0+QsBSjVd1kgJNjq7xkzJ6dTebOQ+15pBYuYiEfTJpJZdVXeWSjMzbNmhDXN5rHC5uCGWGwK8YcSYQ==
 
 highlight.js@^10.7.1:
   version "10.7.3"

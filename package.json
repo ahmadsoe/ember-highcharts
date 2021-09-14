@@ -76,7 +76,8 @@
   },
   "resolutions": {
     "source-map-resolve": "^0.6.0",
-    "websocket-extensions": "^0.1.4"
+    "websocket-extensions": "^0.1.4",
+    "glob-parent": "^5.1.2"
   },
   "engines": {
     "node": ">= 12.*"

@@ -28,7 +28,7 @@
     "broccoli-funnel": "^3.0.3",
     "broccoli-merge-trees": "^4.2.0",
     "deepmerge": "^4.2.2",
-    "ember-auto-import": "^1.10.1",
+    "ember-auto-import": "^2.2.0",
     "ember-cli-babel": "^7.26.2",
     "ember-cli-htmlbars": "^5.7.1",
     "ember-copy": "^2.0.1",
@@ -69,7 +69,8 @@
     "qunit": "^2.16.0",
     "qunit-dom": "^2.0.0",
     "release-it": "^14.10.1",
-    "release-it-lerna-changelog": "^3.1.0"
+    "release-it-lerna-changelog": "^3.1.0",
+    "webpack": "^5.51.1"
   },
   "peerDependencies": {
     "highcharts": ">= 5.0.0"

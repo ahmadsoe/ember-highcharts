@@ -69,7 +69,7 @@
     "qunit": "^2.16.0",
     "qunit-dom": "^2.0.0",
     "release-it": "^14.10.1",
-    "release-it-lerna-changelog": "^3.1.0"
+    "release-it-lerna-changelog": "^4.0.0"
   },
   "peerDependencies": {
     "highcharts": ">= 5.0.0"

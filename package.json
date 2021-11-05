@@ -61,7 +61,7 @@
     "ember-resolver": "^8.0.2",
     "ember-source": "^3.25.1",
     "ember-source-channel-url": "^3.0.0",
-    "ember-try": "^1.4.0",
+    "ember-try": "^2.0.0",
     "eslint": "^8.0.0",
     "eslint-plugin-ember": "^10.2.0",
     "eslint-plugin-ember-best-practices": "^1.1.2",

@@ -1,5 +1,15 @@
 # Changelog
 
+
+## v3.2.0 (2021-11-08)
+
+#### :house: Internal
+* Upgrade multiple dependencies, most notably:
+    * ember-render-modifier
+    * ember-auto-import
+
+Both of which either are required for Ember 4.0 or fix deprecations.
+
 ## v3.1.0 (2021-08-04)
 
 #### :rocket: Enhancement

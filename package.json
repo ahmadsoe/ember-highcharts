@@ -33,7 +33,6 @@
     "ember-cli-htmlbars": "^6.0.0",
     "ember-copy": "^2.0.1",
     "ember-holy-futuristic-template-namespacing-batman": "^1.1.0",
-    "ember-modifier": "^3.0.0",
     "validate-peer-dependencies": "^2.0.0",
     "webpack": "^5.0.0"
   },

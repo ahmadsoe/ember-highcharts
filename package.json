@@ -1,6 +1,6 @@
 {
   "name": "ember-highcharts",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "A Highcharts, HighStock and HighMaps component for ember cli",
   "keywords": [
     "ember-addon",

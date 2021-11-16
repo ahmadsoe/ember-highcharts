@@ -1,4 +1,3 @@
-import { assign } from '@ember/polyfills';
 import merge from 'deepmerge';
 
 export const EMPTY_CHART_CONTENT = [Object.freeze({
@@ -18,5 +17,5 @@ export default function buildOptions(theme, options = {}, content) {
     series: isEmpty ? EMPTY_CHART_CONTENT : content,
   };
 
-  return assign(defaults, chartOptions);
+  return Object.assign(defaults, chartOptions);
 }

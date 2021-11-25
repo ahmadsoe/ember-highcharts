@@ -1892,12 +1892,7 @@ acorn@^7.1.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.4.1.tgz#feaed255973d2e77555b83dbc08851a6c63520fa"
   integrity sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==
 
-acorn@^8.4.1:
-  version "8.5.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.5.0.tgz#4512ccb99b3698c752591e9bb4472e38ad43cee2"
-  integrity sha512-yXbYeFy+jUuYd3/CDcg2NkIYE991XYX/bje7LmjJigUciaeO1JR4XxXgCIV1/Zc/dRuFEyw1L0pbA+qynJkW5Q==
-
-acorn@^8.6.0:
+acorn@^8.4.1, acorn@^8.6.0:
   version "8.6.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.6.0.tgz#e3692ba0eb1a0c83eaa4f37f5fa7368dd7142895"
   integrity sha512-U1riIR+lBSNi3IbxtaHOIKdH8sLFv3NYfNv8sg7ZsNhcfl4HF2++BfqqrNAxoCLQW1iiylOj76ecnaUxz+z9yw==
@@ -12129,9 +12124,9 @@ webpack@^4.43.0:
     webpack-sources "^1.4.1"
 
 webpack@^5.0.0:
-  version "5.64.2"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.64.2.tgz#152e28d4712a6223b06c06cba0d3e622a61611a0"
-  integrity sha512-4KGc0+Ozi0aS3EaLNRvEppfZUer+CaORKqL6OBjDLZOPf9YfN8leagFzwe6/PoBdHFxc/utKArl8LMC0Ivtmdg==
+  version "5.64.3"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.64.3.tgz#f4792cc3f8528db2c18375fa2cd269f69e0bf69f"
+  integrity sha512-XF6/IL9Bw2PPQioiR1UYA8Bs4tX3QXJtSelezKECdLFeSFzWoe44zqTzPW5N+xI3fACaRl2/G3sNA4WYHD7Iww==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.50"

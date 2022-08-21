@@ -40,7 +40,7 @@
     "ember-auto-import": "^2.7.2",
     "ember-cli-babel": "^8.2.0",
     "ember-cli-htmlbars": "^6.3.0",
-    "ember-copy": "^2.0.1",
+    "lodash-es": "^4.17.21",
     "webpack": "^5.91.0"
   },
   "devDependencies": {

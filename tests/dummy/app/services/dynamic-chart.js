@@ -1,5 +1,7 @@
-import { copy } from 'ember-copy';
 import Service from '@ember/service';
+import cloneDeep from 'lodash-es/cloneDeep';
+
+const clone = window.structuredClone ?? cloneDeep;
 
 export default class DynamicChart extends Service {
   getRandomInt(min, max) {
@@ -17,7 +19,7 @@ export default class DynamicChart extends Service {
   }
 
   updateSeriesCount(chartData, numSeries) {
-    let chartDataCopy = copy(chartData, true);
+    let chartDataCopy = clone(chartData);
     return chartDataCopy.slice(0, numSeries);
   }
 }

@@ -65,7 +65,7 @@
     "eslint-plugin-ember": "^10.2.0",
     "eslint-plugin-ember-best-practices": "^1.1.2",
     "eslint-plugin-node": "^11.1.0",
-    "highcharts": "^9.0.1",
+    "highcharts": "^11.1.0",
     "loader.js": "^4.7.0",
     "qunit": "^2.16.0",
     "qunit-dom": "^2.0.0",

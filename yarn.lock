@@ -5208,15 +5208,6 @@ ember-export-application-global@^2.0.1:
   resolved "https://registry.yarnpkg.com/ember-export-application-global/-/ember-export-application-global-2.0.1.tgz#b120a70e322ab208defc9e2daebe8d0dfc2dcd46"
   integrity sha512-B7wiurPgsxsSGzJuPFkpBWnaeuCu2PGpG2BjyrfA1VcL7//o+5RSnZqiCEY326y7qmxb2GoCgo0ft03KBU0rRw==
 
-ember-holy-futuristic-template-namespacing-batman@^1.1.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/ember-holy-futuristic-template-namespacing-batman/-/ember-holy-futuristic-template-namespacing-batman-1.2.0.tgz#4beeb270d194bbc32d98e0d18466e163ad29a923"
-  integrity sha512-x0T5zXVdgOKgKH9+6vut7k4mn5paJRqhkX51mThFaKotWrCMw/AJjYuxUkLVAQpMxanW8cYS+x69uzSyZUDlzw==
-  dependencies:
-    ember-cli-babel "^7.13.2"
-    ember-cli-version-checker "^5.1.1"
-    silent-error "^1.1.1"
-
 ember-load-initializers@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/ember-load-initializers/-/ember-load-initializers-2.1.2.tgz#8a47a656c1f64f9b10cecdb4e22a9d52ad9c7efa"

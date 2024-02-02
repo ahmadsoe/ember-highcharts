@@ -1,6 +1,8 @@
 # Changelog
 
 
+## v3.2.2 (2024-02-02)
+
 ## v3.2.1 (2021-11-08)
 #### :house: Internal
 * [#277](https://github.com/ahmadsoe/ember-highcharts/pull/277) Remove unused ember-modifier ([@nlfurniss](https://github.com/nlfurniss))

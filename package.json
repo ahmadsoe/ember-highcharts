@@ -44,10 +44,10 @@
     "webpack": "^5.78.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/eslint-parser": "^7.21.3",
-    "@babel/plugin-proposal-decorators": "^7.21.0",
-    "@ember/optional-features": "^2.0.0",
+    "@babel/core": "^7.24.4",
+    "@babel/eslint-parser": "^7.24.1",
+    "@babel/plugin-proposal-decorators": "^7.24.1",
+    "@ember/optional-features": "^2.1.0",
     "@ember/string": "^3.0.1",
     "@ember/test-helpers": "^2.9.3",
     "@embroider/test-setup": "^2.1.1",
@@ -89,10 +89,6 @@
   "peerDependencies": {
     "ember-source": "^4.0.0",
     "highcharts": ">= 5.0.0"
-  },
-  "resolutions": {
-    "source-map-resolve": "^0.6.0",
-    "websocket-extensions": "^0.1.4"
   },
   "engines": {
     "node": ">= 18"

@@ -12,9 +12,9 @@ test('it renders', function(assert) {
 
   // creates the component instance
   let component = this.subject();
-  assert.equal(component._state, 'preRender');
+  assert.strictEqual(component._state, 'preRender');
 
   // appends the component to the page
   this.render(assert);
-  assert.equal(component._state, 'inDOM');
+  assert.strictEqual(component._state, 'inDOM');
 });

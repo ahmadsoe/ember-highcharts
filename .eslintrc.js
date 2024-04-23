@@ -22,6 +22,9 @@ module.exports = {
   env: {
     browser: true,
   },
+  globals: {
+    Highcharts: false,
+  },
   rules: {},
   overrides: [
     // node files

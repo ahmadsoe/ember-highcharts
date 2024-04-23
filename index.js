@@ -82,7 +82,7 @@ module.exports = {
 
   treeForVendor(vendorTree) {
     const trees = [];
-    // eslint-disable-next-line node/no-unpublished-require
+    // eslint-disable-next-line n/no-unpublished-require
     const highchartsPath = path.dirname(require.resolve('highcharts'));
 
     if (vendorTree) {

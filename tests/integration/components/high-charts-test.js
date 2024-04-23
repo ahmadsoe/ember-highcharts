@@ -248,12 +248,12 @@ module('Integration | Component | High Charts', function (hooks) {
       />
     `);
 
-    assert.equal(
+    assert.strictEqual(
       document.querySelector('.highcharts-title').textContent,
       'Series Test',
       'Title is correct'
     );
-    assert.equal(
+    assert.strictEqual(
       document.querySelector('.highcharts-subtitle').textContent,
       '',
       'Subtitle is empty'
@@ -261,12 +261,12 @@ module('Integration | Component | High Charts', function (hooks) {
 
     this.set('lineChartOptions', { subtitle: { text: 'Updated!' } });
 
-    assert.equal(
+    assert.strictEqual(
       document.querySelector('.highcharts-title').textContent,
       'Series Test',
       'Title remains the same'
     );
-    assert.equal(
+    assert.strictEqual(
       document.querySelector('.highcharts-subtitle').textContent,
       'Updated!',
       'new series count'

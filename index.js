@@ -6,7 +6,7 @@ const path = require('path');
 const validatePeerDependencies = require('validate-peer-dependencies');
 
 module.exports = {
-  name: 'ember-highcharts',
+  name: require('./package').name,
 
   init() {
     this._super.init.apply(this, arguments);
@@ -38,7 +38,9 @@ module.exports = {
     }
 
     const options = app.options.emberHighCharts || { includeHighCharts: true };
-    const highchartsPath = options.useStyledMode ? 'vendor/highcharts/js' : 'vendor/highcharts';
+    const highchartsPath = options.useStyledMode
+      ? 'vendor/highcharts/js'
+      : 'vendor/highcharts';
 
     if (options.includeHighCharts) {
       app.import(path.join(highchartsPath, 'highcharts.src.js'));
@@ -87,10 +89,12 @@ module.exports = {
       trees.push(vendorTree);
     }
 
-    trees.push(new Funnel(highchartsPath, {
-      destDir: 'highcharts'
-    }));
+    trees.push(
+      new Funnel(highchartsPath, {
+        destDir: 'highcharts',
+      })
+    );
 
     return mergeTrees(trees);
-  }
+  },
 };

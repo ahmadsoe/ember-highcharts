@@ -3,16 +3,18 @@
 [![Code Climate](https://codeclimate.com/github/ahmadsoe/ember-highcharts/badges/gpa.svg)](https://codeclimate.com/github/ahmadsoe/ember-highcharts)
 [![npm version](https://badge.fury.io/js/ember-highcharts.svg)](https://badge.fury.io/js/ember-highcharts)
 
-# Ember-highcharts
+# ember-highcharts
 
 A [Highcharts](http://www.highcharts.com/products/highcharts), [Highstock](http://www.highcharts.com/products/highstock),
 and [Highmaps](http://www.highcharts.com/products/highmaps) component for [Ember CLI](http://www.ember-cli.com/).
 
 
-## Requirements
+## Compatibility
 
-* Ember CLI
-* Ember >= 3
+* Ember.js v4.4 or above
+* Ember CLI v4.4 or above
+* Node.js v14 or above
+
   * If you need support for Ember < 3, use ember-highcharts < v1.2.0
   * If you need support for Ember < 2.12.0, use ember-highcharts < v1.0.0
   * If you need support for Ember < 1.13.0, use ember-highcharts v0.1.3
@@ -118,7 +120,6 @@ export default class BarBasic extends Component {
 
 Check out more chart examples in the [tests/dummy app](tests/dummy/app) in this repo.
 
-
 ## Configuration
 
 This addon will load Highcharts by default. Highcharts has many optional features like Highstock and Highmaps.
@@ -156,7 +157,6 @@ var app = new EmberApp({
   }
 });
 ```
-
 
 ### Highmaps
 

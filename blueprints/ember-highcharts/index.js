@@ -1,9 +1,9 @@
 /* eslint-env node */
 
 module.exports = {
-  normalizeEntityName: function() {},
+  normalizeEntityName: function () {},
 
-  afterInstall: function() {
+  afterInstall: function () {
     return this.addPackageToProject('highcharts');
-  }
+  },
 };

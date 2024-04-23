@@ -76,7 +76,7 @@ export default class HighCharts extends Component {
   }
 
   @action
-  onDidUpdate(elem, positionalArgs, { content, chartOptions, mode}) {
+  onDidUpdate(elem, positionalArgs, { content, chartOptions, mode }) {
     const { chart } = this;
 
     if (!content || !chart) {

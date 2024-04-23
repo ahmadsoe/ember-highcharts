@@ -1,13 +1,12 @@
 import Component from '@glimmer/component';
 
 export default class Funnel extends Component {
-
   chartOptions = {
     chart: {
-      type: 'funnel'
+      type: 'funnel',
     },
     title: {
-      text: 'Sales funnel'
+      text: 'Sales funnel',
     },
     plotOptions: {
       series: {
@@ -15,16 +14,16 @@ export default class Funnel extends Component {
           enabled: true,
           format: '<b>{point.name}</b> ({point.y:,.0f})',
           color: 'black',
-          softConnector: true
+          softConnector: true,
         },
         neckWidth: '30%',
-        neckHeight: '25%'
-      }
+        neckHeight: '25%',
+      },
     },
     legend: {
-      enabled: true
-    }
-  }
+      enabled: true,
+    },
+  };
 
   chartData = [
     {
@@ -34,9 +33,8 @@ export default class Funnel extends Component {
         ['Downloads', 4064],
         ['Requested price list', 1987],
         ['Invoice sent', 976],
-        ['Finalized', 846]
-      ]
-    }
-  ]
-
+        ['Finalized', 846],
+      ],
+    },
+  ];
 }

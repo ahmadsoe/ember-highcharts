@@ -1,10 +1,9 @@
 import Component from '@glimmer/component';
 
 export default class Scatter extends Component {
-
   chartOptions = {
     chart: {
-      type: 'solidgauge'
+      type: 'solidgauge',
     },
     title: null,
     pane: {
@@ -16,11 +15,11 @@ export default class Scatter extends Component {
         backGroundColor: '#eee',
         innerRadius: '60%',
         outerRadius: '100%',
-        shape: 'arc'
-      }
+        shape: 'arc',
+      },
     },
     tooltip: {
-      enabled: false
+      enabled: false,
     },
     yAxis: {
       min: 0,
@@ -28,7 +27,7 @@ export default class Scatter extends Component {
       stops: [
         [0.1, '#55bf3b'],
         [0.5, '#dddf0d'],
-        [0.9, '#df5353']
+        [0.9, '#df5353'],
       ],
       lineWidth: 0,
       minorTickInterval: null,
@@ -36,11 +35,11 @@ export default class Scatter extends Component {
       tickWidth: 0,
       title: {
         y: -160,
-        text: 'Speed'
+        text: 'Speed',
       },
       labels: {
-        y: 30
-      }
+        y: 30,
+      },
     },
     plotOptions: {
       solidgauge: {
@@ -49,24 +48,23 @@ export default class Scatter extends Component {
           borderWidth: 0,
           useHTML: true,
           style: {
-            'fontSize': '50px',
-            'text-align': 'center'
+            fontSize: '50px',
+            'text-align': 'center',
           },
           format: `<div style="text-align: center;"><p style="line-height: 0.6;">{y:.1f}<br/>
-            <span style="font-size:19px;color:silver">mph</span></p></div>`
-        }
-      }
-    }
-  }
+            <span style="font-size:19px;color:silver">mph</span></p></div>`,
+        },
+      },
+    },
+  };
 
   chartData = [
     {
       name: 'Speed',
       data: [60],
       tooltip: {
-        valueSuffix: 'mph'
-      }
-    }
-  ]
-
+        valueSuffix: 'mph',
+      },
+    },
+  ];
 }

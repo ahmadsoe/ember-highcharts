@@ -19,15 +19,15 @@ export function setDefaultHighChartOptions(owner) {
 let defaultOptions = {
   plotOptions: {
     series: {
-      shadow: false
-    }
+      shadow: false,
+    },
   },
 
   global: {
-    timezoneOffset: new Date().getTimezoneOffset()
+    timezoneOffset: new Date().getTimezoneOffset(),
   },
 
   credits: {
-    enabled: false
-  }
+    enabled: false,
+  },
 };

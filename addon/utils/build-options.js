@@ -1,11 +1,12 @@
 import merge from 'deepmerge';
 
-export const EMPTY_CHART_CONTENT = [Object.freeze({
-  id: 'noData',
-  data: 0,
-  color: '#aaaaaa'
-})];
-
+export const EMPTY_CHART_CONTENT = [
+  Object.freeze({
+    id: 'noData',
+    data: 0,
+    color: '#aaaaaa',
+  }),
+];
 
 export default function buildOptions(theme, options = {}, content) {
   // if 'no-data-to-display' module has been imported, keep empty series

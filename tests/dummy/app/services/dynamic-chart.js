@@ -11,7 +11,7 @@ export default class DynamicChart extends Service {
     return chartData.map((series) => {
       return {
         name: series.name,
-        data: series.data.slice(0, numPoints)
+        data: series.data.slice(0, numPoints),
       };
     });
   }

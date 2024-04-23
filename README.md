@@ -13,7 +13,7 @@ and [Highmaps](http://www.highcharts.com/products/highmaps) component for [Ember
 
 * Ember.js v4.4 or above
 * Ember CLI v4.4 or above
-* Node.js v14 or above
+* Node.js v18 or above
 
   * If you need support for Ember < 3, use ember-highcharts < v1.2.0
   * If you need support for Ember < 2.12.0, use ember-highcharts < v1.0.0

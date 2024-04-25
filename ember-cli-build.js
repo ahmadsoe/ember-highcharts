@@ -2,7 +2,7 @@
 
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   const app = new EmberAddon(defaults, {
     emberHighCharts: {
       includeHighCharts: false,
@@ -17,8 +17,8 @@ module.exports = function(defaults) {
         'solid-gauge',
         'funnel',
         'heatmap',
-      ]
-    }
+      ],
+    },
   });
 
   /*
@@ -30,5 +30,12 @@ module.exports = function(defaults) {
 
   app.import('node_modules/bootstrap/dist/css/bootstrap.css');
 
-  return app.toTree();
+  const { maybeEmbroider } = require('@embroider/test-setup');
+  return maybeEmbroider(app, {
+    skipBabel: [
+      {
+        package: 'qunit',
+      },
+    ],
+  });
 };

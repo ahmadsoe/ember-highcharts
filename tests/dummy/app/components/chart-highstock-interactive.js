@@ -11,11 +11,11 @@ export default class BarBasic extends Component {
 
   chartOptions = {
     rangeSelector: {
-      selected: 1
+      selected: 1,
     },
     title: {
-      text: 'Highstock: AAPL Stock Price'
-    }
+      text: 'Highstock: AAPL Stock Price',
+    },
   };
 
   chartData = copy(stockData, true);
@@ -28,7 +28,10 @@ export default class BarBasic extends Component {
 
   @action
   setSeriesCount(numSeries) {
-    let newChartData = this.dynamicChart.updateSeriesCount(stockData, numSeries);
+    let newChartData = this.dynamicChart.updateSeriesCount(
+      stockData,
+      numSeries
+    );
     this.chartData = newChartData;
   }
 }

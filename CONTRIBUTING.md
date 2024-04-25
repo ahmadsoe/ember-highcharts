@@ -1,11 +1,25 @@
-# Contributing to ember-highcharts
+# How To Contribute
 
-## Found an Issue?
+## Installation
 
-If you've found a bug in this addon or want to suggest a new feature, you can submit them via issue tracker on this repo.
+* `git clone <repository-url>`
+* `cd ember-highcharts`
+* `yarn install`
 
-## Submitting a Pull Request
+## Linting
 
-Before you submit your pull request, check out the [Ember.js JavaScript Style Guide](https://github.com/emberjs/ember.js/blob/master/STYLEGUIDE.md) and make sure that your code follow those rules. Also, don't forget to add a test for your change.
+* `yarn lint`
+* `yarn lint:fix`
 
-*Want to improve this page? Feel free to submit a pull request.*
+## Running tests
+
+* `ember test` – Runs the test suite on the current Ember version
+* `ember test --server` – Runs the test suite in "watch mode"
+* `ember try:each` – Runs the test suite against multiple Ember versions
+
+## Running the dummy application
+
+* `ember serve`
+* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
+
+For more information on using ember-cli, visit [https://cli.emberjs.com/release/](https://cli.emberjs.com/release/).

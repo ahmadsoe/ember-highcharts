@@ -4,32 +4,32 @@ import defaultTheme from '../themes/default-theme';
 export default class BarBasic extends Component {
   chartOptions = {
     chart: {
-      type: 'bar'
+      type: 'bar',
     },
     title: {
-      text: 'Fruit Consumption'
+      text: 'Fruit Consumption',
     },
     xAxis: {
-      categories: ['Apples', 'Bananas', 'Oranges']
+      categories: ['Apples', 'Bananas', 'Oranges'],
     },
     yAxis: {
       allowDecimals: false,
       title: {
-        text: 'Fruit eaten'
-      }
-    }
-  }
+        text: 'Fruit eaten',
+      },
+    },
+  };
 
   chartData = [
     {
       name: 'Jane',
-      data: [5, 0, 20]
+      data: [5, 0, 20],
     },
     {
       name: 'John',
-      data: [25, 30, 15]
-    }
-  ]
+      data: [25, 30, 15],
+    },
+  ];
 
-  theme = defaultTheme
+  theme = defaultTheme;
 }

@@ -10,23 +10,23 @@ export default class BarBasic extends Component {
 
   chartOptions = {
     chart: {
-      type: 'line'
+      type: 'line',
     },
     title: {
-      text: 'Repo commits'
+      text: 'Repo commits',
     },
     xAxis: {
       type: 'category',
       title: {
-        text: 'Week'
-      }
+        text: 'Week',
+      },
     },
     yAxis: {
       title: {
-        text: '# of Commits'
-      }
-    }
-  }
+        text: '# of Commits',
+      },
+    },
+  };
 
   chartData = copy(commitStats, true);
 
@@ -50,8 +50,10 @@ export default class BarBasic extends Component {
 
   @action
   setSeriesCount(numSeries) {
-    let newChartData = this.dynamicChart.updateSeriesCount(commitStats, numSeries);
+    let newChartData = this.dynamicChart.updateSeriesCount(
+      commitStats,
+      numSeries
+    );
     this.chartData = newChartData;
   }
-
 }

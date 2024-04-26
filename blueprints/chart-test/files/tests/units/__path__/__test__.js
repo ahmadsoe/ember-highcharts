@@ -8,8 +8,6 @@ moduleForComponent('<%= dasherizedModuleName %>', '<%= camelizedModuleName %>', 
 });
 
 test('it renders', function(assert) {
-  assert.expect(2);
-
   // creates the component instance
   let component = this.subject();
   assert.strictEqual(component._state, 'preRender');

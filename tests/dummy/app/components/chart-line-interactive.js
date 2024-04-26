@@ -52,7 +52,7 @@ export default class BarBasic extends Component {
   setSeriesCount(numSeries) {
     let newChartData = this.dynamicChart.updateSeriesCount(
       commitStats,
-      numSeries
+      numSeries,
     );
     this.chartData = newChartData;
   }

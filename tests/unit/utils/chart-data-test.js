@@ -65,22 +65,22 @@ test('#getSeriesChanges ignores changes for invalid keys', function (assert) {
   assert.strictEqual(
     keys.indexOf('data'),
     -1,
-    'expected "data" key to be ignored'
+    'expected "data" key to be ignored',
   );
   assert.strictEqual(
     keys.indexOf('_legendItemPos'),
     -1,
-    'expected private keys to be ignored'
+    'expected private keys to be ignored',
   );
   assert.strictEqual(
     keys.indexOf('obj'),
     -1,
-    'expected object types to be ignored'
+    'expected object types to be ignored',
   );
   assert.strictEqual(
     keys.indexOf('fun'),
     -1,
-    'expected function types to be ignored'
+    'expected function types to be ignored',
   );
 
   assert.strictEqual(keys.length, 1);

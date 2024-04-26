@@ -83,7 +83,7 @@ module.exports = {
     trees.push(
       new Funnel(highchartsPath, {
         destDir: 'highcharts',
-      })
+      }),
     );
 
     return mergeTrees(trees);

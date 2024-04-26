@@ -40,7 +40,6 @@
     "ember-cli-babel": "^7.26.11",
     "ember-cli-htmlbars": "^6.2.0",
     "ember-copy": "^2.0.1",
-    "validate-peer-dependencies": "^2.0.0",
     "webpack": "^5.78.0"
   },
   "devDependencies": {

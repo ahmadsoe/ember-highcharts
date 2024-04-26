@@ -3,18 +3,9 @@
 const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 const path = require('path');
-const validatePeerDependencies = require('validate-peer-dependencies');
 
 module.exports = {
   name: require('./package').name,
-
-  init() {
-    this._super.init.apply(this, arguments);
-
-    validatePeerDependencies(__dirname, {
-      resolvePeerDependenciesFrom: this.parent.root,
-    });
-  },
 
   included(app) {
     this._super.included.apply(this, arguments);

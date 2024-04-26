@@ -50,7 +50,7 @@ export default class Scatter extends Component {
       text: `Scatter chart with ${Highcharts.numberFormat(
         totalData,
         0,
-        ' '
+        ' ',
       )} points`,
     },
     legend: {

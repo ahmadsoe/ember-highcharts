@@ -16,8 +16,6 @@ module('Integration | Component | High Charts', function (hooks) {
   setupRenderingTest(hooks);
 
   test('should include local options', async function (assert) {
-    assert.expect(2);
-
     await render(hbs`
       <HighCharts />
     `);
@@ -30,13 +28,11 @@ module('Integration | Component | High Charts', function (hooks) {
       .dom('.highcharts-credits')
       .hasText(
         'ember-highcharts-configured-title',
-        'expected credits text present'
+        'expected credits text present',
       );
   });
 
   test('should render empty series for no chart content', async function (assert) {
-    assert.expect(2);
-
     this.content = [];
 
     await render(hbs`
@@ -55,8 +51,6 @@ module('Integration | Component | High Charts', function (hooks) {
   });
 
   test('should add a series', async function (assert) {
-    assert.expect(2);
-
     this.cityData = cityData;
     this.lineChartOptions = lineChartOptions;
     await render(hbs`
@@ -88,8 +82,6 @@ module('Integration | Component | High Charts', function (hooks) {
   });
 
   test('should remove a series', async function (assert) {
-    assert.expect(2);
-
     this.cityData = cityData;
     this.lineChartOptions = lineChartOptions;
     await render(hbs`
@@ -114,8 +106,6 @@ module('Integration | Component | High Charts', function (hooks) {
   });
 
   test('should have navigator series for highstock', async function (assert) {
-    assert.expect(1);
-
     this.stockData = stockData;
     this.stockChartOptions = stockChartOptions;
 
@@ -133,8 +123,6 @@ module('Integration | Component | High Charts', function (hooks) {
   });
 
   test('should update data on all svg paths on highstock chart', async function (assert) {
-    assert.expect(1);
-
     this.set('stockChartOptions', stockChartOptions);
     this.set('stockData', stockData);
 
@@ -148,7 +136,7 @@ module('Integration | Component | High Charts', function (hooks) {
 
     let generateDArray = () => {
       let highchartSeries = Array.from(
-        document.querySelectorAll('.highcharts-series')
+        document.querySelectorAll('.highcharts-series'),
       );
       return highchartSeries.map((series) => {
         return series.querySelector('path').getAttribute('d');
@@ -183,8 +171,6 @@ module('Integration | Component | High Charts', function (hooks) {
   });
 
   test('should accept "falsy" mode attribute for default highcharts operation', async function (assert) {
-    assert.expect(4);
-
     await render(hbs`
       <HighCharts />
     `);
@@ -215,8 +201,6 @@ module('Integration | Component | High Charts', function (hooks) {
   });
 
   test('should call passed in callback once the chart has loaded', async function (assert) {
-    assert.expect(1);
-
     const done = assert.async();
 
     this.cityData = cityData;
@@ -236,8 +220,6 @@ module('Integration | Component | High Charts', function (hooks) {
   });
 
   test('should update when the chartOptions change', async function (assert) {
-    assert.expect(4);
-
     this.cityData = cityData;
     this.lineChartOptions = lineChartOptions;
 
@@ -251,12 +233,12 @@ module('Integration | Component | High Charts', function (hooks) {
     assert.strictEqual(
       document.querySelector('.highcharts-title').textContent,
       'Series Test',
-      'Title is correct'
+      'Title is correct',
     );
     assert.strictEqual(
       document.querySelector('.highcharts-subtitle').textContent,
       '',
-      'Subtitle is empty'
+      'Subtitle is empty',
     );
 
     this.set('lineChartOptions', { subtitle: { text: 'Updated!' } });
@@ -264,12 +246,12 @@ module('Integration | Component | High Charts', function (hooks) {
     assert.strictEqual(
       document.querySelector('.highcharts-title').textContent,
       'Series Test',
-      'Title remains the same'
+      'Title remains the same',
     );
     assert.strictEqual(
       document.querySelector('.highcharts-subtitle').textContent,
       'Updated!',
-      'new series count'
+      'new series count',
     );
   });
 });

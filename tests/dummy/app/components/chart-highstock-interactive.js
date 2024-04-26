@@ -30,7 +30,7 @@ export default class BarBasic extends Component {
   setSeriesCount(numSeries) {
     let newChartData = this.dynamicChart.updateSeriesCount(
       stockData,
-      numSeries
+      numSeries,
     );
     this.chartData = newChartData;
   }

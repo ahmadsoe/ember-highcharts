@@ -11,8 +11,8 @@ and [Highmaps](http://www.highcharts.com/products/highmaps) component for [Ember
 
 ## Compatibility
 
-* Ember.js v4.12 or above
-* Ember CLI v4.12 or above
+* Ember.js v3.28 or above
+* Ember CLI v3.28 or above
 * Node.js v18 or above
 
 ## Legacy versions

@@ -1,6 +1,26 @@
 # Changelog
 
 
+
+## v4.0.0 (2024-07-12)
+
+#### :boom: Breaking Change
+* [#444](https://github.com/ahmadsoe/ember-highcharts/pull/444) Drop support for Ember < 4.12 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+* [#437](https://github.com/ahmadsoe/ember-highcharts/pull/437) Drop support for node < 18 and Ember < 4.4 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### :rocket: Enhancement
+* [#451](https://github.com/ahmadsoe/ember-highcharts/pull/451) Add back tests for older Ember versions ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+* [#387](https://github.com/ahmadsoe/ember-highcharts/pull/387) remove ember-copy dependency ([@Gaurav0](https://github.com/Gaurav0))
+* [#442](https://github.com/ahmadsoe/ember-highcharts/pull/442) Remove validate-peer-dependencies ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### :house: Internal
+* [#443](https://github.com/ahmadsoe/ember-highcharts/pull/443) Update release-it setup ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+* [#438](https://github.com/ahmadsoe/ember-highcharts/pull/438) Bump deepmerge, remove vendor shim ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 2
+- Gaurav Munjal ([@Gaurav0](https://github.com/Gaurav0))
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 ## v3.2.2 (2024-02-02)
 
 ## v3.2.1 (2021-11-08)

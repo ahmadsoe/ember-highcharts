@@ -2,6 +2,15 @@
 
 
 
+
+## v5.0.0 (2024-07-15)
+
+#### :boom: Breaking Change
+* [#460](https://github.com/ahmadsoe/ember-highcharts/pull/460) Remove config and use dynamic imports for modules ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 1
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 ## v4.0.1 (2024-07-12)
 
 ## v4.0.0 (2024-07-12)

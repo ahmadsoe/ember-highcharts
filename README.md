@@ -132,57 +132,16 @@ You can add the `emberHighCharts` option to your `ember-cli-build.js` file to lo
 var app = new EmberApp({
   emberHighCharts: {
     includeHighCharts: false,
-    includeHighStock: true,
-    includeHighMaps: false,
     includeHighChartsMore: true,
     includeHighCharts3D: true,
-    includeModules: ['map', 'broken-axis', 'heatmap', ... ]
-    /* Some available modules include:
-      boost, broken-axis, canvas-tools, data, drilldown, exporting, funnel,
-      heatmap, map, no-data-to-display, offline-exporting, solid-gauge, treemap.
-    */
   }
 });
 ```
 All modules can be found [here](https://github.com/highcharts/highcharts/tree/master/ts/masters/modules).
 
-### Highstock
+### Highstock, Highmaps, etc
 
-Highcharts is already included in Highstock, so it is not necessary to load both.
-Using the following configuration to load Highstock:
-
-```js
-var app = new EmberApp({
-  emberHighCharts: {
-    includeHighCharts: false,
-    includeHighStock: true
-  }
-});
-```
-
-### Highmaps
-
-Highcharts is not included in Highmaps. If you only need to use Highmaps use the following configuration:
-
-```js
-var app = new EmberApp({
-  emberHighCharts: {
-    includeHighCharts: false,
-    includeHighMaps: true
-  }
-});
-```
-
-If you need to use Highmaps and Highcharts then use the following configuration:
-
-```js
-var app = new EmberApp({
-  emberHighCharts: {
-    includeHighCharts: true,
-    includeModules: ['map']
-  }
-});
-```
+We now use dynamic imports to import the Highcharts packages you need based on the `mode` argument passed.
 
 
 ### Global Highcharts Config Options

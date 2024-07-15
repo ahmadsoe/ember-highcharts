@@ -9,18 +9,33 @@ import { scheduleOnce } from '@ember/runloop';
 import buildOptions from '../utils/build-options';
 import { setDefaultHighChartOptions } from '../utils/option-loader';
 import { getSeriesMap, getSeriesChanges } from '../utils/chart-data';
+import type Owner from '@ember/owner';
+
+let Highcharts;
 
 /* Map ember-highcharts modes to Highcharts methods
  * https://api.highcharts.com/class-reference/Highcharts.html
  */
-const CHART_TYPES = Object.freeze({
+const CHART_TYPES = {
   StockChart: 'stockChart',
   Map: 'mapChart',
   Gantt: 'ganttChart',
   undefined: 'chart',
-});
+} as const;
 
-export default class HighCharts extends Component {
+interface HighChartsSignature {
+  Element: HTMLDivElement;
+  Args: {
+    chartOptions?: Highcharts.Options;
+    mode?: 'Gantt' | 'Map' | 'StockChart';
+    theme?: string;
+  };
+  Blocks: {
+    default: [chart: Highcharts.Chart | null];
+  };
+}
+
+export default class HighCharts extends Component<HighChartsSignature> {
   get content() {
     return this.args.content ?? undefined;
   }
@@ -42,17 +57,17 @@ export default class HighCharts extends Component {
   }
 
   @tracked
-  el = undefined;
+  el: HTMLDivElement | undefined = undefined;
 
   @tracked
-  chart = null;
+  chart: Highcharts.Chart | null = null;
 
   get buildOptions() {
     return buildOptions(this.theme, this.chartOptions, this.content);
   }
 
   drawAfterRender() {
-    scheduleOnce('afterRender', this, 'draw');
+    scheduleOnce('afterRender', this, this.draw);
   }
 
   draw() {
@@ -69,10 +84,11 @@ export default class HighCharts extends Component {
   }
 
   @action
-  onDidInsert(el) {
+  async onDidInsert(el: HTMLDivElement) {
+    await this._importHighchartsDeps();
     this.el = el;
     this.drawAfterRender();
-    setDefaultHighChartOptions(getOwner(this));
+    setDefaultHighChartOptions(getOwner(this) as Owner);
   }
 
   @action
@@ -133,9 +149,57 @@ export default class HighCharts extends Component {
     return chart.redraw();
   }
 
-  willDestroy(...args) {
-    super.willDestroy(...args);
+  willDestroy() {
+    super.willDestroy();
 
     this.chart?.destroy();
+  }
+
+  async _importHighchartsDeps() {
+    if (this.args.mode === 'Map') {
+      Highcharts = await import('highcharts/highmaps');
+    } else if (this.args.mode === 'StockChart') {
+      Highcharts = await import('highcharts/highstock');
+    } else {
+      Highcharts = await import('highcharts');
+    }
+
+    // 3d support
+    if (this.args.chartOptions?.chart?.options3d) {
+      const Boost = await import('highcharts/modules/boost');
+      Boost.default(Highcharts);
+      const Highcharts3d = await import('highcharts/highcharts-3d');
+      Highcharts3d.default(Highcharts);
+    }
+
+    // Drilldown support
+    if (this.args.chartOptions?.drilldown) {
+      const Drilldown = await import('highcharts/modules/drilldown');
+      Drilldown.default(Highcharts);
+    }
+
+    if (this.args.chartOptions?.chart?.type === 'funnel') {
+      const Funnel = await import('highcharts/modules/funnel');
+      Funnel.default(Highcharts);
+    }
+
+    if (this.args.chartOptions?.chart?.type === 'heatmap') {
+      const Heatmap = await import('highcharts/modules/heatmap');
+      const More = await import('highcharts/highcharts-more');
+      More.default(Highcharts);
+      Heatmap.default(Highcharts);
+    }
+
+    if (this.args.chartOptions?.chart?.type === 'solidgauge') {
+      const SolidGauge = await import('highcharts/modules/solid-gauge');
+      const More = await import('highcharts/highcharts-more');
+      More.default(Highcharts);
+      SolidGauge.default(Highcharts);
+    }
+
+    if (this.args.chartOptions?.chart?.type === 'waterfall') {
+      const More = await import('highcharts/highcharts-more');
+      More.default(Highcharts);
+    }
   }
 }

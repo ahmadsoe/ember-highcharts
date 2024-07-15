@@ -1,6 +1,9 @@
+import type Owner from '@ember/owner';
+import Highcharts from 'highcharts';
+
 let localConfig = null;
 
-export function setDefaultHighChartOptions(owner) {
+export function setDefaultHighChartOptions(owner: Owner) {
   if (!localConfig) {
     // use options defined in highcharts-configs/application.js if they exist
     const configFactory = owner.factoryFor('highcharts-config:application');

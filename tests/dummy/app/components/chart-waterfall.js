@@ -1,5 +1,6 @@
-/* eslint-disable no-undef */
 import Component from '@glimmer/component';
+
+import Highcharts from 'highcharts';
 
 export default class Waterfall extends Component {
   chartOptions = {

@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, settled } from '@ember/test-helpers';
+import { render, settled, waitFor } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import cloneDeep from 'lodash-es/cloneDeep';
 
@@ -118,6 +118,8 @@ module('Integration | Component | High Charts', function (hooks) {
         @chartOptions={{this.stockChartOptions}}
       />
     `);
+
+    await waitFor('.highcharts-navigator');
 
     assert
       .dom('.highcharts-navigator')

@@ -4,14 +4,16 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 import { getOwner } from '@ember/application';
+import type Owner from '@ember/owner';
 import { scheduleOnce } from '@ember/runloop';
+
+import type { default as _Highcharts } from 'highcharts';
 
 import buildOptions from '../utils/build-options';
 import { setDefaultHighChartOptions } from '../utils/option-loader';
 import { getSeriesMap, getSeriesChanges } from '../utils/chart-data';
-import type Owner from '@ember/owner';
 
-let Highcharts;
+let Highcharts: typeof _Highcharts;
 
 /* Map ember-highcharts modes to Highcharts methods
  * https://api.highcharts.com/class-reference/Highcharts.html
@@ -26,9 +28,28 @@ const CHART_TYPES = {
 interface HighChartsSignature {
   Element: HTMLDivElement;
   Args: {
-    chartOptions?: Highcharts.Options;
+    /**
+     * The callback argument is optional and allows you to pass in a function that runs when the chart has finished loading
+     */
+    callback?: Highcharts.ChartCallbackFunction;
+    /**
+     * The `content` argument matches up with the `series` option in the Highcharts/Highstock/Highmaps API.
+     * Use this option to set the series data for your chart.
+     */
+    content?: Highcharts.Options['series'];
+    /**
+     * The `chartOptions` argument is a generic object for setting different options with Highcharts/Highstock/Highmaps.
+     * Use this option to set things like the chart title and axis settings.
+     */
+    chartOptions: Highcharts.Options;
+    /**
+     * The mode argument is optional and it determines whether to use Highcharts, Highstock, or Highmaps.
+     */
     mode?: 'Gantt' | 'Map' | 'StockChart';
-    theme?: string;
+    /**
+     * The `theme` argument is optional and it allows you to pass in a Highcharts theme.
+     */
+    theme?: Highcharts.Options;
   };
   Blocks: {
     default: [chart: Highcharts.Chart | null];
@@ -74,11 +95,14 @@ export default class HighCharts extends Component<HighChartsSignature> {
     const element = this.el?.querySelector('.chart-container');
 
     // for any mode that is falsy ('', undefined, false), set it to default 'chart'
-    const mode = CHART_TYPES[this.mode] ?? CHART_TYPES.undefined;
+    const mode = CHART_TYPES[`${this.mode}`] ?? CHART_TYPES.undefined;
     const completeChartOptions = [this.buildOptions, this.callback];
-
-    if (element) {
-      const chart = Highcharts[mode](element, ...completeChartOptions);
+    const highchartsModeFunction = Highcharts[mode as keyof object];
+    if (element && typeof highchartsModeFunction === 'function') {
+      const chart = (highchartsModeFunction as Function)(
+        element,
+        ...completeChartOptions,
+      );
       this.chart = chart;
     }
   }
@@ -92,7 +116,14 @@ export default class HighCharts extends Component<HighChartsSignature> {
   }
 
   @action
-  onDidUpdate(elem, positionalArgs, { content, chartOptions, mode }) {
+  onDidUpdate(
+    _elem: unknown,
+    [content, chartOptions, mode]: [
+      HighChartsSignature['Args']['content'],
+      HighChartsSignature['Args']['chartOptions'],
+      HighChartsSignature['Args']['mode'],
+    ],
+  ) {
     const { chart } = this;
 
     if (!content || !chart) {
@@ -105,17 +136,21 @@ export default class HighCharts extends Component<HighChartsSignature> {
     const isStockChart = mode === 'StockChart';
     // create maps to make series data easier to work with
     const contentSeriesMap = getSeriesMap(content);
-    const chartSeriesMap = getSeriesMap(chart.series);
+    const chartSeriesMap = getSeriesMap(
+      chart.series as unknown as Array<_Highcharts.SeriesOptionsType>,
+    );
 
     // remove and update current series
-    const chartSeriesToRemove = [];
+    const chartSeriesToRemove: Array<Highcharts.Series> = [];
 
     chart.series.forEach((series) => {
       if (isStockChart && series.name.match(/^Navigator/)) {
         return;
       }
 
-      const contentSeries = contentSeriesMap[series.name];
+      const contentSeries = contentSeriesMap[
+        series.name
+      ] as unknown as _Highcharts.Series;
 
       if (!contentSeries) {
         return chartSeriesToRemove.push(series);
@@ -125,7 +160,10 @@ export default class HighCharts extends Component<HighChartsSignature> {
 
       // call series.update() when other series attributes like pointStart have changed
       if (updatedKeys.length) {
-        series.update(contentSeries, false);
+        series.update(
+          contentSeries as unknown as _Highcharts.SeriesOptionsType,
+          false,
+        );
       } else {
         series.setData(contentSeries.data, false);
       }
@@ -136,14 +174,14 @@ export default class HighCharts extends Component<HighChartsSignature> {
     // add new series
     content.forEach((contentSeries) => {
       // eslint-disable-next-line no-prototype-builtins
-      if (!chartSeriesMap.hasOwnProperty(contentSeries.name)) {
+      if (!chartSeriesMap.hasOwnProperty(contentSeries.name as string)) {
         chart.addSeries(contentSeries, false);
       }
     });
 
     // reset navigator data
     if (isStockChart && chart.xAxis.length) {
-      chart.xAxis[0].setExtremes();
+      chart.xAxis[0]?.setExtremes();
     }
 
     return chart.redraw();
@@ -155,6 +193,9 @@ export default class HighCharts extends Component<HighChartsSignature> {
     this.chart?.destroy();
   }
 
+  /**
+   * Dynamically imports the necessary pieces from Highcharts, based on chart type and options.
+   */
   async _importHighchartsDeps() {
     if (this.args.mode === 'Map') {
       Highcharts = await import('highcharts/highmaps');

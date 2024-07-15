@@ -1,4 +1,6 @@
+// @ts-nocheck
 import type Owner from '@ember/owner';
+
 import Highcharts from 'highcharts';
 
 let localConfig = null;

@@ -1,7 +1,9 @@
 import { inject as service } from '@ember/service';
 import Component from '@glimmer/component';
-import commitStats from '../data/commit-stats';
 import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
+
+import commitStats from '../data/commit-stats';
 
 export default class BarBasic extends Component {
   @service('dynamic-chart')
@@ -27,6 +29,7 @@ export default class BarBasic extends Component {
     },
   };
 
+  @tracked
   chartData = structuredClone(commitStats);
 
   @action

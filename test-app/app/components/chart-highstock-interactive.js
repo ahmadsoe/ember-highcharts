@@ -1,6 +1,7 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
 import stockData from '../data/stock';
 
@@ -17,6 +18,7 @@ export default class BarBasic extends Component {
     },
   };
 
+  @tracked
   chartData = structuredClone(stockData);
 
   @action

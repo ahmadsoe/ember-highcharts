@@ -2,9 +2,6 @@ import { inject as service } from '@ember/service';
 import Component from '@glimmer/component';
 import commitStats from '../data/commit-stats';
 import { action } from '@ember/object';
-import cloneDeep from 'lodash-es/cloneDeep';
-
-const clone = window.structuredClone ?? cloneDeep;
 
 export default class BarBasic extends Component {
   @service('dynamic-chart')
@@ -30,7 +27,7 @@ export default class BarBasic extends Component {
     },
   };
 
-  chartData = clone(commitStats);
+  chartData = structuredClone(commitStats);
 
   @action
   updateSeriesData() {

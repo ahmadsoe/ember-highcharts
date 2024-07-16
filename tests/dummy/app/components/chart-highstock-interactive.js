@@ -3,9 +3,6 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 import stockData from '../data/stock';
-import cloneDeep from 'lodash-es/cloneDeep';
-
-const clone = window.structuredClone ?? cloneDeep;
 
 export default class BarBasic extends Component {
   @service('dynamic-chart')
@@ -20,7 +17,7 @@ export default class BarBasic extends Component {
     },
   };
 
-  chartData = clone(stockData);
+  chartData = structuredClone(stockData);
 
   @action
   updateSeriesData() {

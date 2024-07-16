@@ -38,9 +38,7 @@
     "deepmerge": "^4.3.1",
     "ember-auto-import": "^2.7.2",
     "ember-cli-babel": "^8.2.0",
-    "ember-cli-htmlbars": "^6.3.0",
-    "lodash-es": "^4.17.21",
-    "webpack": "^5.91.0"
+    "ember-cli-htmlbars": "^6.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.24.4",
@@ -94,7 +92,8 @@
     "stylelint": "^15.11.0",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-prettier": "^4.1.0",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.3",
+    "webpack": "^5.91.0"
   },
   "peerDependencies": {
     "ember-source": ">= 3.28.0",

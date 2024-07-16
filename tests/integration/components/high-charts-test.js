@@ -2,9 +2,6 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, settled, waitFor } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
-import cloneDeep from 'lodash-es/cloneDeep';
-
-const clone = window.structuredClone ?? cloneDeep;
 
 import {
   lineChartOptions,
@@ -67,7 +64,7 @@ module('Integration | Component | High Charts', function (hooks) {
       .exists({ count: 3 }, 'base series count');
 
     // add a series to chart content
-    let cityDataCopy = clone(cityData);
+    let cityDataCopy = structuredClone(cityData);
     cityDataCopy.push({
       name: 'San Francisco',
       data: [
@@ -98,7 +95,7 @@ module('Integration | Component | High Charts', function (hooks) {
       .exists({ count: 3 }, 'base series count');
 
     // remove a series from chart content
-    let cityDataCopy = clone(cityData);
+    let cityDataCopy = structuredClone(cityData);
     cityDataCopy = cityDataCopy.slice(0, 2);
 
     this.set('cityData', cityDataCopy);

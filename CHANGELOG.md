@@ -3,6 +3,15 @@
 
 
 
+
+## v5.0.1 (2024-07-16)
+
+#### :house: Internal
+* [#464](https://github.com/ahmadsoe/ember-highcharts/pull/464) Remove lodash ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 1
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 ## v5.0.0 (2024-07-15)
 
 #### :boom: Breaking Change

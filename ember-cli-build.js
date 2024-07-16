@@ -7,10 +7,6 @@ module.exports = function (defaults) {
     'ember-cli-babel': {
       enableTypeScriptTransform: true,
     },
-    emberHighCharts: {
-      includeHighChartsMore: true,
-      includeHighCharts3D: true,
-    },
   });
 
   /*

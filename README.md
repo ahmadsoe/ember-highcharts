@@ -124,21 +124,6 @@ Check out more chart examples in the [tests/dummy app](tests/dummy/app) in this 
 
 ## Configuration
 
-This addon will load Highcharts by default. Highcharts has many optional features like Highstock and Highmaps.
-You can add the `emberHighCharts` option to your `ember-cli-build.js` file to load these optional features:
-
-```js
-// all possible options
-var app = new EmberApp({
-  emberHighCharts: {
-    includeHighCharts: false,
-    includeHighChartsMore: true,
-    includeHighCharts3D: true,
-  }
-});
-```
-All modules can be found [here](https://github.com/highcharts/highcharts/tree/master/ts/masters/modules).
-
 ### Highstock, Highmaps, etc
 
 We now use dynamic imports to import the Highcharts packages you need based on the `mode` argument passed.

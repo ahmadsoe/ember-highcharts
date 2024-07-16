@@ -88,6 +88,7 @@ export default class HighCharts extends Component<HighChartsSignature> {
   }
 
   drawAfterRender() {
+    // eslint-disable-next-line ember/no-runloop
     scheduleOnce('afterRender', this, this.draw);
   }
 
@@ -99,6 +100,7 @@ export default class HighCharts extends Component<HighChartsSignature> {
     const completeChartOptions = [this.buildOptions, this.callback];
     const highchartsModeFunction = Highcharts[mode as keyof object];
     if (element && typeof highchartsModeFunction === 'function') {
+      // eslint-disable-next-line @typescript-eslint/ban-types
       const chart = (highchartsModeFunction as Function)(
         element,
         ...completeChartOptions,

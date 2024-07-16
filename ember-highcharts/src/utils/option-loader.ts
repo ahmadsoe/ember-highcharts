@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import type Owner from '@ember/owner';
 
@@ -21,7 +22,7 @@ export function setDefaultHighChartOptions(owner: Owner) {
   Highcharts.setOptions(localConfig);
 }
 
-let defaultOptions = {
+const defaultOptions = {
   plotOptions: {
     series: {
       shadow: false,

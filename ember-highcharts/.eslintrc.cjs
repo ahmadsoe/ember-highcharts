@@ -21,7 +21,7 @@ module.exports = {
       rules: {
         // require relative imports use full extensions
         'import/extensions': ['error', 'always', { ignorePackages: true }],
-        // Add any custom rules here
+        'ember/no-at-ember-render-modifiers': 'off',
       },
     },
     // ts files
@@ -37,7 +37,7 @@ module.exports = {
       rules: {
         // require relative imports use full extensions
         'import/extensions': ['error', 'always', { ignorePackages: true }],
-        // Add any custom rules here
+        'ember/no-at-ember-render-modifiers': 'off',
       },
     },
     {

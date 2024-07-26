@@ -1,4 +1,16 @@
 
+
+## v6.1.0 (2024-07-26)
+
+#### :rocket: Enhancement
+* [#471](https://github.com/ahmadsoe/ember-highcharts/pull/471) Enable accessibility module ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### :house: Internal
+* [#469](https://github.com/ahmadsoe/ember-highcharts/pull/469) pnpm update ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 1
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 ## v6.0.1 (2024-07-16)
 
 ## v6.0.0 (2024-07-16)

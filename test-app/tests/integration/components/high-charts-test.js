@@ -19,6 +19,8 @@ module('Integration | Component | High Charts', function (hooks) {
       <HighCharts />
     `);
 
+    await waitFor('.highcharts-credits');
+
     // custom highcharts-configs/application.js is auto-loaded from tests/dummy/app
     assert
       .dom('.highcharts-credits')
@@ -41,6 +43,8 @@ module('Integration | Component | High Charts', function (hooks) {
       />
     `);
 
+    await waitFor('.highcharts-legend');
+
     assert
       .dom('.highcharts-legend .highcharts-legend-item text')
       .exists({ count: 1 }, 'expected one series');
@@ -52,12 +56,15 @@ module('Integration | Component | High Charts', function (hooks) {
   test('should add a series', async function (assert) {
     this.cityData = cityData;
     this.lineChartOptions = lineChartOptions;
+
     await render(hbs`
       <HighCharts
         @content={{this.cityData}}
         @chartOptions={{this.lineChartOptions}}
       />
     `);
+
+    await waitFor('.highcharts-legend');
 
     assert
       .dom('.highcharts-legend .highcharts-legend-item')
@@ -83,12 +90,15 @@ module('Integration | Component | High Charts', function (hooks) {
   test('should remove a series', async function (assert) {
     this.cityData = cityData;
     this.lineChartOptions = lineChartOptions;
+
     await render(hbs`
       <HighCharts
         @content={{this.cityData}}
         @chartOptions={{this.lineChartOptions}}
       />
     `);
+
+    await waitFor('.highcharts-legend');
 
     assert
       .dom('.highcharts-legend .highcharts-legend-item')
@@ -175,6 +185,8 @@ module('Integration | Component | High Charts', function (hooks) {
     await render(hbs`
       <HighCharts />
     `);
+    await waitFor('.highcharts-container');
+
     assert
       .dom('.highcharts-container')
       .exists({ count: 1 }, 'we rendered a chart without a mode specified');
@@ -182,6 +194,8 @@ module('Integration | Component | High Charts', function (hooks) {
     await render(hbs`
       <HighCharts @mode="" />
     `);
+    await waitFor('.highcharts-container');
+
     assert
       .dom('.highcharts-container')
       .exists({ count: 1 }, 'we rendered a chart with empty string mode');
@@ -189,6 +203,8 @@ module('Integration | Component | High Charts', function (hooks) {
     await render(hbs`
       <HighCharts @mode={{false}}/>
     `);
+    await waitFor('.highcharts-container');
+
     assert
       .dom('.highcharts-container')
       .exists({ count: 1 }, 'we rendered a chart with false boolean mode');
@@ -196,6 +212,8 @@ module('Integration | Component | High Charts', function (hooks) {
     await render(hbs`
       <HighCharts @mode={{null}}/>
     `);
+    await waitFor('.highcharts-container');
+
     assert
       .dom('.highcharts-container')
       .exists({ count: 1 }, 'we rendered a chart with null mode');

@@ -180,7 +180,7 @@ module('Integration | Component | High Charts', function (hooks) {
       .exists({ count: 1 }, 'we rendered a chart without a mode specified');
 
     await render(hbs`
-      <HighCharts @mode={{""}}/>
+      <HighCharts @mode="" />
     `);
     assert
       .dom('.highcharts-container')

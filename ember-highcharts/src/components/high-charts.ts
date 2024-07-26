@@ -207,6 +207,9 @@ export default class HighCharts extends Component<HighChartsSignature> {
       Highcharts = await import('highcharts');
     }
 
+    const Accessibility = await import('highcharts/modules/accessibility');
+    Accessibility.default(Highcharts);
+
     // 3d support
     if (this.args.chartOptions?.chart?.options3d) {
       const Boost = await import('highcharts/modules/boost');

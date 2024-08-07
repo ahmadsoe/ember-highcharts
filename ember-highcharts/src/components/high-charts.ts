@@ -25,7 +25,7 @@ const CHART_TYPES = {
   undefined: 'chart',
 } as const;
 
-interface HighChartsSignature {
+interface HighChartsSignature<Content extends Highcharts.Options['series']> {
   Element: HTMLDivElement;
   Args: {
     /**
@@ -36,7 +36,7 @@ interface HighChartsSignature {
      * The `content` argument matches up with the `series` option in the Highcharts/Highstock/Highmaps API.
      * Use this option to set the series data for your chart.
      */
-    content?: Highcharts.Options['series'];
+    content?: Content;
     /**
      * The `chartOptions` argument is a generic object for setting different options with Highcharts/Highstock/Highmaps.
      * Use this option to set things like the chart title and axis settings.
@@ -56,7 +56,9 @@ interface HighChartsSignature {
   };
 }
 
-export default class HighCharts extends Component<HighChartsSignature> {
+export default class HighCharts<
+  Content extends Highcharts.Options['series'],
+> extends Component<HighChartsSignature<Content>> {
   get content() {
     return this.args.content ?? undefined;
   }
@@ -121,9 +123,9 @@ export default class HighCharts extends Component<HighChartsSignature> {
   onDidUpdate(
     _elem: unknown,
     [content, chartOptions, mode]: [
-      HighChartsSignature['Args']['content'],
-      HighChartsSignature['Args']['chartOptions'],
-      HighChartsSignature['Args']['mode'],
+      HighChartsSignature<Content>['Args']['content'],
+      HighChartsSignature<Content>['Args']['chartOptions'],
+      HighChartsSignature<Content>['Args']['mode'],
     ],
   ) {
     const { chart } = this;

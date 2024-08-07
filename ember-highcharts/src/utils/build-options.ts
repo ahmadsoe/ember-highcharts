@@ -9,10 +9,12 @@ export const EMPTY_CHART_CONTENT = [
   },
 ] as const;
 
-export default function buildOptions(
+export default function buildOptions<
+  Content extends Highcharts.Options['series'],
+>(
   theme: Highcharts.Options = {},
   options: Highcharts.Options = {},
-  content?: Highcharts.Options['series'],
+  content?: Content,
 ) {
   // if 'no-data-to-display' module has been imported, keep empty series
   // and leave it to highcharts to show no data label.

@@ -1,12 +1,14 @@
 import type Highcharts from 'highcharts';
 
-export function getSeriesMap(seriesGroup: Array<Highcharts.SeriesOptionsType>) {
+export function getSeriesMap<Content extends Highcharts.SeriesOptionsType>(
+  seriesGroup: Array<Content>,
+) {
   const seriesMap = seriesGroup.reduce(
     (seriesMap, seriesItem) => {
       seriesMap[seriesItem.name as string] = seriesItem;
       return seriesMap;
     },
-    {} as { [key: string]: Highcharts.SeriesOptionsType },
+    {} as { [key: string]: Content },
   );
 
   return seriesMap;

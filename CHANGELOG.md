@@ -1,5 +1,14 @@
 
 
+
+## v6.1.1 (2024-08-07)
+
+#### :bug: Bug Fix
+* [#473](https://github.com/ahmadsoe/ember-highcharts/pull/473) Make content's type more generic ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 1
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 ## v6.1.0 (2024-07-26)
 
 #### :rocket: Enhancement

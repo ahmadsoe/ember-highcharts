@@ -1,6 +1,15 @@
 
 
 
+
+## v6.1.2 (2024-08-09)
+
+#### :bug: Bug Fix
+* [#474](https://github.com/ahmadsoe/ember-highcharts/pull/474) Use @ember/test-waiters to ensure we wait for imports ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 1
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 ## v6.1.1 (2024-08-07)
 
 #### :bug: Bug Fix

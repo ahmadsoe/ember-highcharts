@@ -52,6 +52,7 @@
   "dependencies": {
     "@babel/core": "^7.24.9",
     "@ember/render-modifiers": "^2.1.0",
+    "@ember/test-waiters": "^3.1.0",
     "@embroider/addon-shim": "^1.8.9",
     "decorator-transforms": "^2.0.0",
     "deepmerge": "^4.3.1"

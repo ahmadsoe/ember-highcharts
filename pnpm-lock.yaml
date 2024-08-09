@@ -41,6 +41,9 @@ importers:
       '@ember/render-modifiers':
         specifier: ^2.1.0
         version: 2.1.0(@babel/core@7.24.9)(@glint/template@1.4.0)(ember-source@5.10.1)
+      '@ember/test-waiters':
+        specifier: ^3.1.0
+        version: 3.1.0
       '@embroider/addon-shim':
         specifier: ^1.8.9
         version: 1.8.9
@@ -2151,7 +2154,6 @@ packages:
       semver: 7.6.3
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@embroider/addon-dev@4.3.1(@glint/template@1.4.0)(rollup@4.19.0):
     resolution: {integrity: sha512-CNZ4Y69PPIZAAGGoERjvDcrwOwWTuUmnRYu+XnmqKk0opdlu/PTssO9YWyxp8AnvGd2l7iLCjEn5mpLFvifstA==}
@@ -11941,7 +11943,7 @@ packages:
       ky: 1.5.0
       registry-auth-token: 5.0.2
       registry-url: 6.0.1
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
   /package-json@6.5.0:

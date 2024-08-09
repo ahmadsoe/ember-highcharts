@@ -6,6 +6,7 @@ import { action } from '@ember/object';
 import { getOwner } from '@ember/application';
 import type Owner from '@ember/owner';
 import { scheduleOnce } from '@ember/runloop';
+import { waitForPromise } from '@ember/test-waiters';
 
 import type { default as _Highcharts } from 'highcharts';
 
@@ -202,51 +203,61 @@ export default class HighCharts<
    */
   async _importHighchartsDeps() {
     if (this.args.mode === 'Map') {
-      Highcharts = await import('highcharts/highmaps');
+      Highcharts = await waitForPromise(import('highcharts/highmaps'));
     } else if (this.args.mode === 'StockChart') {
-      Highcharts = await import('highcharts/highstock');
+      Highcharts = await waitForPromise(import('highcharts/highstock'));
     } else {
-      Highcharts = await import('highcharts');
+      Highcharts = await waitForPromise(import('highcharts'));
     }
 
-    const Accessibility = await import('highcharts/modules/accessibility');
+    const Accessibility = await waitForPromise(
+      import('highcharts/modules/accessibility'),
+    );
     Accessibility.default(Highcharts);
 
     // 3d support
     if (this.args.chartOptions?.chart?.options3d) {
-      const Boost = await import('highcharts/modules/boost');
+      const Boost = await waitForPromise(import('highcharts/modules/boost'));
       Boost.default(Highcharts);
-      const Highcharts3d = await import('highcharts/highcharts-3d');
+      const Highcharts3d = await waitForPromise(
+        import('highcharts/highcharts-3d'),
+      );
       Highcharts3d.default(Highcharts);
     }
 
     // Drilldown support
     if (this.args.chartOptions?.drilldown) {
-      const Drilldown = await import('highcharts/modules/drilldown');
+      const Drilldown = await waitForPromise(
+        import('highcharts/modules/drilldown'),
+      );
       Drilldown.default(Highcharts);
     }
 
     if (this.args.chartOptions?.chart?.type === 'funnel') {
-      const Funnel = await import('highcharts/modules/funnel');
+      const Funnel = await waitForPromise(import('highcharts/modules/funnel'));
       Funnel.default(Highcharts);
     }
 
     if (this.args.chartOptions?.chart?.type === 'heatmap') {
-      const Heatmap = await import('highcharts/modules/heatmap');
-      const More = await import('highcharts/highcharts-more');
+      const Heatmap = await waitForPromise(
+        import('highcharts/modules/heatmap'),
+      );
+      const More = await waitForPromise(import('highcharts/highcharts-more'));
       More.default(Highcharts);
       Heatmap.default(Highcharts);
     }
 
     if (this.args.chartOptions?.chart?.type === 'solidgauge') {
-      const SolidGauge = await import('highcharts/modules/solid-gauge');
-      const More = await import('highcharts/highcharts-more');
+      const SolidGauge = await waitForPromise(
+        import('highcharts/modules/solid-gauge'),
+      );
+      const More = await waitForPromise(import('highcharts/highcharts-more'));
       More.default(Highcharts);
       SolidGauge.default(Highcharts);
     }
 
     if (this.args.chartOptions?.chart?.type === 'waterfall') {
-      const More = await import('highcharts/highcharts-more');
+      const More = await waitForPromise(import('highcharts/highcharts-more'));
       More.default(Highcharts);
     }
   }

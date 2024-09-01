@@ -120,7 +120,7 @@ export default class BarBasic extends Component {
 />
 ```
 
-Check out more chart examples in the [tests/dummy app](tests/dummy/app) in this repo.
+Check out more chart examples in the [test-app/app/components](test-app/app/components) in this repo.
 
 ## Configuration
 

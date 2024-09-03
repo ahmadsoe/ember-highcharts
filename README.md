@@ -131,11 +131,11 @@ We now use dynamic imports to import the Highcharts packages you need based on t
 ### Global Highcharts Config Options
 
 Ember-highcharts provides its own set of default configurations in `addon/utils/option-loader.js`.
-At runtime you can optionally configure custom styles by providing a `app/highcharts-configs/application.js` file.
+At runtime you can optionally configure custom styles by providing a `app/highcharts-config/application.js` file.
 This file should provide a hook that returns the final configuration.
 
 ```js
-// app/highcharts-configs/application.js
+// app/highcharts-config/application.js
 
 export default function (defaultOptions) {
   defaultOptions.credits.href = 'http://www.my-great-chart.com';

@@ -243,17 +243,17 @@ export default class HighCharts extends Component<HighChartsSignature> {
       SolidGauge.default(Highcharts);
     }
 
-    if (this.args.chartOptions?.chart?.type === 'treegraph') {
-      const Treegraph = await import('highcharts/modules/treegraph');
-      Treegraph.default(Highcharts);
-    }
-
     if (
       this.args.chartOptions?.chart?.type === 'treegraph' ||
       this.args.chartOptions?.chart?.type === 'treemap'
     ) {
       const Treemap = await import('highcharts/modules/treemap');
       Treemap.default(Highcharts);
+    }
+
+    if (this.args.chartOptions?.chart?.type === 'treegraph') {
+      const Treegraph = await import('highcharts/modules/treegraph');
+      Treegraph.default(Highcharts);
     }
 
     if (this.args.chartOptions?.chart?.type === 'waterfall') {

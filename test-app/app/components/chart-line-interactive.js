@@ -5,7 +5,7 @@ import { tracked } from '@glimmer/tracking';
 
 import commitStats from '../data/commit-stats';
 
-export default class BarBasic extends Component {
+export default class LineInteractive extends Component {
   @service('dynamic-chart')
   dynamicChart;
 

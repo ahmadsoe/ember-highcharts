@@ -5,7 +5,7 @@ import { tracked } from '@glimmer/tracking';
 
 import stockData from '../data/stock';
 
-export default class BarBasic extends Component {
+export default class HighstockInteractive extends Component {
   @service('dynamic-chart')
   dynamicChart;
 

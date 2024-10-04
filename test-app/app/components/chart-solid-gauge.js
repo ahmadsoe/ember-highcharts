@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 
-export default class Scatter extends Component {
+export default class SolidGauge extends Component {
   chartOptions = {
     chart: {
       type: 'solidgauge',

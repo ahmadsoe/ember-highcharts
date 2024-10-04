@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 
-export default class Funnel extends Component {
+export default class HeatMap extends Component {
   chartOptions = {
     chart: {
       type: 'heatmap',

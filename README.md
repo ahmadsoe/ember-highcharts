@@ -128,14 +128,6 @@ Check out more chart examples in the [test-app/app/components](test-app/app/comp
 
 We now use dynamic imports to import the Highcharts packages you need based on the `mode` argument passed.
 
-### Generating Chart Components
-
-Ember-highcharts also provides blueprints to easily create sub-classes of the default high-charts component.
-
-```bash
-ember generate chart <chart-name>
-```
-
 ### Obtaining a Reference to the Chart Instance
 
 The `chart` instance is exposed to the yielded content if used in block form:

@@ -128,24 +128,6 @@ Check out more chart examples in the [test-app/app/components](test-app/app/comp
 
 We now use dynamic imports to import the Highcharts packages you need based on the `mode` argument passed.
 
-### Global Highcharts Config Options
-
-Ember-highcharts provides its own set of default configurations in `addon/utils/option-loader.js`.
-At runtime you can optionally configure custom styles by providing a `app/highcharts-configs/application.js` file.
-This file should provide a hook that returns the final configuration.
-
-```js
-// app/highcharts-configs/application.js
-
-export default function (defaultOptions) {
-  defaultOptions.credits.href = 'http://www.my-great-chart.com';
-  defaultOptions.credits.text = 'great charts made cheap';
-  defaultOptions.credits.enabled = true;
-
-  return defaultOptions;
-}
-```
-
 ### Generating Chart Components
 
 Ember-highcharts also provides blueprints to easily create sub-classes of the default high-charts component.

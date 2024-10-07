@@ -1,5 +1,30 @@
 # Changelog
 
+## Release (2024-10-07)
+
+ember-highcharts 6.2.0 (minor)
+
+#### :rocket: Enhancement
+* `ember-highcharts`, `test-app`
+  * [#481](https://github.com/ahmadsoe/ember-highcharts/pull/481) Add support for polar charts ([@MichalBryxi](https://github.com/MichalBryxi))
+  * [#472](https://github.com/ahmadsoe/ember-highcharts/pull/472) Support treegraph and treemap modules ([@charlesfries](https://github.com/charlesfries))
+
+#### :memo: Documentation
+* [#484](https://github.com/ahmadsoe/ember-highcharts/pull/484) docs: Remove reference to blueprints ([@MichalBryxi](https://github.com/MichalBryxi))
+* [#487](https://github.com/ahmadsoe/ember-highcharts/pull/487) docs: Remove global config reference ([@MichalBryxi](https://github.com/MichalBryxi))
+* [#476](https://github.com/ahmadsoe/ember-highcharts/pull/476) v2 test app path in README ([@MichalBryxi](https://github.com/MichalBryxi))
+
+#### :house: Internal
+* Other
+  * [#489](https://github.com/ahmadsoe/ember-highcharts/pull/489) Setup release-plan ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+* `test-app`
+  * [#488](https://github.com/ahmadsoe/ember-highcharts/pull/488) Fix test app component class names ([@charlesfries](https://github.com/charlesfries))
+
+#### Committers: 3
+- Charles Fries ([@charlesfries](https://github.com/charlesfries))
+- Michal Bryxí ([@MichalBryxi](https://github.com/MichalBryxi))
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 
 
 

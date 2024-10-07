@@ -273,5 +273,10 @@ export default class HighCharts<
       const More = await waitForPromise(import('highcharts/highcharts-more'));
       More.default(Highcharts);
     }
+
+    if (this.args.chartOptions?.chart?.polar === true) {
+      const More = await waitForPromise(import('highcharts/highcharts-more'));
+      More.default(Highcharts);
+    }
   }
 }

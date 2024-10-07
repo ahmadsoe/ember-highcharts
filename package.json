@@ -1,4 +1,5 @@
 {
+  "version": "6.1.2",
   "private": true,
   "repository": "https://github.com/ahmadsoe/ember-highcharts.git",
   "license": "MIT",
@@ -16,40 +17,17 @@
   },
   "devDependencies": {
     "@glint/core": "^1.2.1",
-    "@release-it-plugins/lerna-changelog": "^7.0.0",
-    "@release-it-plugins/workspaces": "^4.2.0",
     "concurrently": "^8.2.0",
     "prettier": "^3.0.3",
     "prettier-plugin-ember-template-tag": "^1.1.0",
-    "release-it": "^17.6.0"
+    "release-plan": "^0.9.0"
+  },
+  "engines": {
+    "node": ">= 18"
   },
   "pnpm": {
     "overrides": {
       "@types/eslint": "^7.0.0"
     }
-  },
-  "engines": {
-    "node": ">= 18"
-  },
-  "release-it": {
-    "plugins": {
-      "@release-it-plugins/workspaces": {
-        "workspaces": [
-          "ember-highcharts"
-        ]
-      },
-      "@release-it-plugins/lerna-changelog": {
-        "infile": "CHANGELOG.md"
-      }
-    },
-    "git": {
-      "tagName": "v${version}"
-    },
-    "github": {
-      "release": true,
-      "tokenRef": "GITHUB_AUTH"
-    },
-    "npm": false
-  },
-  "version": "6.1.2"
+  }
 }

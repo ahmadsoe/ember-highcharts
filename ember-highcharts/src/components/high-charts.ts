@@ -202,12 +202,12 @@ export default class HighCharts<
    * Dynamically imports the necessary pieces from Highcharts, based on chart type and options.
    */
   async _importHighchartsDeps() {
-    Highcharts = await waitForPromise(import('highcharts'));
-
     if (this.args.mode === 'Map') {
-      await waitForPromise(import('highcharts/modules/map'));
+      Highcharts = await waitForPromise(import('highcharts/modules/map'));
     } else if (this.args.mode === 'StockChart') {
-      await waitForPromise(import('highcharts/modules/stock'));
+      Highcharts = await waitForPromise(import('highcharts/modules/stock'));
+    } else {
+      Highcharts = await waitForPromise(import('highcharts'));
     }
 
     await waitForPromise(import('highcharts/modules/accessibility'));

@@ -213,6 +213,9 @@ export default class HighCharts<
       tmpModule = await waitForPromise(import('highcharts'));
     }
 
+    // This one is needed because in
+    // in webpack builds we will have module contents directly in `tmpModule`
+    // in vite builds we will have module contents in `tmpModule.default`
     // @ts-expect-error No idea what TS wants
     this.highchartsInstance = tmpModule.default || tmpModule;
 

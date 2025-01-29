@@ -203,8 +203,10 @@ export default class HighCharts<
    */
   async _importHighchartsDeps() {
     if (this.args.mode === 'Map') {
+      //@ts-expect-error No idea, sielnt TS
       Highcharts = await waitForPromise(import('highcharts/modules/map'));
     } else if (this.args.mode === 'StockChart') {
+      //@ts-expect-error No idea, sielnt TS
       Highcharts = await waitForPromise(import('highcharts/modules/stock'));
     } else {
       Highcharts = await waitForPromise(import('highcharts'));

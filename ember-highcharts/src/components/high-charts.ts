@@ -14,8 +14,6 @@ import buildOptions from '../utils/build-options.ts';
 import { setDefaultHighChartOptions } from '../utils/option-loader.ts';
 import { getSeriesMap, getSeriesChanges } from '../utils/chart-data.ts';
 
-let Highcharts: typeof _Highcharts;
-
 /* Map ember-highcharts modes to Highcharts methods
  * https://api.highcharts.com/class-reference/Highcharts.html
  */
@@ -60,6 +58,8 @@ interface HighChartsSignature<Content extends Highcharts.Options['series']> {
 export default class HighCharts<
   Content extends Highcharts.Options['series'],
 > extends Component<HighChartsSignature<Content>> {
+  @tracked highchartsInstance: typeof _Highcharts | undefined = undefined;
+
   get content() {
     return this.args.content ?? undefined;
   }
@@ -101,7 +101,8 @@ export default class HighCharts<
     // for any mode that is falsy ('', undefined, false), set it to default 'chart'
     const mode = CHART_TYPES[`${this.mode}`] ?? CHART_TYPES.undefined;
     const completeChartOptions = [this.buildOptions, this.callback];
-    const highchartsModeFunction = Highcharts[mode as keyof object];
+    const highchartsModeFunction =
+      this.highchartsInstance?.[mode as keyof object];
     if (element && typeof highchartsModeFunction === 'function') {
       // eslint-disable-next-line @typescript-eslint/ban-types
       const chart = (highchartsModeFunction as Function)(
@@ -204,12 +205,16 @@ export default class HighCharts<
   async _importHighchartsDeps() {
     if (this.args.mode === 'Map') {
       //@ts-expect-error No idea, sielnt TS
-      Highcharts = await waitForPromise(import('highcharts/modules/map'));
+      this.highchartsInstance = await waitForPromise(
+        import('highcharts/modules/map'),
+      );
     } else if (this.args.mode === 'StockChart') {
       //@ts-expect-error No idea, sielnt TS
-      Highcharts = await waitForPromise(import('highcharts/modules/stock'));
+      this.highchartsInstance = await waitForPromise(
+        import('highcharts/modules/stock'),
+      );
     } else {
-      Highcharts = await waitForPromise(import('highcharts'));
+      this.highchartsInstance = await waitForPromise(import('highcharts'));
     }
 
     await waitForPromise(import('highcharts/modules/accessibility'));

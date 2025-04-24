@@ -58,7 +58,7 @@ interface HighChartsSignature<Content extends Highcharts.Options['series']> {
 export default class HighCharts<
   Content extends Highcharts.Options['series'],
 > extends Component<HighChartsSignature<Content>> {
-  @tracked highchartsInstance: typeof _Highcharts | undefined = undefined;
+  @tracked highchartsInstance?: typeof _Highcharts;
 
   get content() {
     return this.args.content ?? undefined;
@@ -199,70 +199,82 @@ export default class HighCharts<
     this.chart?.destroy();
   }
 
+  // This one is needed because in
+  // in webpack builds we will have module contents directly in `tmpModule`
+  // in vite builds we will have module contents in `tmpModule.default`
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  _webpackVsVite(newModule: any) {
+    return newModule.default || newModule;
+  }
+
+  // As per [this change](https://www.highcharts.com/docs/getting-started/version-12) in v12
+  async _preV12MaybeImport(newModule: Promise<unknown>) {
+    const highchartModule = this._webpackVsVite(
+      await waitForPromise(newModule),
+    );
+
+    typeof highchartModule === 'function' &&
+      highchartModule(this.highchartsInstance);
+  }
+
   /**
    * Dynamically imports the necessary pieces from Highcharts, based on chart type and options.
    */
   async _importHighchartsDeps() {
-    let tmpModule;
+    this.highchartsInstance = this._webpackVsVite(
+      await waitForPromise(import('highcharts')),
+    );
 
     if (this.args.mode === 'Map') {
-      tmpModule = await waitForPromise(import('highcharts/modules/map'));
+      await this._preV12MaybeImport(import('highcharts/modules/map'));
     } else if (this.args.mode === 'StockChart') {
-      tmpModule = await waitForPromise(import('highcharts/modules/stock'));
-    } else {
-      tmpModule = await waitForPromise(import('highcharts'));
+      await this._preV12MaybeImport(import('highcharts/modules/stock'));
     }
 
-    // This one is needed because in
-    // in webpack builds we will have module contents directly in `tmpModule`
-    // in vite builds we will have module contents in `tmpModule.default`
-    // @ts-expect-error No idea what TS wants
-    this.highchartsInstance = tmpModule.default || tmpModule;
-
-    await waitForPromise(import('highcharts/modules/accessibility'));
+    await this._preV12MaybeImport(import('highcharts/modules/accessibility'));
 
     // 3d support
     if (this.args.chartOptions?.chart?.options3d) {
-      await waitForPromise(import('highcharts/modules/boost'));
-      await waitForPromise(import('highcharts/highcharts-3d'));
+      await this._preV12MaybeImport(import('highcharts/modules/boost'));
+      await this._preV12MaybeImport(import('highcharts/highcharts-3d'));
     }
 
     // Drilldown support
     if (this.args.chartOptions?.drilldown) {
-      await waitForPromise(import('highcharts/modules/drilldown'));
+      await this._preV12MaybeImport(import('highcharts/modules/drilldown'));
     }
 
     if (this.args.chartOptions?.chart?.type === 'funnel') {
-      await waitForPromise(import('highcharts/modules/funnel'));
+      await this._preV12MaybeImport(import('highcharts/modules/funnel'));
     }
 
     if (this.args.chartOptions?.chart?.type === 'heatmap') {
-      await waitForPromise(import('highcharts/modules/heatmap'));
-      await waitForPromise(import('highcharts/highcharts-more'));
+      await this._preV12MaybeImport(import('highcharts/modules/heatmap'));
+      await this._preV12MaybeImport(import('highcharts/highcharts-more'));
     }
 
     if (this.args.chartOptions?.chart?.type === 'solidgauge') {
-      await waitForPromise(import('highcharts/modules/solid-gauge'));
-      await waitForPromise(import('highcharts/highcharts-more'));
+      await this._preV12MaybeImport(import('highcharts/modules/solid-gauge'));
+      await this._preV12MaybeImport(import('highcharts/highcharts-more'));
     }
 
     if (
       this.args.chartOptions?.chart?.type === 'treegraph' ||
       this.args.chartOptions?.chart?.type === 'treemap'
     ) {
-      await waitForPromise(import('highcharts/modules/treemap'));
+      await this._preV12MaybeImport(import('highcharts/modules/treemap'));
     }
 
     if (this.args.chartOptions?.chart?.type === 'treegraph') {
-      await waitForPromise(import('highcharts/modules/treegraph'));
+      await this._preV12MaybeImport(import('highcharts/modules/treegraph'));
     }
 
     if (this.args.chartOptions?.chart?.type === 'waterfall') {
-      await waitForPromise(import('highcharts/highcharts-more'));
+      await this._preV12MaybeImport(import('highcharts/highcharts-more'));
     }
 
     if (this.args.chartOptions?.chart?.polar === true) {
-      await waitForPromise(import('highcharts/highcharts-more'));
+      await this._preV12MaybeImport(import('highcharts/highcharts-more'));
     }
   }
 }

@@ -1,17 +1,21 @@
 {
   "solution": {
     "ember-highcharts": {
-      "impact": "minor",
-      "oldVersion": "6.1.2",
-      "newVersion": "6.2.0",
+      "impact": "major",
+      "oldVersion": "6.2.0",
+      "newVersion": "7.0.0",
       "constraints": [
         {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
+          "impact": "major",
+          "reason": "Appears in changelog section :boom: Breaking Change"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :house: Internal"
         }
       ],
       "pkgJSONPath": "./ember-highcharts/package.json"
     }
   },
-  "description": "## Release (2024-10-07)\n\nember-highcharts 6.2.0 (minor)\n\n#### :rocket: Enhancement\n* `ember-highcharts`, `test-app`\n  * [#481](https://github.com/ahmadsoe/ember-highcharts/pull/481) Add support for polar charts ([@MichalBryxi](https://github.com/MichalBryxi))\n  * [#472](https://github.com/ahmadsoe/ember-highcharts/pull/472) Support treegraph and treemap modules ([@charlesfries](https://github.com/charlesfries))\n\n#### :memo: Documentation\n* [#484](https://github.com/ahmadsoe/ember-highcharts/pull/484) docs: Remove reference to blueprints ([@MichalBryxi](https://github.com/MichalBryxi))\n* [#487](https://github.com/ahmadsoe/ember-highcharts/pull/487) docs: Remove global config reference ([@MichalBryxi](https://github.com/MichalBryxi))\n* [#476](https://github.com/ahmadsoe/ember-highcharts/pull/476) v2 test app path in README ([@MichalBryxi](https://github.com/MichalBryxi))\n\n#### :house: Internal\n* Other\n  * [#489](https://github.com/ahmadsoe/ember-highcharts/pull/489) Setup release-plan ([@RobbieTheWagner](https://github.com/RobbieTheWagner))\n* `test-app`\n  * [#488](https://github.com/ahmadsoe/ember-highcharts/pull/488) Fix test app component class names ([@charlesfries](https://github.com/charlesfries))\n\n#### Committers: 3\n- Charles Fries ([@charlesfries](https://github.com/charlesfries))\n- Michal Bryxí ([@MichalBryxi](https://github.com/MichalBryxi))\n- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))\n"
+  "description": "## Release (2025-05-06)\n\nember-highcharts 7.0.0 (major)\n\n#### :boom: Breaking Change\n* `ember-highcharts`, `test-app`\n  * [#493](https://github.com/ahmadsoe/ember-highcharts/pull/493) Require Highcharts >= 10 ([@MichalBryxi](https://github.com/MichalBryxi))\n\n#### :house: Internal\n* `ember-highcharts`, `test-app`\n  * [#495](https://github.com/ahmadsoe/ember-highcharts/pull/495) Run tests for highcharts 10 and 11 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))\n\n#### Committers: 2\n- Michal Bryxí ([@MichalBryxi](https://github.com/MichalBryxi))\n- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))\n"
 }

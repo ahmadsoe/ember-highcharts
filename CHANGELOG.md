@@ -1,5 +1,21 @@
 # Changelog
 
+## Release (2025-05-06)
+
+ember-highcharts 7.0.0 (major)
+
+#### :boom: Breaking Change
+* `ember-highcharts`, `test-app`
+  * [#493](https://github.com/ahmadsoe/ember-highcharts/pull/493) Require Highcharts >= 10 ([@MichalBryxi](https://github.com/MichalBryxi))
+
+#### :house: Internal
+* `ember-highcharts`, `test-app`
+  * [#495](https://github.com/ahmadsoe/ember-highcharts/pull/495) Run tests for highcharts 10 and 11 ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 2
+- Michal Bryxí ([@MichalBryxi](https://github.com/MichalBryxi))
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
 ## Release (2024-10-07)
 
 ember-highcharts 6.2.0 (minor)

@@ -19,12 +19,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: pnpm
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
@@ -40,12 +40,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: pnpm
       - name: Install Dependencies
         run: pnpm install --no-lockfile
@@ -72,15 +72,17 @@ jobs:
           - ember-canary
           - embroider-safe
           - embroider-optimized
+          - highcharts-10
+          - highcharts-11
 
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: pnpm
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile

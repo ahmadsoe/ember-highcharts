@@ -106,7 +106,8 @@
     "prettier-plugin-ember-template-tag": "^2.0.2",
     "rollup": "^4.19.0",
     "rollup-plugin-copy": "^3.5.0",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "webpack": "^5.93.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"

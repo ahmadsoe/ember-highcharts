@@ -124,6 +124,6 @@
   },
   "peerDependencies": {
     "ember-source": ">= 3.28.0",
-    "highcharts": ">= 5.0.0"
+    "highcharts": ">= 10.0.0"
   }
 }

@@ -14,8 +14,6 @@ import buildOptions from '../utils/build-options.ts';
 import { setDefaultHighChartOptions } from '../utils/option-loader.ts';
 import { getSeriesMap, getSeriesChanges } from '../utils/chart-data.ts';
 
-let Highcharts: typeof _Highcharts;
-
 /* Map ember-highcharts modes to Highcharts methods
  * https://api.highcharts.com/class-reference/Highcharts.html
  */
@@ -60,6 +58,8 @@ interface HighChartsSignature<Content extends Highcharts.Options['series']> {
 export default class HighCharts<
   Content extends Highcharts.Options['series'],
 > extends Component<HighChartsSignature<Content>> {
+  @tracked highchartsInstance?: typeof _Highcharts;
+
   get content() {
     return this.args.content ?? undefined;
   }
@@ -101,7 +101,8 @@ export default class HighCharts<
     // for any mode that is falsy ('', undefined, false), set it to default 'chart'
     const mode = CHART_TYPES[`${this.mode}`] ?? CHART_TYPES.undefined;
     const completeChartOptions = [this.buildOptions, this.callback];
-    const highchartsModeFunction = Highcharts[mode as keyof object];
+    const highchartsModeFunction =
+      this.highchartsInstance?.[mode as keyof object];
     if (element && typeof highchartsModeFunction === 'function') {
       // eslint-disable-next-line @typescript-eslint/ban-types
       const chart = (highchartsModeFunction as Function)(
@@ -198,85 +199,82 @@ export default class HighCharts<
     this.chart?.destroy();
   }
 
+  // This one is needed because in
+  // in webpack builds we will have module contents directly in `tmpModule`
+  // in vite builds we will have module contents in `tmpModule.default`
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  _webpackVsVite(newModule: any) {
+    return newModule.default || newModule;
+  }
+
+  // As per [this change](https://www.highcharts.com/docs/getting-started/version-12) in v12
+  async _preV12MaybeImport(newModule: Promise<unknown>) {
+    const highchartModule = this._webpackVsVite(
+      await waitForPromise(newModule),
+    );
+
+    typeof highchartModule === 'function' &&
+      highchartModule(this.highchartsInstance);
+  }
+
   /**
    * Dynamically imports the necessary pieces from Highcharts, based on chart type and options.
    */
   async _importHighchartsDeps() {
+    this.highchartsInstance = this._webpackVsVite(
+      await waitForPromise(import('highcharts')),
+    );
+
     if (this.args.mode === 'Map') {
-      Highcharts = await waitForPromise(import('highcharts/highmaps'));
+      await this._preV12MaybeImport(import('highcharts/modules/map'));
     } else if (this.args.mode === 'StockChart') {
-      Highcharts = await waitForPromise(import('highcharts/highstock'));
-    } else {
-      Highcharts = await waitForPromise(import('highcharts'));
+      await this._preV12MaybeImport(import('highcharts/modules/stock'));
     }
 
-    const Accessibility = await waitForPromise(
-      import('highcharts/modules/accessibility'),
-    );
-    Accessibility.default(Highcharts);
+    await this._preV12MaybeImport(import('highcharts/modules/accessibility'));
 
     // 3d support
     if (this.args.chartOptions?.chart?.options3d) {
-      const Boost = await waitForPromise(import('highcharts/modules/boost'));
-      Boost.default(Highcharts);
-      const Highcharts3d = await waitForPromise(
-        import('highcharts/highcharts-3d'),
-      );
-      Highcharts3d.default(Highcharts);
+      await this._preV12MaybeImport(import('highcharts/modules/boost'));
+      await this._preV12MaybeImport(import('highcharts/highcharts-3d'));
     }
 
     // Drilldown support
     if (this.args.chartOptions?.drilldown) {
-      const Drilldown = await waitForPromise(
-        import('highcharts/modules/drilldown'),
-      );
-      Drilldown.default(Highcharts);
+      await this._preV12MaybeImport(import('highcharts/modules/drilldown'));
     }
 
     if (this.args.chartOptions?.chart?.type === 'funnel') {
-      const Funnel = await waitForPromise(import('highcharts/modules/funnel'));
-      Funnel.default(Highcharts);
+      await this._preV12MaybeImport(import('highcharts/modules/funnel'));
     }
 
     if (this.args.chartOptions?.chart?.type === 'heatmap') {
-      const Heatmap = await waitForPromise(
-        import('highcharts/modules/heatmap'),
-      );
-      const More = await waitForPromise(import('highcharts/highcharts-more'));
-      More.default(Highcharts);
-      Heatmap.default(Highcharts);
+      await this._preV12MaybeImport(import('highcharts/modules/heatmap'));
+      await this._preV12MaybeImport(import('highcharts/highcharts-more'));
     }
 
     if (this.args.chartOptions?.chart?.type === 'solidgauge') {
-      const SolidGauge = await waitForPromise(
-        import('highcharts/modules/solid-gauge'),
-      );
-      const More = await waitForPromise(import('highcharts/highcharts-more'));
-      More.default(Highcharts);
-      SolidGauge.default(Highcharts);
+      await this._preV12MaybeImport(import('highcharts/modules/solid-gauge'));
+      await this._preV12MaybeImport(import('highcharts/highcharts-more'));
     }
 
     if (
       this.args.chartOptions?.chart?.type === 'treegraph' ||
       this.args.chartOptions?.chart?.type === 'treemap'
     ) {
-      const Treemap = await import('highcharts/modules/treemap');
-      Treemap.default(Highcharts);
+      await this._preV12MaybeImport(import('highcharts/modules/treemap'));
     }
 
     if (this.args.chartOptions?.chart?.type === 'treegraph') {
-      const Treegraph = await import('highcharts/modules/treegraph');
-      Treegraph.default(Highcharts);
+      await this._preV12MaybeImport(import('highcharts/modules/treegraph'));
     }
 
     if (this.args.chartOptions?.chart?.type === 'waterfall') {
-      const More = await waitForPromise(import('highcharts/highcharts-more'));
-      More.default(Highcharts);
+      await this._preV12MaybeImport(import('highcharts/highcharts-more'));
     }
 
     if (this.args.chartOptions?.chart?.polar === true) {
-      const More = await waitForPromise(import('highcharts/highcharts-more'));
-      More.default(Highcharts);
+      await this._preV12MaybeImport(import('highcharts/highcharts-more'));
     }
   }
 }

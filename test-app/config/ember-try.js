@@ -8,6 +8,22 @@ module.exports = async function () {
     usePnpm: true,
     scenarios: [
       {
+        name: 'highcharts-11',
+        npm: {
+          devDependencies: {
+            highcharts: '^11.0.0',
+          },
+        },
+      },
+      {
+        name: 'highcharts-12',
+        npm: {
+          devDependencies: {
+            highcharts: '^12.0.0',
+          },
+        },
+      },
+      {
         name: 'ember-lts-3.28',
         npm: {
           devDependencies: {
